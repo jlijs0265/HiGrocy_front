@@ -1,4 +1,4 @@
-<h1> Higrocy_project react 사용방법
+<h1> Higrocy_project react 사용방법 </h1>
 
 1. 임시 path에 git clone을 받는다(ex. desktop/higrocy_front)
 2. 본인이 vscode를 사용하여 코딩할 folder path로 들어가서 npx를 이용하여 react app기본을 설치한다.
