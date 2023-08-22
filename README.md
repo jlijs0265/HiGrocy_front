@@ -15,7 +15,7 @@
 
 ---
 TODO List
-- type script 사용(ts_cofig 설정)
+- ~~type script 사용(ts_cofig 설정)~~
 - 기본 bootstrap으로만 사용
 - Component 구성  
    1. navbar
@@ -33,3 +33,18 @@ TODO List
    - 기본 페이지 폴더로 함수화하여 만들어 놓기
    - 핵심 페이지 생각해보고 컴포넌트화 진행.
    - axois 통신으로 가져와야 할부분 아래에 따로 정리.
+
+---
+
+<h2>request Mapping </h2>
+- /login : 로그인 페이지(spring boot에서 어떻게 될지 봐야함.)
+- /order : 발주신청 페이지
+- /orderlist : 발주현황 페이지
+- /pm : 기계 목록 페이지
+- /product : 생산품 페이지
+- /production/requestList : 생산요청 페이지
+- /process : 공정관리 페이지
+- /pr : 생산요청 현황 페이지
+- /raw_material : 원자재 관리 페이지
+- /storage : 창고 관리 페이지
+- /wh : 입출고 현황 페이지
