@@ -25,7 +25,7 @@ TODO List
    5. search bar(selector)
    6. pagination (back단과 연계구성)
    7. back단과 연계 구성될 부분 설정(rest controller)
-   8. request Mapping (url-pattern) route 구성
+   ~~8. request Mapping (url-pattern) route 구성~~
 
    ---
 
