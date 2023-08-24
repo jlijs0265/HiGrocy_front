@@ -1,0 +1,24 @@
+<svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Logout" clip-path="url(#clip0_110_3660)">
+<g id="Logout_2" filter="url(#filter0_bd_110_3660)">
+<path d="M24.7059 27V31.4444C24.7059 33.4081 23.0204 35 20.9412 35H7.76471C5.68552 35 4 33.4081 4 31.4444V6.55556C4 4.59188 5.68552 3 7.76471 3H20.9412C23.0204 3 24.7059 4.59188 24.7059 6.55556V12M17.1765 19H36M36 19L31.2941 14.5556M36 19L31.2941 23.4444" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_bd_110_3660" x="-1" y="-2" width="42" height="46" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImageFix" stdDeviation="2"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_110_3660"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="effect1_backgroundBlur_110_3660" result="effect2_dropShadow_110_3660"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_110_3660" result="shape"/>
+</filter>
+<clipPath id="clip0_110_3660">
+<rect width="40" height="40" fill="white"/>
+</clipPath>
+</defs>
+</svg>

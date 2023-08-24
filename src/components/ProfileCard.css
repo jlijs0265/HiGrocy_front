@@ -1,0 +1,83 @@
+.profile_banner {
+  width: 300px;
+  height: 71px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: linear-gradient(
+      180deg,
+      rgba(147, 174, 252, 0.2) 0%,
+      rgba(177, 147, 252, 0.2) 100%
+    ),
+    rgba(255, 255, 255, 0.4);
+  box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(7.5px);
+}
+
+.profile_banner_user {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: 300px;
+  background: var(
+    --avatars-female-jenny-wilson,
+    /* url("/assets/images/avatar.svg"), */ lightgray -2.473px -11.11px /
+      108.833% 136.864% no-repeat
+  );
+}
+.profile_list {
+  display: flex;
+  width: 168px;
+  height: 56px;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.profile_bold {
+  color: var(--text-text-primary, #141c24);
+
+  /* Paragraph M/Semi Bold */
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 150% */
+}
+
+.profile_text {
+  color: var(--text-text-tertiary, #637083);
+
+  /* Paragraph S/Regular */
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+}
+
+.profile_banner_alarm {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.profile_banner_logout {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.parent {
+  position: relative; /* 부모의 위치를 기준으로 자식을 배치 */
+  width: 300px;
+  height: 300px;
+  background-color: lightgray;
+}
+
+.child {
+  position: absolute; /* 절대적인 위치를 사용 */
+  top: 50px; /* 부모의 위에서 50px 아래로 */
+  left: 20px; /* 부모의 왼쪽에서 20px 오른쪽으로 */
+  background-color: coral;
+  padding: 10px;
+}
