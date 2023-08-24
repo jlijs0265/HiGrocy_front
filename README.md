@@ -18,14 +18,17 @@ TODO List
 - ~~type script 사용(ts_cofig 설정)~~
 - 기본 bootstrap으로만 사용
 - Component 구성  
-   1. navbar
-   2. chart
-   3. form
-   4. table (상황에따라 여러 컴포넌트로 분기)
-   5. search bar(selector)
-   6. pagination (back단과 연계구성)
-   7. back단과 연계 구성될 부분 설정(rest controller)
-   ~~8. request Mapping (url-pattern) route 구성~~
+   1. navbar - 동진
+   2. chart - 동진
+   3. form -희진
+   4. table (상황에따라 여러 컴포넌트로 분기) - 희진
+   ~~5. search bar(selector) - 희진~~
+   6. spinner - 희진
+   7. data input search bar - 희진
+   8. modal - 희진
+   9. pagination (back단과 연계구성) - 희진
+   10. back단과 연계 구성될 부분 설정(rest controller)
+   ~~11. request Mapping (url-pattern) route 구성~~
 
    ---
 
@@ -36,7 +39,8 @@ TODO List
 
 ---
 
-<h2>request Mapping </h2>
+<h2>request Mapping </h2>  
+
 - /login : 로그인 페이지(spring boot에서 어떻게 될지 봐야함.)
 - /order : 발주신청 페이지
 - /orderlist : 발주현황 페이지
