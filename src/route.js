@@ -13,6 +13,7 @@ import Process from "./pages/process";
 import RawMaterial from "./pages/rawMaterial";
 import Storage from "./pages/storage";
 import WareHousing from "./pages/wareHousing";
+import TestPage from "./pages/testpage";
 
 
 export default function Higorcy_Router() {
@@ -52,6 +53,9 @@ export default function Higorcy_Router() {
             </Route>
             <Route path="/wh">
               <WareHousing/>
+            </Route>
+            <Route path="/test">
+              <TestPage/>
             </Route>
           </Switch>
         </div>
