@@ -81,3 +81,20 @@
   background-color: coral;
   padding: 10px;
 }
+
+.item {
+  cursor: pointer;
+}
+
+.item.vibration {
+  animation: vibration 0.1s infinite;
+}
+
+@keyframes vibration {
+  from {
+    transform: rotate(3deg);
+  }
+  to {
+    transform: rotate(-3deg);
+  }
+}
