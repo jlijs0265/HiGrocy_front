@@ -1,17 +1,18 @@
 import { PropTypes } from "prop-types";
 
-const Table = ({ rowNum, colNum }) => {
+const Table = ({ rowNum, colNum, tableCol }) => {
+
     return (
         <div className="table-responsive container">
             <table className="table table-bordered border-secondary rawTable">
                 <thead>
                     <tr>
-                        {Array(colNum).fill(1).map((value, index) => value + index).map((colNum) => { return <th key={colNum}>{colNum}</th> })}
+                        {tableCol.map((value, index) => {return <th key={index}>{value}</th>})}
                     </tr>
                 </thead>
                 <tbody className="rawbody">
                     <tr className="rawitem">
-                        {Array(rowNum).fill(1).map((value, index) => value + index).map((rowNum) => { return <td key={rowNum}>{rowNum}</td> })}
+                        {Array(colNum).fill(1).map((value, index) => value + index).map((colNum) => { return <td key={colNum}>{colNum}</td> })}
                     </tr>
                 </tbody>
             </table>
