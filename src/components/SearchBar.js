@@ -2,7 +2,7 @@ import "./SearchBar.css";
 
 const SearchBar = () => {
     return (
-        <div class="input-group mb-3">
+        <div class="input-group">
             <input type="text" className="form-control form-control-lg search" placeholder="Search..." />
             <button className="btn btn-outline-secondary shadow searchBtn" type="button" id="button-addon2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
