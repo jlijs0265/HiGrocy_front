@@ -1,5 +1,8 @@
 
 import './App.css';
+import AreaChart from './components/AreaChart';
+import BarChart from './components/BarChart';
+import LineChart from './components/LineChart';
 import ProfileCard from './components/ProfileCard';
 import SearchBar from './components/SearchBar';
 import SideBar from './components/SideBar';
@@ -27,6 +30,24 @@ function App() {
           </div>
         </div>
 
+        <div style={{
+          width: '500px',
+          height: '500px',
+        }}>
+          <LineChart/>
+        </div>
+        <div style={{
+          width: '500px',
+          height: '500px',
+        }}>
+          <AreaChart/>
+        </div>
+        <div style={{
+          width: '500px',
+          height: '500px',
+        }}>
+          <BarChart/>
+        </div>
       </div>
     </div>
   );
