@@ -1,7 +1,4 @@
 // import './App.css';
-import AreaChart from './components/AreaChart';
-import BarChart from './components/BarChart';
-import LineChart from './components/LineChart';
 import ProfileCard from './components/ProfileCard';
 import SearchBar from './components/SearchBar';
 import SideBar from './components/SideBar';
@@ -12,7 +9,8 @@ function App() {
   return (
     <div className="App">
       <div className='contiainer row'>
-        <div className='col-2 p-4'>
+
+        <div className='col-auto p-4'>
           <SideBar></SideBar>
         </div>
         <div className='col-10'>
@@ -24,28 +22,7 @@ function App() {
               <ProfileCard></ProfileCard>
             </div>
           </div>
-          <div className=''>
             <Router></Router>
-          </div>
-        </div>
-
-        <div style={{
-          width: '500px',
-          height: '500px',
-        }}>
-          <LineChart/>
-        </div>
-        <div style={{
-          width: '500px',
-          height: '500px',
-        }}>
-          <AreaChart/>
-        </div>
-        <div style={{
-          width: '500px',
-          height: '500px',
-        }}>
-          <BarChart/>
         </div>
       </div>
     </div>

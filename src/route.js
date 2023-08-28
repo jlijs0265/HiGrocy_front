@@ -10,11 +10,12 @@ import RawMaterial from "./pages/rawMaterial";
 import Storage from "./pages/storage";
 import WareHousing from "./pages/wareHousing";
 import TestPage from "./pages/testpage";
+import Mainpage from "./pages/mainpage";
 
 export default function Higorcy_Router() {
   return (
     <Router>
-      <div>
+      <>
         {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
         <Switch>
@@ -51,8 +52,11 @@ export default function Higorcy_Router() {
           <Route path="/test">
             <TestPage />
           </Route>
+          <Route path="/*">
+            <Mainpage />
+          </Route>
         </Switch>
-      </div>
+      </>
     </Router>
   );
 }
