@@ -19,7 +19,7 @@ TODO List
 - 기본 bootstrap으로만 사용
 - Component 구성  
    ~~1. navbar - 동진~~
-   2. chart - 동진
+   ~~2. chart - 동진~~
    3. form -희진
    ~~4. table (상황에따라 여러 컴포넌트로 분기) - 희진~~
    ~~5. search bar(selector) - 희진~~
@@ -45,10 +45,11 @@ TODO List
 - /order : 발주신청 페이지
 - /orderlist : 발주현황 페이지
 - /pm : 기계 목록 페이지
-- /product : 생산품 페이지
+- ~~/product : 생산품 페이지~~
 - /production/requestList : 생산요청현황 페이지
 - /process : 공정관리 페이지
-- /pr : 생산요청 페이지
-- /raw_material : 원자재 관리 페이지
+- ~~/pr : 생산요청 페이지~~
+- ~~/raw_material : 원자재 관리 페이지~~
 - /storage : 창고 관리 페이지
 - /wh : 입출고 현황 페이지
+- ~~/* : Main 페이지 Chart이쪽으로 옮김~~
