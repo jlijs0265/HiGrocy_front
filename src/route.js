@@ -19,6 +19,7 @@ export default function Higorcy_Router() {
         {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
         <Switch>
+          {/* 발주(요청) */}
           <Route path="/order">
             <Order />
           </Route>
@@ -31,12 +32,13 @@ export default function Higorcy_Router() {
           <Route path="/product">
             <Product />
           </Route>
-          <Route path="/production/requestList">
+          <Route path="/prlist">
             <ProductRequest />
           </Route>
           <Route path="/process">
             <Process />
           </Route>
+          {/* 생산(요청) */}
           <Route path="/pr">
             <ProductRequest />
           </Route>
@@ -46,12 +48,14 @@ export default function Higorcy_Router() {
           <Route path="/storage">
             <Storage />
           </Route>
+          {/* 재고(현황) */}
           <Route path="/wh">
             <WareHousing />
           </Route>
           <Route path="/test">
             <TestPage />
           </Route>
+          {/* 환경(메인페이지) */}
           <Route path="/*">
             <Mainpage />
           </Route>
