@@ -4,7 +4,7 @@
 2. 본인이 vscode를 사용하여 코딩할 folder path로 들어가서 npx를 이용하여 react app기본을 설치한다.
 
    ```powershell
-   npx creat-react-app "폴더명"
+   npx create-react-app "폴더명"
    ```
 3. 2번에서 생성한 폴더내에 node_modules 폴더를 제외하고 삭제한다.
 4. 1번에서 받은 폴더에 내부 파일을 2번에서 생성한 폴더로 이동한다. (❗숨겨진폴더 .git도 같이 이동해야함)
