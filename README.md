@@ -46,8 +46,8 @@ TODO List
 - /orderlist : 발주현황 페이지
 - /pm : 기계 목록 페이지
 - ~~/product : 생산품 페이지~~
-- /production/requestList : 생산요청현황 페이지
-- /process : 공정관리 페이지
+- /prlist : 생산요청현황 페이지
+- ~~/process : 공정관리 페이지~~ : html 레이아웃만 완성
 - ~~/pr : 생산요청 페이지~~
 - ~~/raw_material : 원자재 관리 페이지~~
 - /storage : 창고 관리 페이지
