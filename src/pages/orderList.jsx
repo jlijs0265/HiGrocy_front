@@ -13,6 +13,8 @@ const OrderList = () => {
 
     //redux로 관리 할것
     const [bomTags, setBomTags] = useState([]);
+    const [tigger, setTigger] = useState(2);
+
     const addBomTag = () => {
 
         setBomTags([...bomTags, '']);
@@ -32,13 +34,13 @@ const OrderList = () => {
 
         <div>
             <div className="container mb-3">
-                <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
-                    <ToggleButton id="tbg-radio-1" value={1}>
+                <ToggleButtonGroup type="radio" name="options" defaultValue={2} onChange={(e)=>{setTigger(e)}}>
+                    <ToggleButton id="tbg-radio-1" value={1} variant="outline-secondary">
                         발주날짜별
                     </ToggleButton>
-                    <ToggleButton id="tbg-radio-2" value={2}>
+                    <ToggleButton id="tbg-radio-2" value={2} variant="outline-secondary">
                         품목별                    </ToggleButton>
-                    <ToggleButton id="tbg-radio-3" value={3}>
+                    <ToggleButton id="tbg-radio-3" value={3} variant="outline-secondary">
                         거래처별
                     </ToggleButton>
                 </ToggleButtonGroup>
@@ -51,7 +53,9 @@ const OrderList = () => {
                             <div className='row-md-12 stretch-card mb-3'>
                                 <div className='card'>
                                     <div className='card-body list-body'>
-                                        <h4 className='card-title text-start mb-4'>품목검색</h4>
+                                        <h4 className='card-title text-start mb-4'>
+                                            {tigger===2?"품목검색":tigger===1?"발주날짜별 검색":"거래처별 검색"}
+                                        </h4>
                                         <InputGroup className="mb-3 p-2">
                                             <DropdownButton
                                                 variant="outline-secondary"
