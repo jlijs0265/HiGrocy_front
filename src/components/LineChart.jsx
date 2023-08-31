@@ -58,6 +58,7 @@ const data = {
 
   return (
     <div>
+      LineChart
         <Line options={options} data={data} />
     </div>
   )

@@ -9,7 +9,6 @@ function App() {
   return (
     <div className="App">
       <div className='contiainer row'>
-
         <div className='col-1 p-4'>
           <SideBar></SideBar>
         </div>
