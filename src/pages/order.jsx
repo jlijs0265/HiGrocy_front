@@ -11,7 +11,7 @@ const Order = () => {
                     <div className="main-panel">
                         <div className="content-wrapper">
                             <div className="page-header">
-                                <h3 className="page-title p-3"></h3>
+                                <h3 className="page-title p-3">발주요청서</h3>
                             </div>
                             <div className="row h-100">
                                 <div className="col-md-5 grid-margin stretch-card">
@@ -85,7 +85,7 @@ const Order = () => {
                                             </div>
 
                                             <div className="d-flex justify-content-end">
-                                                <button type="button" className="btn btn-primary" id="registerBtn">등록</button>
+                                                <button type="button" className="btn btn-primary" id="registerBtn">작성</button>
                                             </div>
 
                                         </div>
