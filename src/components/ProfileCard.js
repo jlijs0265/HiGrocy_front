@@ -22,7 +22,7 @@ function ProfileCard(props) {
   };
 
   return (
-    <div className="profile_banner d-flex content-justify-center p-2">
+    <div className="profile_banner d-flex content-justify-center p-2 m-3 col-4">
       <div className="profile_list">
         {props ? (
           <img
