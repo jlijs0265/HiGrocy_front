@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card-body {
+  cursor: default !important;
+}
+
+.cursor-point {
+  cursor: pointer;
+}
+
+.disable-input {
+  background-color: #e9ecef;
+  border: var(--bs-border-width) solid #dee2e6;
+  opacity: 1;
+}
+.disable-input:focus {
+  background-color: #e9ecef;
+  border: var(--bs-border-width) solid #dee2e6;
+  opacity: 1;
+  outline:none;
+  box-shadow:none;
+  line-height: 1.5;
+}
