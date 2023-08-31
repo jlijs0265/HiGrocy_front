@@ -20,8 +20,8 @@ const GeneralForm = ({ inputType, label, options, disabled, readOnly}) => {
 };
 
 Form.propTypes = {
-  inputType : PropTypes.string.isRequired,
-  label : PropTypes.string.isRequired,
+  inputType : PropTypes.string,
+  label : PropTypes.string,
   disabled : PropTypes.string,
   readOnly : PropTypes.string,
 }
