@@ -10,12 +10,12 @@ function App() {
     <div className="App">
       <div className='contiainer row'>
 
-        <div className='col-auto p-4'>
+        <div className='col-1 p-4'>
           <SideBar></SideBar>
         </div>
-        <div className='col-10'>
-          <div className='d-flex justify-content-between '>
-            <div className='m-3 align-self-center'>
+        <div className='col-11'>
+          <div className='d-flex justify-content-between'>
+            <div className='m-3 flex-fill align-self-center'>
               <SearchBar></SearchBar>
             </div>
             <div className='m-3'>
