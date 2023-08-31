@@ -4,6 +4,8 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import GeneralForm from "../components/GeneralForm";
+import { useState, useEffect } from "react";
+import Pagination from "../components/Pagination";
 
 
 const RawMaterial = () => {
@@ -13,11 +15,25 @@ const RawMaterial = () => {
         { value: 'option1', label: '품명' },
         { value: 'option2', label: '코드' },
     ]
-    
+
     const selectOptions2 = [
         { value: 'option1', label: '여' },
         { value: 'option2', label: '부' },
     ]
+
+    const [register, setRegister] = useState(true);
+    const [modify, setModify] = useState(false);
+
+    const trClick = (e) => {
+        e.stopPropagation();
+        setRegister(false);
+        setModify(true);
+    }
+    const elseAreaClick = () => {
+        console.log('aaa');
+        setRegister(true);
+        setModify(false);
+    }
 
     return (
         <div>
@@ -29,7 +45,7 @@ const RawMaterial = () => {
                             <div className='row h-100'>
                                 <div className='col-md-6 stretch-card'>
                                     <div className='card'>
-                                        <div className='card-body list-body'>
+                                        <div className='card-body list-body ' onClick={elseAreaClick}>
                                             <h4 className='card-title text-start mb-4'>원부자재 목록</h4>
                                             <InputGroup className="mb-3 p-2">
                                                 <DropdownButton
@@ -41,8 +57,10 @@ const RawMaterial = () => {
                                                 </DropdownButton>
                                                 <Form.Control aria-label="Text input with dropdown button" />
                                             </InputGroup>
-                                            <Table tableCol={tableCol} colNum={tableCol.length} />
-
+                                            <Table tableCol={tableCol} colNum={tableCol.length} trClick={trClick} />
+                                            <div className="d-flex justify-content-center">
+                                                <Pagination />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -52,17 +70,17 @@ const RawMaterial = () => {
                                             <h4 className='card-title text-start mb-4' id='raw-title'>등록 페이지</h4>
 
                                             <Form className='p-2' action='/raw_material/insert' method='post' id='rawForm'>
-                                                <GeneralForm inputType={'input'} label={'원부자재코드'} disabled={'disabled'} readOnly={'readOnly'}/>
-                                                <GeneralForm inputType={'select'} label={'자재분류'} options={selectOptions}/>
-                                                <GeneralForm inputType={'input'} label={'자재명'}/>
+                                                <GeneralForm inputType={'input'} label={'원부자재코드'} disabled={'disabled'} readOnly={'readOnly'} />
+                                                <GeneralForm inputType={'select'} label={'자재분류'} options={selectOptions} />
+                                                <GeneralForm inputType={'input'} label={'자재명'} />
                                                 <GeneralForm inputType={'select'} label={'재생가능여부'} options={selectOptions2} />
-                                                <GeneralForm inputType={'input'} label={'단위'}/>
-                                                <GeneralForm inputType={'input'} label={'기준수량'}/>
-                                                <GeneralForm inputType={'input'} label={'원산지'}/>
+                                                <GeneralForm inputType={'input'} label={'단위'} />
+                                                <GeneralForm inputType={'input'} label={'기준수량'} />
+                                                <GeneralForm inputType={'input'} label={'원산지'} />
                                             </Form>
-                                            <button className='btn btn-primary me-2' id='registerBtn'>등록</button>
-                                            <button className='btn btn-success me-2' id='updateBtn'>수정</button>
-                                            <button className='btn btn-danger me-2' id='deleteBtn'>삭제</button>
+                                            <button className='btn btn-primary me-2' hidden={register ? '' : 'hidden'} id='registerBtn'>등록</button>
+                                            <button className='btn btn-success me-2' hidden={modify ? '' : 'hidden'} id='updateBtn'>수정</button>
+                                            <button className='btn btn-danger me-2' hidden={modify ? '' : 'hidden'} id='deleteBtn'>삭제</button>
                                         </div>
                                     </div>
                                 </div>
