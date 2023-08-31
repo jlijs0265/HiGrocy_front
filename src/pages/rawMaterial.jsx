@@ -3,14 +3,24 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import GeneralForm from "../components/GeneralForm";
+
 
 const RawMaterial = () => {
 
     const tableCol = ['코드', '자재분류', '자재명', '재생가능여부', '단위', '기준수량', '원산지'];
+    const selectOptions = [
+        { value: 'option1', label: '품명' },
+        { value: 'option2', label: '코드' },
+    ]
+    
+    const selectOptions2 = [
+        { value: 'option1', label: '여' },
+        { value: 'option2', label: '부' },
+    ]
 
     return (
         <div>
-            원자재 관리 페이지
             <div className='container-scroller'>
                 <div className='container-fluid page-body-wrapper'>
                     <div className='main-panel'>
@@ -42,40 +52,13 @@ const RawMaterial = () => {
                                             <h4 className='card-title text-start mb-4' id='raw-title'>등록 페이지</h4>
 
                                             <Form className='p-2' action='/raw_material/insert' method='post' id='rawForm'>
-                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                                    <Form.Label className="text-start">원부자재코드</Form.Label>
-                                                    <Form.Control type="text" disabled readOnly placeholder="원부자재코드" />
-                                                </Form.Group>
-                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                                    <Form.Label className="text-start">자재분류</Form.Label>
-                                                <Form.Select aria-label="Default select example">
-                                                    <option value="1">원자재</option>
-                                                    <option value="2">부자재</option>
-                                                </Form.Select>
-                                                </Form.Group>
-                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                                    <Form.Label className="text-start">자재명</Form.Label>
-                                                    <Form.Control type="text"placeholder="자재명" />
-                                                </Form.Group>
-                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                                    <Form.Label className="text-start">재생가능여부</Form.Label>
-                                                <Form.Select aria-label="Default select example">
-                                                    <option value="1">여</option>
-                                                    <option value="2">부</option>
-                                                </Form.Select>
-                                                </Form.Group>
-                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                                    <Form.Label className="text-start">단위</Form.Label>
-                                                    <Form.Control type="text"placeholder="단위" />
-                                                </Form.Group>
-                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                                    <Form.Label className="text-start">기준수량</Form.Label>
-                                                    <Form.Control type="text"placeholder="기준수량" />
-                                                </Form.Group>
-                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                                    <Form.Label className="text-start">원산지</Form.Label>
-                                                    <Form.Control type="text"placeholder="원산지" />
-                                                </Form.Group>
+                                                <GeneralForm inputType={'input'} label={'원부자재코드'} disabled={'disabled'} readOnly={'readOnly'}/>
+                                                <GeneralForm inputType={'select'} label={'자재분류'} options={selectOptions}/>
+                                                <GeneralForm inputType={'input'} label={'자재명'}/>
+                                                <GeneralForm inputType={'select'} label={'재생가능여부'} options={selectOptions2} />
+                                                <GeneralForm inputType={'input'} label={'단위'}/>
+                                                <GeneralForm inputType={'input'} label={'기준수량'}/>
+                                                <GeneralForm inputType={'input'} label={'원산지'}/>
                                             </Form>
                                             <button className='btn btn-primary me-2' id='registerBtn'>등록</button>
                                             <button className='btn btn-success me-2' id='updateBtn'>수정</button>

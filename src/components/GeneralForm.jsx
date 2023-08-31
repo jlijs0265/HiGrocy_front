@@ -1,14 +1,14 @@
 import Form from 'react-bootstrap/Form';
 import { PropTypes } from "prop-types";
 
-const Form = ({ inputType, label, options }) => {
+const GeneralForm = ({ inputType, label, options, disabled, readOnly}) => {
   if (inputType === 'input') {
-    return <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+    return <Form.Group className="mb-3">
       <Form.Label className="text-start">{label}</Form.Label>
-      <Form.Control type="text" placeholder={label} />
+      <Form.Control type="text" disabled={disabled} readOnly={readOnly} placeholder={label} />
     </Form.Group>
-  } else if (inputType === 'select') {
-    return <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+  } else if (inputType === 'select') {                              
+    return <Form.Group className="mb-3">
       <Form.Label className="text-start">{label}</Form.Label>
       <Form.Select aria-label="Default select example">
         {options.map((option, index) => (
@@ -21,6 +21,9 @@ const Form = ({ inputType, label, options }) => {
 
 Form.propTypes = {
   inputType : PropTypes.string.isRequired,
+  label : PropTypes.string.isRequired,
+  disabled : PropTypes.string,
+  readOnly : PropTypes.string,
 }
 
-export default Form;
+export default GeneralForm;

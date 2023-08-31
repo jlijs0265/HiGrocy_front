@@ -4,6 +4,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useState } from "react";
+import GeneralForm from "../components/GeneralForm";
 
 const Product = () => {
 
@@ -54,14 +55,8 @@ const Product = () => {
                                     <div className="card-body">
                                         <h4 className="card-title" id="raw-title">생산품 등록</h4>
                                         <Form className='p-2'>
-                                            <Form.Group className="mb-3" >
-                                                <Form.Label className="text-start">생산품 코드</Form.Label>
-                                                <Form.Control type="text" disabled readOnly placeholder="생산품 코드" />
-                                            </Form.Group>
-                                            <Form.Group className="mb-3" >
-                                                <Form.Label className="text-start">생산품명</Form.Label>
-                                                <Form.Control type="text" disabled readOnly placeholder="생산품명" />
-                                            </Form.Group>
+                                            <GeneralForm inputType={'input'} label={'생산품코드'} disabled={'disabled'} readOnly={'readOnly'}/>
+                                            <GeneralForm inputType={'input'} label={'생산품명'} disabled={'disabled'} readOnly={'readOnly'}/>
                                             <Form.Group className="d-flex justify-content-between mb-2">
                                                 <Form.Label className="text-start">BOM 등록</Form.Label>
                                                 <button type="button" className="btn btn-sm btn-outline-success" onClick={addBomTag}>추가</button>
