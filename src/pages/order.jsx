@@ -1,3 +1,6 @@
+import Table from "../components/Table";
+import Form from 'react-bootstrap/Form';
+
 const Order = () => {
 
     const tableCol = ['품목코드', '품명', '수량', '단가', '공급가액', '부가세', '합계금액'];
