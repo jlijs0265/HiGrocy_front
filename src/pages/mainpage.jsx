@@ -15,18 +15,14 @@ const Mainpage = () => {
     // <div className="container d-flex flex-wrap align-items-center">
     <div>
       <div>
-        <div className="card-body d-flex">
+        <div className="d-flex">
           <div className="card-body chart-body d-flex">
             <div
               className="card card-main parent "
               style={{
-                backgroundColor: "#7170F4",
-                border: `#D3D2FF -1.5 solid`,
-                borderRadius: `5px`,
                 transform: stateChart
                   ? "rotate3d(3, -50, 0, 55deg)"
                   : "rotate3d(0, 0, 0, 0deg)",
-                transition: `transform '10s' ease-in-out`,
                 zIndex: "0",
               }}
               onClick={clickHandler}
@@ -36,13 +32,9 @@ const Mainpage = () => {
             <div
               className="card-main parent"
               style={{
-                backgroundColor: "#7170F4",
-                border: `#D3D2FF -1.5 solid`,
-                borderRadius: `5px`,
                 transform: stateChart
                   ? "rotate3d(3, -50, 0, 55deg)"
                   : "rotate3d(0, 0, 0, 0deg)",
-                transition: `transform '10s' ease-in-out`,
                 zIndex: "1",
               }}
               onClick={clickHandler}
@@ -52,13 +44,9 @@ const Mainpage = () => {
             <div
               className="card-main parent"
               style={{
-                backgroundColor: "#7170F4",
-                border: `#D3D2FF -1.5 solid`,
-                borderRadius: `5px`,
                 transform: stateChart
                   ? "rotate3d(3, -50, 0, 55deg)"
                   : "rotate3d(0, 0, 0, 0deg)",
-                transition: `transform '10s' ease-in-out`,
                 zIndex: "2",
               }}
               onClick={clickHandler}
@@ -69,9 +57,11 @@ const Mainpage = () => {
           <div className="card-body d-flex m-3"></div>
         </div>
       </div>
-      <div className="card-body d-flex m-3">
-        <div className="card-body d-flex m-3"></div>
-        <div className="card-body d-flex m-3"></div>
+      <div className="d-flex m-3">
+        <div className="card-body d-flex m-3 card-square-sm"></div>
+        <div className="card-body d-flex m-3 card-square-sm"></div>
+        <div className="card-body d-flex m-3 card-square-sm"></div>
+        <div className="card-body d-flex m-3 card-square-sm"></div>
       </div>
     </div>
   );

@@ -45,6 +45,7 @@ export default function Higorcy_Router() {
           <Route path="/raw_material">
             <RawMaterial />
           </Route>
+          {/* 창고(관리) */}
           <Route path="/storage">
             <Storage />
           </Route>
