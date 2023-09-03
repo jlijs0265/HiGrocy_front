@@ -1,6 +1,9 @@
 import { PropTypes } from "prop-types";
+import useGeneralForm from "../hooks/generalFrom";
 
-const Table = ({ rowNum, colNum, tableCol, trClick, ref }) => {
+const Table = ({ rowNum, colNum, tableCol, ref }) => {
+  const {modify} = useGeneralForm();
+
   return (
     <div className="table-responsive container">
       <table className="table table-bordered border-secondary rawTable">
@@ -12,7 +15,7 @@ const Table = ({ rowNum, colNum, tableCol, trClick, ref }) => {
           </tr>
         </thead>
         <tbody className="rawbody" ref={ref}>
-          <tr className="rawitem cursor-point" onClick={(e) =>{e.stopPropagation(); trClick()}}>
+          <tr className="rawitem cursor-point" onClick={(e) =>{e.stopPropagation(); modify();}}>
             {Array(colNum)
               .fill(1)
               .map((value, index) => value + index)
