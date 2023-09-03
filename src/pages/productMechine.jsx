@@ -12,26 +12,6 @@ const ProductMechine = () => {
     const tableCol = ['코드', '기계명', '공장명', '위치'];
     const {useStateSelector} = useGeneralForm();
 
-    //redux로 관리 할것
-    const [bomTags, setBomTags] = useState([]);
-    const addBomTag = () => {
-
-        setBomTags([...bomTags, '']);
-    }
-
-    const removeBomTag = (e) => {
-        const key = e.target.dataset.key;
-        console.log(key);
-        console.log(bomTags[key]);
-
-    }
-    console.log()
-
-
-    //axois 
-
-    //
-
     return (
         <div>
             <div className='container-scroller'>
@@ -76,14 +56,11 @@ const ProductMechine = () => {
                                     <button className='btn btn-success me-2' hidden={useStateSelector() ? 'hidden' : ''} id='updateBtn'>수정</button>
                                     <button className='btn btn-danger me-2' hidden={useStateSelector() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
                                 </GeneralCard>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     );
 }
