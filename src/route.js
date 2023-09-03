@@ -11,6 +11,7 @@ import Storage from "./pages/storage";
 import WareHousing from "./pages/wareHousing";
 import TestPage from "./pages/testpage";
 import Mainpage from "./pages/mainpage";
+import JoinPage from "./pages/joinPage";
 
 export default function Higorcy_Router() {
   return (
@@ -55,6 +56,11 @@ export default function Higorcy_Router() {
           </Route>
           <Route path="/test">
             <TestPage />
+          </Route>
+          {/* 로그인페이지 */}
+          <Route path="/login">
+            로그인 페이지
+            <JoinPage />
           </Route>
           {/* 환경(메인페이지) */}
           <Route path="/*">
