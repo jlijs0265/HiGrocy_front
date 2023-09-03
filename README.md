@@ -48,3 +48,7 @@ TODO List
 - /storage : 창고 관리 페이지
 - /wh : 입출고 현황 페이지
 - ~~/* : Main 페이지 Chart이쪽으로 옮김~~
+
+---
+
+useHistory를 사용하지 않고 window.locate.href 의 속성으로 바꿈. -> redirect 가 되어 state값이 항상 초기화됨. useHistory를 사용하게 되면 useEffect로 초기화 해줘야함.
