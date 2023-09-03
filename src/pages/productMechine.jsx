@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Table from "../components/Table";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -6,11 +6,12 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import GeneralCard from "../components/GeneralCard";
 import Pagination from "../components/Pagination";
-import { UseSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import useGeneralForm from "../hooks/generalFrom";
 
 const ProductMechine = () => {
     const tableCol = ['코드', '기계명', '공장명', '위치'];
-    const dispatch = useDispatch();
+    const {register, modify} = useGeneralForm();
 
     //redux로 관리 할것
     const [bomTags, setBomTags] = useState([]);
@@ -25,6 +26,7 @@ const ProductMechine = () => {
         console.log(bomTags[key]);
 
     }
+    console.log()
 
 
     //axois 
@@ -38,7 +40,7 @@ const ProductMechine = () => {
                     <div className='main-panel'>
                         <div className='content-wrapper'>
                             <div className='row'>
-                                <GeneralCard size={6}>
+                                <GeneralCard size={6} bodyClick={register}>
                                     <h4 className='card-title text-start mb-4'>생산 기계</h4>
                                     <InputGroup className="mb-3 p-2">
                                         <DropdownButton
@@ -52,7 +54,7 @@ const ProductMechine = () => {
                                         </DropdownButton>
                                         <Form.Control aria-label="Text input with dropdown button" />
                                     </InputGroup>
-                                    <Table tableCol={tableCol} colNum={tableCol.length} />
+                                    <Table tableCol={tableCol} colNum={tableCol.length} trClick={modify}/>
                                     <Pagination></Pagination>
                                 </GeneralCard>
                                 <GeneralCard size={6}>
@@ -71,9 +73,9 @@ const ProductMechine = () => {
                                             <Form.Control className="mb-3" type="text" disabled readOnly placeholder="기계명" />
                                         </Form.Group>
                                     </Form>
-                                    <button className='btn btn-primary me-2'  hidden={register ? '' : 'hidden'} id='registerBtn'>등록</button>
-                                    <button className='btn btn-success me-2' id='updateBtn'>수정</button>
-                                    <button className='btn btn-danger me-2' id='deleteBtn'>삭제</button>
+                                    <button className='btn btn-primary me-2'  hidden={useSelector(state => state.generalFrom.register) ? '' : 'hidden'} id='registerBtn'>등록</button>
+                                    <button className='btn btn-success me-2' hidden={useSelector(state => state.generalFrom.register) ? 'hidden' : ''} id='updateBtn'>수정</button>
+                                    <button className='btn btn-danger me-2' hidden={useSelector(state => state.generalFrom.register) ? 'hidden' : ''} id='deleteBtn'>삭제</button>
                                 </GeneralCard>
 
                             </div>
