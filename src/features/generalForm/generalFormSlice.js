@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const generalFormSlice = createSlice({
-  name: 'FormControl',
+  name: 'generalFrom',
   initialState: {
     register : true
   },
