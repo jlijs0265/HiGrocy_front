@@ -7,14 +7,14 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
 import Pagination from './Pagination';
 
-const RawMaterailListModal = ({ toggleModal }) => {
+const ProductListModal = ({ toggleModal }) => {
 
-    const tableCol = ['코드', '자재분류', '자재명', '단위', '원산지'];
+    const tableCol = ['코드', '품명'];
 
     return (
         <>
             <Modal.Header closeButton>
-                <Modal.Title>원부자재 목록</Modal.Title>
+                <Modal.Title>생산품 목록</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <InputGroup className="mb-3 p-2">
@@ -36,12 +36,9 @@ const RawMaterailListModal = ({ toggleModal }) => {
                 <Button variant="secondary" onClick={toggleModal}>
                     닫기
                 </Button>
-                {/* <Button variant="primary" onClick={toggleModal}>
-                    Save Changes
-                </Button> */}
             </Modal.Footer>
         </>
     );
 }
 
-export default RawMaterailListModal;
+export default ProductListModal;
