@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Table from "../components/Table";
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -6,30 +6,11 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import GeneralCard from "../components/GeneralCard";
 import Pagination from "../components/Pagination";
-import { UseSelector, useDispatch } from "react-redux";
+import useGeneralForm from "../hooks/generalFrom";
 
 const ProductMechine = () => {
     const tableCol = ['코드', '기계명', '공장명', '위치'];
-    const dispatch = useDispatch();
-
-    //redux로 관리 할것
-    const [bomTags, setBomTags] = useState([]);
-    const addBomTag = () => {
-
-        setBomTags([...bomTags, '']);
-    }
-
-    const removeBomTag = (e) => {
-        const key = e.target.dataset.key;
-        console.log(key);
-        console.log(bomTags[key]);
-
-    }
-
-
-    //axois 
-
-    //
+    const {useStateSelector} = useGeneralForm();
 
     return (
         <div>
@@ -55,7 +36,7 @@ const ProductMechine = () => {
                                     <Table tableCol={tableCol} colNum={tableCol.length} />
                                     <Pagination></Pagination>
                                 </GeneralCard>
-                                <GeneralCard size={6}>
+                                <GeneralCard size={6} useResiger={false}>
                                     <h4 className='card-title text-start mb-4' id='raw-title'>생산 기계등록 페이지</h4>
                                     <Form className='p-2' id='processForm'>
                                         <Form.Group className="mb-3" controlId="process.key">
@@ -71,18 +52,15 @@ const ProductMechine = () => {
                                             <Form.Control className="mb-3" type="text" disabled readOnly placeholder="기계명" />
                                         </Form.Group>
                                     </Form>
-                                    <button className='btn btn-primary me-2'  hidden={register ? '' : 'hidden'} id='registerBtn'>등록</button>
-                                    <button className='btn btn-success me-2' id='updateBtn'>수정</button>
-                                    <button className='btn btn-danger me-2' id='deleteBtn'>삭제</button>
+                                    <button className='btn btn-primary me-2'  hidden={useStateSelector() ? '' : 'hidden'} id='registerBtn'>등록</button>
+                                    <button className='btn btn-success me-2' hidden={useStateSelector() ? 'hidden' : ''} id='updateBtn'>수정</button>
+                                    <button className='btn btn-danger me-2' hidden={useStateSelector() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
                                 </GeneralCard>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     );
 }

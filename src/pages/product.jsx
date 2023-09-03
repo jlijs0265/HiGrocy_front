@@ -7,30 +7,22 @@ import { useState } from "react";
 import GeneralForm from "../components/GeneralForm";
 import Pagination from "../components/Pagination";
 import Modals from "../components/Modals";
+import useGeneralForm from "../hooks/generalFrom";
+import GeneralCard from "../components/GeneralCard";
 
 
 const Product = () => {
 
     const tableCol = ['생산품코드', '생산품명'];
     const [bomTags, setBomTags] = useState([]);
-    const [register, setRegister] = useState(true);
-    const [modify, setModify] = useState(false);
+    const { useStateSelector } = useGeneralForm();
+
 
     const addBomTag = () => {
         console.log('aa');
         setBomTags([...bomTags, bomTags.length + 1]);
     }
 
-
-    const trClick = (e) => {
-        e.stopPropagation();
-        setRegister(false);
-        setModify(true);
-    }
-    const elseAreaClick = () => {
-        setRegister(true);
-        setModify(false);
-    }
 
     const deleteBomBtnClick = (value) => {
         setBomTags(bomTags.filter(tag => tag !== value));
@@ -49,28 +41,24 @@ const Product = () => {
                 <div className="main-panel">
                     <div className="content-wrapper">
                         <div className="row h-100">
-                            <div className="col-md-4 grid-margin stretch-card">
-                                <div className="card">
-                                    <div className="card-body list-body" onClick={elseAreaClick}>
-                                        <h4 className="card-title">생산품 목록</h4>
+                            <GeneralCard size={4}>
+                                <h4 className="card-title">생산품 목록</h4>
 
-                                        <InputGroup className="mb-3 p-2">
-                                            <DropdownButton
-                                                variant="outline-secondary"
-                                                title="검색"
-                                                id="input-group-dropdown-1">
-                                                <Dropdown.Item href="#">품명</Dropdown.Item>
-                                                <Dropdown.Item href="#">코드</Dropdown.Item>
-                                            </DropdownButton>
-                                            <Form.Control aria-label="Text input with dropdown button" />
-                                        </InputGroup>
-                                        <div className="table-responsive h-100 tableWarp">
-                                            <Table tableCol={tableCol} colNum={tableCol.length} trClick={trClick} />
-                                            <Pagination />
-                                        </div>
-                                    </div>
+                                <InputGroup className="mb-3 p-2">
+                                    <DropdownButton
+                                        variant="outline-secondary"
+                                        title="검색"
+                                        id="input-group-dropdown-1">
+                                        <Dropdown.Item href="#">품명</Dropdown.Item>
+                                        <Dropdown.Item href="#">코드</Dropdown.Item>
+                                    </DropdownButton>
+                                    <Form.Control aria-label="Text input with dropdown button" />
+                                </InputGroup>
+                                <div className="table-responsive h-100 tableWarp">
+                                    <Table tableCol={tableCol} colNum={tableCol.length} />
+                                    <Pagination />
                                 </div>
-                            </div>
+                            </GeneralCard>
                             <div className="col-md-8 grid-margin stretch-card">
                                 <div className="card">
                                     <div className="card-body">
@@ -103,9 +91,9 @@ const Product = () => {
                                             ))
                                             }
                                         </Form>
-                                        <button className='btn btn-primary me-2' hidden={register ? '' : 'hidden'} id='registerBtn'>등록</button>
-                                        <button className='btn btn-success me-2' hidden={modify ? '' : 'hidden'} id='updateBtn'>수정</button>
-                                        <button className='btn btn-danger me-2' hidden={modify ? '' : 'hidden'} id='deleteBtn'>삭제</button>
+                                        <button className='btn btn-primary me-2' hidden={useStateSelector() ? '' : 'hidden'} id='registerBtn'>등록</button>
+                                        <button className='btn btn-success me-2' hidden={useStateSelector() ? 'hidden' : ''} id='updateBtn'>수정</button>
+                                        <button className='btn btn-danger me-2' hidden={useStateSelector() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
                                     </div>
 
                                 </div>

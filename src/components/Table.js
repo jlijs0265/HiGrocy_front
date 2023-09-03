@@ -1,6 +1,9 @@
 import { PropTypes } from "prop-types";
+import useGeneralForm from "../hooks/generalFrom";
 
 const Table = ({ rowNum, colNum, tableCol, trClick, ref, inputList }) => {
+
+  const { modify } = useGeneralForm();
   // let input = {};
   // if(inputList.length === 0) {
   //   Array(colNum)
@@ -13,6 +16,7 @@ const Table = ({ rowNum, colNum, tableCol, trClick, ref, inputList }) => {
   //   inputList = [input];
   // }
 
+
   return (
     <div className="table-responsive container">
       <table className="table table-bordered border-secondary rawTable">
@@ -24,17 +28,17 @@ const Table = ({ rowNum, colNum, tableCol, trClick, ref, inputList }) => {
           </tr>
         </thead>
         <tbody className="rawbody" ref={ref}>
-            {inputList &&
-              inputList.map((row, rowIndex) => (
-                <tr key={rowIndex} className="rawitem cursor-point" onClick={trClick}>
-                  {
-                    Object.keys(row).map((key, index) => (
-                      <td key={index}>{row[key]}</td>
-                    ))
-                  }
-                </tr>
-              ))
-            }
+          {inputList &&
+            inputList.map((row, rowIndex) => (
+              <tr key={rowIndex} className="rawitem cursor-point" onClick={(e) => { e.stopPropagation(); modify(); }}>
+                {
+                  Object.keys(row).map((key, index) => (
+                    <td key={index}>{row[key]}</td>
+                  ))
+                }
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </div>

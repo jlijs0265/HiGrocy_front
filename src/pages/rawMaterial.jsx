@@ -6,6 +6,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import GeneralForm from "../components/GeneralForm";
 import { useState, useEffect } from "react";
 import Pagination from "../components/Pagination";
+import useGeneralForm from "../hooks/generalFrom";
+import GeneralCard from "../components/GeneralCard";
 
 
 const RawMaterial = () => {
@@ -21,47 +23,30 @@ const RawMaterial = () => {
         { value: 'option2', label: '부' },
     ]
 
-    const [register, setRegister] = useState(true);
-    const [modify, setModify] = useState(false);
-
-    const trClick = (e) => {
-        e.stopPropagation();
-        setRegister(false);
-        setModify(true);
-    }
-    const elseAreaClick = () => {
-        console.log('aaa');
-        setRegister(true);
-        setModify(false);
-    }
+    const { useStateSelector } = useGeneralForm();
 
     return (
         <div>
             <div className='container-scroller'>
                 <div className='container-fluid page-body-wrapper'>
                     <div className='main-panel'>
-
                         <div className='content-wrapper'>
                             <div className='row h-100'>
-                                <div className='col-md-6 stretch-card'>
-                                    <div className='card'>
-                                        <div className='card-body list-body ' onClick={elseAreaClick}>
-                                            <h4 className='card-title text-start mb-4'>원부자재 목록</h4>
-                                            <InputGroup className="mb-3 p-2">
-                                                <DropdownButton
-                                                    variant="outline-secondary"
-                                                    title="검색"
-                                                    id="input-group-dropdown-1">
-                                                    <Dropdown.Item href="#">품명</Dropdown.Item>
-                                                    <Dropdown.Item href="#">코드</Dropdown.Item>
-                                                </DropdownButton>
-                                                <Form.Control aria-label="Text input with dropdown button" />
-                                            </InputGroup>
-                                            <Table tableCol={tableCol} colNum={tableCol.length} trClick={trClick} />
-                                                <Pagination />
-                                        </div>
-                                    </div>
-                                </div>
+                                <GeneralCard size={6}>
+                                    <h4 className='card-title text-start mb-4'>원부자재 목록</h4>
+                                    <InputGroup className="mb-3 p-2">
+                                        <DropdownButton
+                                            variant="outline-secondary"
+                                            title="검색"
+                                            id="input-group-dropdown-1">
+                                            <Dropdown.Item href="#">품명</Dropdown.Item>
+                                            <Dropdown.Item href="#">코드</Dropdown.Item>
+                                        </DropdownButton>
+                                        <Form.Control aria-label="Text input with dropdown button" />
+                                    </InputGroup>
+                                    <Table tableCol={tableCol} colNum={tableCol.length}/>
+                                    <Pagination />
+                                </GeneralCard>
                                 <div className='col-md-6 stretch-card'>
                                     <div className='card'>
                                         <div className='card-body'>
@@ -76,9 +61,9 @@ const RawMaterial = () => {
                                                 <GeneralForm inputType={'input'} label={'기준수량'} />
                                                 <GeneralForm inputType={'input'} label={'원산지'} />
                                             </Form>
-                                            <button className='btn btn-primary me-2' hidden={register ? '' : 'hidden'} id='registerBtn'>등록</button>
-                                            <button className='btn btn-success me-2' hidden={modify ? '' : 'hidden'} id='updateBtn'>수정</button>
-                                            <button className='btn btn-danger me-2' hidden={modify ? '' : 'hidden'} id='deleteBtn'>삭제</button>
+                                            <button className='btn btn-primary me-2' hidden={useStateSelector() ? '' : 'hidden'} id='registerBtn'>등록</button>
+                                            <button className='btn btn-success me-2' hidden={useStateSelector() ? 'hidden' : ''} id='updateBtn'>수정</button>
+                                            <button className='btn btn-danger me-2' hidden={useStateSelector() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
                                         </div>
                                     </div>
                                 </div>

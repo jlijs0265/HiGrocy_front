@@ -2,24 +2,22 @@ import { DropdownButton, Form, InputGroup } from "react-bootstrap";
 import SearchBar from "../components/SearchBar";
 import Table from "../components/Table";
 import { useEffect, useRef, useState } from "react";
+import useGeneralForm from "../hooks/generalFrom";
+import GeneralCard from "../components/GeneralCard";
 
 const Storage = () => {
   const tableCol = ["창고코드", "창고명", "창고 위치", "담당자"];
-  const buttonText = ["등록", "수정", "삭제"];
-  const [register, setRegister] = useState(true);
-  const [modify, setModify] = useState(false);
+  const { useStateSelector } = useGeneralForm();
 
-  const trClick = (e) => {
-    e.stopPropagation();
-    console.log(e.target.closest("tr"));
-    console.log(e.target.innerText);
-    setRegister(false);
-    setModify(true);
-  };
-  const elseAreaClick = () => {
-    setRegister(true);
-    setModify(false);
-  };
+
+  // const trClick = (e) => {
+  //   e.stopPropagation();
+  //   console.log(e.target.closest("tr"));
+  //   console.log(e.target.innerText);
+  //   setRegister(false);
+  //   setModify(true);
+  // };
+
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
@@ -33,12 +31,7 @@ const Storage = () => {
           <div className="main-panel">
             <div className="content-wrapper">
               <div className="row">
-                <div className="col-md-6 stretch-card">
-                  <div className="card">
-                    <div
-                      className="card-body list-body"
-                      onClick={elseAreaClick}
-                    >
+                <GeneralCard size={6}>
                       <div className="col-md-12 mb-4">
                         <SearchBar></SearchBar>
                       </div>
@@ -46,11 +39,8 @@ const Storage = () => {
                       <Table
                         tableCol={tableCol}
                         colNum={tableCol.length}
-                        trClick={trClick}
                       />
-                    </div>
-                  </div>
-                </div>
+                    </GeneralCard>
                 <div className="col-md-6 stretch-card">
                   <div className="card">
                     <div className="card-body">
@@ -80,27 +70,9 @@ const Storage = () => {
                           <Form.Control type="text" placeholder="담당자명" />
                         </Form.Group>
                       </Form>
-                      <button
-                        className="btn btn-primary me-2"
-                        hidden={register ? "" : "hidden"}
-                        id="registerBtn"
-                      >
-                        등록
-                      </button>
-                      <button
-                        className="btn btn-success me-2"
-                        hidden={modify ? "" : "hidden"}
-                        id="updateBtn"
-                      >
-                        수정
-                      </button>
-                      <button
-                        className="btn btn-danger me-2"
-                        hidden={modify ? "" : "hidden"}
-                        id="deleteBtn"
-                      >
-                        삭제
-                      </button>
+                      <button className='btn btn-primary me-2' hidden={useStateSelector() ? '' : 'hidden'} id='registerBtn'>등록</button>
+                      <button className='btn btn-success me-2' hidden={useStateSelector() ? 'hidden' : ''} id='updateBtn'>수정</button>
+                      <button className='btn btn-danger me-2' hidden={useStateSelector() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
                     </div>
                   </div>
                 </div>
