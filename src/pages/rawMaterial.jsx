@@ -58,9 +58,7 @@ const RawMaterial = () => {
                                                 <Form.Control aria-label="Text input with dropdown button" />
                                             </InputGroup>
                                             <Table tableCol={tableCol} colNum={tableCol.length} trClick={trClick} />
-                                            <div className="d-flex justify-content-center">
                                                 <Pagination />
-                                            </div>
                                         </div>
                                     </div>
                                 </div>

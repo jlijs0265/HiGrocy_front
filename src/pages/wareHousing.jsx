@@ -85,9 +85,7 @@ const WareHousing = () => {
                         colNum={tableCol.length}
                         trClick={trClick}
                       />
-                      <div className="d-flex justify-content-center">
                         <Pagination />
-                      </div>
                     </div>
                     <div className="card-body list-body mt-4">
                       <h4 className="card-title text-start mb-4">재고 조회</h4>

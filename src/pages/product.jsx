@@ -66,9 +66,7 @@ const Product = () => {
                                         </InputGroup>
                                         <div className="table-responsive h-100 tableWarp">
                                             <Table tableCol={tableCol} colNum={tableCol.length} trClick={trClick} />
-                                            <div className="d-flex justify-content-center">
-                                                <Pagination />
-                                            </div>
+                                            <Pagination />
                                         </div>
                                     </div>
                                 </div>
