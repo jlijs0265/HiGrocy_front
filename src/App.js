@@ -3,6 +3,7 @@ import ProfileCard from './components/ProfileCard';
 import SearchBar from './components/SearchBar';
 import SideBar from './components/SideBar';
 import Router from './route';
+import { Route, Switch, Link } from "react-router-dom";
 
 
 function App() {

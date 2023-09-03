@@ -15,7 +15,7 @@ TODO List
 - Component 구성  
    1. ~~navbar - 동진~~
    2. ~~chart - 동진~~
-   3. form -희진
+   3. ~~form -희진~~
    4. ~~table (상황에따라 여러 컴포넌트로 분기) - 희진~~
    5. ~~search bar(selector) - 희진~~
    6. spinner - 희진
@@ -24,7 +24,7 @@ TODO List
    9. ~~pagination (back단과 연계구성) - 희진~~
    10. back단과 연계 구성될 부분 설정(rest controller)
    11. ~~request Mapping (url-pattern) route 구성~~
-   12. css 파일 위치 정리
+   12. css 파일 위치 정리    
    ---
 
    여러 컨트롤러 통합작업
