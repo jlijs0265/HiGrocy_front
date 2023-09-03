@@ -10,7 +10,7 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 
-const BarChart = () => {
+const BarChart = (props) => {
   ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -22,6 +22,7 @@ const BarChart = () => {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: "top",
@@ -41,6 +42,7 @@ const BarChart = () => {
     "May",
     "June",
     "July",
+    "August",
   ];
 
   const data = {
@@ -48,21 +50,22 @@ const BarChart = () => {
     datasets: [
       {
         label: "Dataset 1",
-        data: [5, 6, 7, 1, 2, 3, 4],
+        data: [5, 6, 7, 1, 2, 3, 4, 19],
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
       {
         label: "Dataset 2",
-        data: [10, 9, 5, 2, 4, 3, 6],
+        data: [10, 9, 5, 2, 4, 3, 6, 19],
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
     ],
   };
 
+  console.log(props.propStyle);
+
   return (
-    <div>
-      BarChart
-      <Bar options={options} data={data} />;
+    <div className={props.propStyle}>
+      <Bar options={options} data={data} />
     </div>
   );
 };
