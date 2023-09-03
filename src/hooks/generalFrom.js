@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {modifyForm, registerForm} from "../features/generalForm/generalFormSlice"
 
 const useGeneralForm = () => {
@@ -10,11 +10,16 @@ const useGeneralForm = () => {
     const modify = () => {
         dispatch(modifyForm());
     }
+    
+    const useStateSelector = () => {
+        return useSelector(state => state.generalFrom.register);
+    }
 
 
     return {
         register,
         modify,
+        useStateSelector
     };
 }
 
