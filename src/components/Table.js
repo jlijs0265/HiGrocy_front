@@ -12,7 +12,7 @@ const Table = ({ rowNum, colNum, tableCol, trClick, ref }) => {
           </tr>
         </thead>
         <tbody className="rawbody" ref={ref}>
-          <tr className="rawitem cursor-point" onClick={trClick}>
+          <tr className="rawitem cursor-point" onClick={(e) =>{e.stopPropagation(); trClick()}}>
             {Array(colNum)
               .fill(1)
               .map((value, index) => value + index)
