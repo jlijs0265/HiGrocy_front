@@ -12,31 +12,56 @@ const SideBar = () => {
   };
   return (
     <div className="side_style d-flex p-2 justify-content-evenly">
-      <div className={"btn_style"} onClick={() => {window.location.href = "/"}}>
+      <div
+        className={"btn_style"}
+        onClick={() => {
+          window.location.href = "/";
+        }}
+      >
         <img
           src="assets/images/higrocyLogo.svg"
           alt="HiGrocy Button Logo SVG Image"
         />
       </div>
-      <div className={"btn_style"} onClick={() => {window.location.href = "/pr"}}>
+      <div
+        className={"btn_style"}
+        onClick={() => {
+          window.location.href = "/pr";
+        }}
+      >
         <img
           src="assets/images/distribution.svg"
           alt="HiGrocy Button Logo SVG Image"
         />
       </div>
-      <div className={"btn_style"} onClick={() => {window.location.href = "/order"}}>
+      <div
+        className={"btn_style"}
+        onClick={() => {
+          window.location.href = "/order";
+        }}
+      >
         <img
           src="assets/images/order.svg"
           alt="HiGrocy Button Logo SVG Image"
         />
       </div>
-      <div className={"btn_style"} onClick={() => {window.location.href = "/wh"}}>
+      <div
+        className={"btn_style"}
+        onClick={() => {
+          window.location.href = "/wh";
+        }}
+      >
         <img
           src="assets/images/wareHousing.svg"
           alt="HiGrocy Button Logo SVG Image"
         />
       </div>
-      <div className={"btn_style"} onClick={() => {window.location.href = "/"}}>
+      <div
+        className={"btn_style"}
+        onClick={() => {
+          window.location.href = "/";
+        }}
+      >
         <img src="assets/images/eco.svg" alt="HiGrocy Button Logo SVG Image" />
       </div>
       <div className={"btn_style"}>

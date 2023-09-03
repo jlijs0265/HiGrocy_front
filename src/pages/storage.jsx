@@ -6,13 +6,24 @@ import { useEffect, useRef, useState } from "react";
 const Storage = () => {
   const tableCol = ["창고코드", "창고명", "창고 위치", "담당자"];
   const buttonText = ["등록", "수정", "삭제"];
-  const [formSelect, setFormSelect] = useState(true);
-  const [outSelect, setOutSelect] = useState(false);
+  const [register, setRegister] = useState(true);
+  const [modify, setModify] = useState(false);
 
   const trClick = (e) => {
+    e.stopPropagation();
     console.log(e.target.closest("tr"));
     console.log(e.target.innerText);
-    setFormSelect(false);
+    setRegister(false);
+    setModify(true);
+  };
+  const elseAreaClick = () => {
+    setRegister(true);
+    setModify(false);
+  };
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
   };
 
   return (
@@ -24,7 +35,10 @@ const Storage = () => {
               <div className="row">
                 <div className="col-md-6 stretch-card">
                   <div className="card">
-                    <div className="card-body list-body">
+                    <div
+                      className="card-body list-body"
+                      onClick={elseAreaClick}
+                    >
                       <div className="col-md-12 mb-4">
                         <SearchBar></SearchBar>
                       </div>
@@ -66,30 +80,27 @@ const Storage = () => {
                           <Form.Control type="text" placeholder="담당자명" />
                         </Form.Group>
                       </Form>
-
-                      {formSelect ? (
-                        <button
-                          className="btn btn-primary me-2"
-                          style={{ visibility: "visible" }}
-                        >
-                          등록
-                        </button>
-                      ) : (
-                        <div>
-                          <button
-                            className="btn btn-success me-2"
-                            style={{ visibility: "visible" }}
-                          >
-                            수정
-                          </button>
-                          <button
-                            className="btn btn-danger me-2"
-                            style={{ visibility: "visible" }}
-                          >
-                            삭제
-                          </button>
-                        </div>
-                      )}
+                      <button
+                        className="btn btn-primary me-2"
+                        hidden={register ? "" : "hidden"}
+                        id="registerBtn"
+                      >
+                        등록
+                      </button>
+                      <button
+                        className="btn btn-success me-2"
+                        hidden={modify ? "" : "hidden"}
+                        id="updateBtn"
+                      >
+                        수정
+                      </button>
+                      <button
+                        className="btn btn-danger me-2"
+                        hidden={modify ? "" : "hidden"}
+                        id="deleteBtn"
+                      >
+                        삭제
+                      </button>
                     </div>
                   </div>
                 </div>
