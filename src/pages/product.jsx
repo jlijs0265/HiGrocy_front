@@ -44,7 +44,7 @@ const Product = () => {
 
     return (
         <div className="container-scroller">
-            <Modals showModal={showModal} toggleModal={toggleModal}  />
+            <Modals showModal={showModal} toggleModal={toggleModal} innerModal={'RawMaterailList'} />
             <div className="container-fluid page-body-wrapper">
                 <div className="main-panel">
                     <div className="content-wrapper">
