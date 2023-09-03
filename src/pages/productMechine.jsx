@@ -6,9 +6,11 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import GeneralCard from "../components/GeneralCard";
 import Pagination from "../components/Pagination";
+import { UseSelector, useDispatch } from "react-redux";
 
 const ProductMechine = () => {
     const tableCol = ['코드', '기계명', '공장명', '위치'];
+    const dispatch = useDispatch();
 
     //redux로 관리 할것
     const [bomTags, setBomTags] = useState([]);
@@ -23,6 +25,8 @@ const ProductMechine = () => {
         console.log(bomTags[key]);
 
     }
+
+
     //axois 
 
     //
@@ -67,7 +71,7 @@ const ProductMechine = () => {
                                             <Form.Control className="mb-3" type="text" disabled readOnly placeholder="기계명" />
                                         </Form.Group>
                                     </Form>
-                                    <button className='btn btn-primary me-2' id='registerBtn'>등록</button>
+                                    <button className='btn btn-primary me-2'  hidden={register ? '' : 'hidden'} id='registerBtn'>등록</button>
                                     <button className='btn btn-success me-2' id='updateBtn'>수정</button>
                                     <button className='btn btn-danger me-2' id='deleteBtn'>삭제</button>
                                 </GeneralCard>
