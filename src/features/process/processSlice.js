@@ -1,22 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const todosSlice = createSlice({
-  name: 'todos',
-  initialState: [],
+const processSlice = createSlice({
+  name: 'process',
+  initialState: {process:[]},
   reducers: {
-    todoAdded(state, action) {
-      state.push({
-        id: action.payload.id,
-        text: action.payload.text,
-        completed: false
+    processAdded(state, action) {
+      state.process.push({
+        id : state.process.length,
+        mech_code: '',
+        order: '',
+        use_time: ''
       })
     },
-    todoToggled(state, action) {
-      const todo = state.find(todo => todo.id === action.payload)
-      todo.completed = !todo.completed
-    }
+
+    processSet(state, action){
+      state.process = action.payload;
+    },
+
+    processRemoved(state, action) {
+      console.log(action.payload);
+      const filteredProcess = state.process.filter(processe => {
+        return processe.id !== action.payload;
+    });
+    state.process = filteredProcess;    }
   }
 })
 
-export const { todoAdded, todoToggled } = todosSlice.actions
-export default todosSlice.reducer
+export const { processAdded, processChanged, processSet, processRemoved } = processSlice.actions
+export default processSlice.reducer

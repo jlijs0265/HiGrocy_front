@@ -4,7 +4,7 @@ import generalFormReducer from '../features/generalForm/generalFormSlice'
 
 export const store = configureStore({
   reducer: {
-    todos: processReducer,
+    process: processReducer,
     generalFrom: generalFormReducer,
   
   }
