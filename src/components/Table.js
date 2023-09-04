@@ -1,21 +1,8 @@
 import { PropTypes } from "prop-types";
-import useGeneralForm from "../hooks/generalFrom";
+import useGeneralTrigger from "../hooks/generalTrigger";
 
-const Table = ({ rowNum, colNum, tableCol, trClick, ref, inputList }) => {
-
-  const { modify } = useGeneralForm();
-  // let input = {};
-  // if(inputList.length === 0) {
-  //   Array(colNum)
-  //             .fill(1)
-  //             .map((value, index) => value + index)
-  //             .map((colNum) => {
-  //               input[colNum] = colNum
-  //             })
-  //   console.log(input);
-  //   inputList = [input];
-  // }
-
+const Table = ({ rowNum, colNum, tableCol, inputList }) => {
+  const {modify} = useGeneralTrigger();
 
   return (
     <div className="table-responsive container">
@@ -27,7 +14,7 @@ const Table = ({ rowNum, colNum, tableCol, trClick, ref, inputList }) => {
             })}
           </tr>
         </thead>
-        <tbody className="rawbody" ref={ref}>
+        <tbody className="rawbody">
           {inputList &&
             inputList.map((row, rowIndex) => (
               <tr key={rowIndex} className="rawitem cursor-point" onClick={(e) => { e.stopPropagation(); modify(); }}>

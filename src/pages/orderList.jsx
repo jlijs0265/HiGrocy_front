@@ -11,19 +11,7 @@ const OrderList = () => {
   const tableCol = ["코드", "기계명", "공장명", "위치"];
 
   //redux로 관리 할것
-  const [bomTags, setBomTags] = useState([]);
   const [tigger, setTigger] = useState(2);
-
-  const addBomTag = () => {
-    setBomTags([...bomTags, ""]);
-  };
-
-  const removeBomTag = (e) => {
-    const key = e.target.dataset.key;
-    console.log(key);
-    console.log(bomTags[key]);
-  };
-  //axois
 
   return (
     <div>

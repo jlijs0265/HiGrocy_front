@@ -6,8 +6,11 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
 import Pagination from './Pagination';
+import useGeneralTrigger from '../hooks/generalTrigger';
 
-const RawMaterailListModal = ({ toggleModal }) => {
+const RawMaterailListModal = () => {
+    const { toggle} = useGeneralTrigger();
+
 
     const tableCol = ['코드', '자재분류', '자재명', '단위', '원산지'];
 
@@ -33,12 +36,9 @@ const RawMaterailListModal = ({ toggleModal }) => {
                 <Pagination />
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={toggleModal}>
+                <Button variant="secondary" onClick={toggle}>
                     닫기
                 </Button>
-                {/* <Button variant="primary" onClick={toggleModal}>
-                    Save Changes
-                </Button> */}
             </Modal.Footer>
         </>
     );

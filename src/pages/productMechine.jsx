@@ -6,11 +6,11 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import GeneralCard from "../components/GeneralCard";
 import Pagination from "../components/Pagination";
-import useGeneralForm from "../hooks/generalFrom";
+import useGeneralTrigger from "../hooks/generalTrigger";
 
 const ProductMechine = () => {
     const tableCol = ['코드', '기계명', '공장명', '위치'];
-    const {useStateSelector} = useGeneralForm();
+    const {useStateRegister} = useGeneralTrigger();
 
     return (
         <div>
@@ -52,9 +52,9 @@ const ProductMechine = () => {
                                             <Form.Control className="mb-3" type="text" disabled readOnly placeholder="기계명" />
                                         </Form.Group>
                                     </Form>
-                                    <button className='btn btn-primary me-2'  hidden={useStateSelector() ? '' : 'hidden'} id='registerBtn'>등록</button>
-                                    <button className='btn btn-success me-2' hidden={useStateSelector() ? 'hidden' : ''} id='updateBtn'>수정</button>
-                                    <button className='btn btn-danger me-2' hidden={useStateSelector() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
+                                    <button className='btn btn-primary me-2'  hidden={useStateRegister() ? '' : 'hidden'} id='registerBtn'>등록</button>
+                                    <button className='btn btn-success me-2' hidden={useStateRegister() ? 'hidden' : ''} id='updateBtn'>수정</button>
+                                    <button className='btn btn-danger me-2' hidden={useStateRegister() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
                                 </GeneralCard>
                             </div>
                         </div>

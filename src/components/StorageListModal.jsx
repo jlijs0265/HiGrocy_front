@@ -6,9 +6,12 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
 import Pagination from './Pagination';
+import useGeneralTrigger from '../hooks/generalTrigger';
 
-const StorageListModal = ({ toggleModal }) => {
+const StorageListModal = () => {
     const tableCol = ['창고코드', '창고명', '위치'];
+    const { toggle} = useGeneralTrigger();
+
 
     return (
         <>
@@ -32,12 +35,9 @@ const StorageListModal = ({ toggleModal }) => {
                 <Pagination />
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={toggleModal}>
+                <Button variant="secondary" onClick={toggle}>
                     닫기
                 </Button>
-                {/* <Button variant="primary" onClick={toggleModal}>
-                    Save Changes
-                </Button> */}
             </Modal.Footer>
         </>
     );

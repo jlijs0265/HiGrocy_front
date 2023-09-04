@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { processAdded, processSet, processRemoved }from "../features/process/processSlice"
+import { processAdded, processSet, processRemoved }from "../app/processSlice"
 
 const useProcess = () => {
-
     const dispatch = useDispatch();
+    
     const addProcess = () =>{
         dispatch(processAdded());
     }
@@ -12,8 +12,8 @@ const useProcess = () => {
         dispatch(processSet(Processes));
     }
 
-    const removeProcess = (id) => {
-        dispatch(processRemoved(id));
+    const removeProcess = (process) => {
+        dispatch(processRemoved(process.id));
     }
     
     const useProcessSelector = () => {

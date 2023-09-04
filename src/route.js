@@ -43,6 +43,7 @@ export default function Higorcy_Router() {
           <Route path="/pr">
             <ProductRequest />
           </Route>
+          {/* 품목(관리) */}
           <Route path="/raw_material">
             <RawMaterial />
           </Route>

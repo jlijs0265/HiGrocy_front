@@ -1,29 +1,31 @@
-import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import RawMaterailListModal from './RawMaterialListModal';
 import ProductListModal from './ProductListModal';
 import StorageListModal from './StorageListModal';
+import useGeneralTrigger from '../hooks/generalTrigger';
 
 
-const Modals = ({ showModal, toggleModal, innerModal }) => {
+
+const Modals = ({ innerModal }) => {
 
     let componentToRender;
+    const {useStateModal, toggle} = useGeneralTrigger();
 
     switch (innerModal) {
         case 'RawMaterailList':
-            componentToRender = <RawMaterailListModal toggleModal={toggleModal} />;
+            componentToRender = <RawMaterailListModal/>;
             break;
         case 'ProductList':
-            componentToRender = <ProductListModal toggleModal={toggleModal} />;
+            componentToRender = <ProductListModal />;
             break;
         case 'StorageList':
-            componentToRender = <StorageListModal toggleModal={toggleModal} />;
+            componentToRender = <StorageListModal />;
             break;
     }
 
     return (
         <>
-            <Modal show={showModal} onHide={toggleModal}>
+            <Modal show={useStateModal()} onHide={toggle}>
                 {componentToRender}
             </Modal>
         </>

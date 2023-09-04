@@ -6,8 +6,8 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import GeneralForm from "../components/GeneralForm";
 import { useState, useEffect } from "react";
 import Pagination from "../components/Pagination";
-import useGeneralForm from "../hooks/generalFrom";
 import GeneralCard from "../components/GeneralCard";
+import useGeneralTrigger from "../hooks/generalTrigger";
 
 
 const RawMaterial = () => {
@@ -23,7 +23,7 @@ const RawMaterial = () => {
         { value: 'option2', label: '부' },
     ]
 
-    const { useStateSelector } = useGeneralForm();
+    const { useStateRegister } = useGeneralTrigger();
 
     return (
         <div>
@@ -61,9 +61,9 @@ const RawMaterial = () => {
                                                 <GeneralForm inputType={'input'} label={'기준수량'} />
                                                 <GeneralForm inputType={'input'} label={'원산지'} />
                                             </Form>
-                                            <button className='btn btn-primary me-2' hidden={useStateSelector() ? '' : 'hidden'} id='registerBtn'>등록</button>
-                                            <button className='btn btn-success me-2' hidden={useStateSelector() ? 'hidden' : ''} id='updateBtn'>수정</button>
-                                            <button className='btn btn-danger me-2' hidden={useStateSelector() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
+                                            <button className='btn btn-primary me-2' hidden={useStateRegister() ? '' : 'hidden'} id='registerBtn'>등록</button>
+                                            <button className='btn btn-success me-2' hidden={useStateRegister() ? 'hidden' : ''} id='updateBtn'>수정</button>
+                                            <button className='btn btn-danger me-2' hidden={useStateRegister() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
                                         </div>
                                     </div>
                                 </div>

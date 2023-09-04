@@ -64,7 +64,11 @@ const SideBar = () => {
       >
         <img src="assets/images/eco.svg" alt="HiGrocy Button Logo SVG Image" />
       </div>
-      <div className={"btn_style"}>
+      <div className={"btn_style"}
+        onClick={() => {
+          window.location.href = "/raw_material";
+        }}
+      >
         <img
           src="assets/images/bricks.svg"
           alt="HiGrocy Button Logo SVG Image"
