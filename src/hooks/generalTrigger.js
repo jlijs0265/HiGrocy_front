@@ -11,8 +11,8 @@ const useGeneralTrigger = () => {
         dispatch(modifyForm());
     }
     
-    const toggle = () => {
-        dispatch(toggleModal());
+    const toggle = (modalType) => {
+        dispatch(toggleModal(modalType || ''));
     }
     
     const useStateRegister = () => {
@@ -23,13 +23,18 @@ const useGeneralTrigger = () => {
         return useSelector(state => state.generalTrigger.modal);
     }
 
+    const useModalType = () => {
+        return useSelector(state => state.generalTrigger.modalType);
+    }
+
 
     return {
         register,
         modify,
         toggle,
         useStateRegister,
-        useStateModal
+        useStateModal,
+        useModalType
     };
 }
 

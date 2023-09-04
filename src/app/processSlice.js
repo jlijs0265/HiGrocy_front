@@ -5,7 +5,8 @@ const processSlice = createSlice({
   initialState: {process:[]},
   reducers: {
     processAdded(state, action) {
-      const process = {id: id++}
+      const process = {id: id++,
+      ...action.payload}
       state.process.push(process)
     },
 

@@ -24,7 +24,7 @@ const Product = () => {
 
     return (
         <div className="container-scroller">
-            <Modals innerModal={"RawMaterailList"}/>
+            <Modals />
             <div className="container-fluid page-body-wrapper">
                 <div className="main-panel">
                     <div className="content-wrapper">
@@ -65,7 +65,7 @@ const Product = () => {
                                                         <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
                                                     </svg></button>
                                                 </div>
-                                                <Form.Control type="text" className="cursor-pointer disable-input" onClick={toggle} readOnly placeholder="원부자재코드" />
+                                                <Form.Control type="text" className="cursor-pointer disable-input" onClick={() => {toggle("RawMaterailList")}} readOnly placeholder="원부자재코드" />
                                                 <Form.Label className="text-start">수량</Form.Label>
                                                 <Form.Control type="text" placeholder="수량" />
                                             </Form.Group>

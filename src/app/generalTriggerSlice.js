@@ -4,7 +4,8 @@ const generalTriggerSlice = createSlice({
   name: 'trigger',
   initialState: {
     register : true,
-    modal : false
+    modal : false,
+    modalType : ''
   },
   reducers: {
     registerForm(state, action) {
@@ -14,8 +15,10 @@ const generalTriggerSlice = createSlice({
       state.register = false;
     },
     toggleModal(state, action) {
+      state.modalType = action.payload;
       state.modal = !state.modal;
-    }
+    },
+
   }
 })
 

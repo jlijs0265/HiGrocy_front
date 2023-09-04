@@ -1,8 +1,10 @@
 import { PropTypes } from "prop-types";
 import useGeneralTrigger from "../hooks/generalTrigger";
+import useProcess from "../hooks/process";
 
 const Table = ({ rowNum, colNum, tableCol, inputList }) => {
   const {modify} = useGeneralTrigger();
+  const {useProcessSelector,removeProcess} = useProcess();
 
   return (
     <div className="table-responsive container">
@@ -15,11 +17,10 @@ const Table = ({ rowNum, colNum, tableCol, inputList }) => {
           </tr>
         </thead>
         <tbody className="rawbody">
-          {inputList &&
-            inputList.map((row, rowIndex) => (
-              <tr key={rowIndex} className="rawitem cursor-point" onClick={(e) => { e.stopPropagation(); modify(); }}>
+          {useProcessSelector().map((row, rowIndex) => (
+              <tr key={rowIndex} className="rawitem cursor-point" onClick={(e) => { e.stopPropagation(); modify(); removeProcess(row)}}>
                 {
-                  Object.keys(row).map((key, index) => (
+                  inputList.map((key, index) => (
                     <td key={index}>{row[key]}</td>
                   ))
                 }

@@ -6,12 +6,12 @@ import useGeneralTrigger from '../hooks/generalTrigger';
 
 
 
-const Modals = ({ innerModal }) => {
+const Modals = () => {
 
     let componentToRender;
-    const {useStateModal, toggle} = useGeneralTrigger();
+    const {useStateModal, toggle, useModalType} = useGeneralTrigger();
 
-    switch (innerModal) {
+    switch (useModalType()) {
         case 'RawMaterailList':
             componentToRender = <RawMaterailListModal/>;
             break;

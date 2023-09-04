@@ -4,8 +4,10 @@ import { processAdded, processSet, processRemoved }from "../app/processSlice"
 const useProcess = () => {
     const dispatch = useDispatch();
     
-    const addProcess = () =>{
-        dispatch(processAdded());
+    const addProcess = (Form) =>{
+        const form = {};
+        Form.querySelectorAll('input').forEach(input => form[input.name]=input.value)
+        dispatch(processAdded(form));
     }
 
     const setProcess = (Processes) => {

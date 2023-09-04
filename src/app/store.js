@@ -7,5 +7,7 @@ export const store = configureStore({
     process: processReducer,
     generalTrigger: generalTriggerReducer,
   
-  }
+  },
+  middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false }),
+
 })
