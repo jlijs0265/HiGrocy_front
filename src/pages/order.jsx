@@ -1,11 +1,27 @@
 import Table from "../components/Table";
 import Form from 'react-bootstrap/Form';
+import Modals from "../components/Modals";
+import GeneralForm from "../components/GeneralForm";
+import moment from "moment/moment";
+import useProcess from "../hooks/process";
+import useGeneralTrigger from "../hooks/generalTrigger";
 
 const Order = () => {
+
+    const requestDate = moment().format('YYYY-MM-DD HH:mm');
+    const {
+        addProcess,
+        removeProcess,
+        useProcessSelector
+    } = useProcess();
+    const { toggle } = useGeneralTrigger();
+
+    const inputNameList = ['code', 'name', 'count', 'price', 'supply', 'vat', 'total'];
 
     const tableCol = ['품목코드', '품명', '수량', '단가', '공급가액', '부가세', '합계금액'];
     return (
         <div>
+            <Modals />
             <div className="container-scroller">
                 <div className="container-fluid page-body-wrapper">
                     <div className="main-panel">
@@ -21,34 +37,17 @@ const Order = () => {
                                             <Form className='p-2' action='/raw_material/insert' method='post' id='rawForm'>
                                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                                     <Form.Label className="text-start">품목코드</Form.Label>
-                                                    <Form.Control type="text" disabled readOnly placeholder="품목코드" />
+                                                    <Form.Control type="text" className="cursor-pointer disable-input" name="code" onClick={() => {toggle('OrderList')}} readOnly placeholder="품목코드" />
                                                 </Form.Group>
-                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                                    <Form.Label className="text-start">품명</Form.Label>
-                                                    <Form.Control type="text" disabled readOnly placeholder="품명" />
-                                                </Form.Group>                                    
-                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                                    <Form.Label className="text-start">수량</Form.Label>
-                                                    <Form.Control type="text"placeholder="수량" />
-                                                </Form.Group>
-                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                                    <Form.Label className="text-start">단가</Form.Label>
-                                                    <Form.Control type="text" disabled readOnly placeholder="단가" />
-                                                </Form.Group>
-                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                                    <Form.Label className="text-start">공급가액</Form.Label>
-                                                    <Form.Control type="text"placeholder="공급가액" />
-                                                </Form.Group>
-                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                                    <Form.Label className="text-start">부가세</Form.Label>
-                                                    <Form.Control type="text"placeholder="부가세" />
-                                                </Form.Group>
-                                                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                                    <Form.Label className="text-start">합계금액</Form.Label>
-                                                    <Form.Control type="text"placeholder="합계금액" />
-                                                </Form.Group>
+                                                <GeneralForm inputType={'input'} label={'품명'} disabled={'disabled'} readOnly={'readOnly'} name={'name'}/>
+                                                <GeneralForm inputType={'input'} label={'수량'} name={'count'} />
+                                                <GeneralForm inputType={'input'} label={'단가'} disabled={'disabled'} readOnly={'readOnly'}/>
+                                                <GeneralForm inputType={'input'} label={'공급가액'} disabled={'disabled'} readOnly={'readOnly'} name={'supply'}/>
+                                                <GeneralForm inputType={'input'} label={'부가세'} disabled={'disabled'} readOnly={'readOnly'} name={'vat'}/>
+                                                <GeneralForm inputType={'input'} label={'합계금액'} disabled={'disabled'} readOnly={'readOnly'} name={'total'}/>
                                                 <div className="d-flex justify-content-end">
-                                                    <button className="btn btn-outline-success">추가</button>
+                                                    <button type="button" className="btn btn-outline-secondary me-3" onClick={()=> {document.querySelector('#rawForm').reset();}}>모두 지우기</button>
+                                                    <button type="button" className="btn btn-outline-success" onClick={() => {addProcess(document.querySelector('#rawForm'));}}>추가</button>
                                                 </div>
                                             </Form>
 
