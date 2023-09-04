@@ -28,7 +28,7 @@ const ProductRequest = () => {
     // });
     // const [inputList, setInputList] = useState([]);
 
-    // const { code, name, count, price, supply, vat, total } = inputs; // 비구조화 할당을 통해 값 추출...?
+    const inputNameList = ['code', 'name', 'count', 'price', 'supply', 'vat', 'total']; // 비구조화 할당을 통해 값 추출...?
 
     const tableCol = ['품목코드', '품명', '수량', '단가', '공급가액', '부가세', '합계금액'];
     return (
@@ -49,7 +49,7 @@ const ProductRequest = () => {
                                             <Form className='p-2' action='/raw_material/insert' method='post' id='rawForm'>
                                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                                     <Form.Label className="text-start">품목코드</Form.Label>
-                                                    <Form.Control type="text" className="cursor-pointer disable-input" onClick={() => {toggle('ProductList')}} readOnly placeholder="품목코드" />
+                                                    <Form.Control type="text" className="cursor-pointer disable-input" name="code" onClick={() => {toggle('ProductList')}} readOnly placeholder="품목코드" />
                                                 </Form.Group>
                                                 <GeneralForm inputType={'input'} label={'품명'} disabled={'disabled'} readOnly={'readOnly'} name={'name'}/>
                                                 <GeneralForm inputType={'input'} label={'수량'} name={'count'} />
@@ -59,7 +59,7 @@ const ProductRequest = () => {
                                                 <GeneralForm inputType={'input'} label={'합계금액'} disabled={'disabled'} readOnly={'readOnly'} name={'total'}/>
                                                 <div className="d-flex justify-content-end">
                                                     <button type="button" className="btn btn-outline-secondary me-3" onClick={()=> {document.querySelector('#rawForm').reset();}}>모두 지우기</button>
-                                                    <button type="button" className="btn btn-outline-success" onClick={() => {addProcess(); console.log(document.querySelector('#rawForm'))}}>추가</button>
+                                                    <button type="button" className="btn btn-outline-success" onClick={() => {addProcess(document.querySelector('#rawForm'));}}>추가</button>
                                                 </div>
                                             </Form>
                                         </div>
@@ -100,7 +100,7 @@ const ProductRequest = () => {
                                             <div className="pt-5">
                                                 <h4 className="card-title" id="raw-title">품목 내역</h4>
                                                 <div className="border border-secondary rounded p-3 table-responsive mb-4" id="bomForm">
-                                                    <Table tableCol={tableCol} colNum={tableCol.length} />
+                                                    <Table tableCol={tableCol} colNum={tableCol.length} inputList={inputNameList}/>
                                                 </div>
                                             </div>
                                             <div className="d-flex justify-content-end">
