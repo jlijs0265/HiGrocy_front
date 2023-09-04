@@ -1,13 +1,12 @@
 import { DropdownButton, Form, InputGroup } from "react-bootstrap";
 import SearchBar from "../components/SearchBar";
 import Table from "../components/Table";
-import { useEffect, useRef, useState } from "react";
 import GeneralCard from "../components/GeneralCard";
 import useGeneralTrigger from "../hooks/generalTrigger";
 
 const Storage = () => {
   const tableCol = ["창고코드", "창고명", "창고 위치", "담당자"];
-  const { useStateRegister } = useGeneralTrigger();
+  const { useStateRegister, toggle } = useGeneralTrigger();
 
 
   // const trClick = (e) => {
@@ -17,12 +16,6 @@ const Storage = () => {
   //   setRegister(false);
   //   setModify(true);
   // };
-
-  const [showModal, setShowModal] = useState(false);
-
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
 
   return (
     <div>

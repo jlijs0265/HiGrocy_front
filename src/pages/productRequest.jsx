@@ -1,81 +1,39 @@
 import Table from "../components/Table";
 import Form from 'react-bootstrap/Form';
-import { useState, useEffect } from "react";
 import Modals from "../components/Modals";
 import GeneralForm from "../components/GeneralForm";
 import moment from "moment/moment";
+import useProcess from "../hooks/process";
+import useGeneralTrigger from "../hooks/generalTrigger";
 
 const ProductRequest = () => {
 
     const requestDate = moment().format('YYYY-MM-DD HH:mm');
-    
-    const [showModal, setShowModal] = useState(false);
-    const [inputs, setInputs] = useState({
-        code: '',
-        name: '',
-        count: '',
-        price: '',
-        supply: '',
-        vat: '',
-        total: '',
-    });
-    const [inputList, setInputList] = useState([]);
+    const {
+        addProcess,
+        removeProcess,
+        useProcessSelector
+    } = useProcess();
+    const { toggle } = useGeneralTrigger();
 
-    const { code, name, count, price, supply, vat, total } = inputs; // 비구조화 할당을 통해 값 추출...?
+    // const [showModal, setShowModal] = useState(false);
+    // const [inputs, setInputs] = useState({
+    //     code: '',
+    //     name: '',
+    //     count: '',
+    //     price: '',
+    //     supply: '',
+    //     vat: '',
+    //     total: '',
+    // });
+    // const [inputList, setInputList] = useState([]);
 
-    const onChange = (e) => {
-        const { value, name } = e.target;
-        setInputs({
-            ...inputs,
-            [name]: value
-        });
-    };
-
-    const onReset = (e) => {
-        e.preventDefault();
-        setInputs({
-            code: '',
-            name: '',
-            count: '',
-            price: '',
-            supply: '',
-            vat: '',
-            total: '',
-        })
-    };
-
-    const [listValue, setListValue] = useState('');
-    const toggleModal = (value) => {
-        setListValue(value);
-        setShowModal(!showModal);
-    };
-
-    useEffect(() => {
-        console.log(inputs);
-    }, [inputs]);
-
-    const clickAddBtn = (e) => {
-        e.preventDefault();
-        setInputList(inputList => [...inputList, inputs]);
-        setInputs({
-            code: '',
-            name: '',
-            count: '',
-            price: '',
-            supply: '',
-            vat: '',
-            total: '',
-        })
-    };
-
-    useEffect(() => {
-        console.log(inputList);
-    }, [inputList]);
+    // const { code, name, count, price, supply, vat, total } = inputs; // 비구조화 할당을 통해 값 추출...?
 
     const tableCol = ['품목코드', '품명', '수량', '단가', '공급가액', '부가세', '합계금액'];
     return (
         <div>
-            <Modals showModal={showModal} toggleModal={toggleModal} innerModal={listValue} />
+            <Modals />
             <div className="container-scroller">
                 <div className="container-fluid page-body-wrapper">
                     <div className="main-panel">
@@ -91,17 +49,17 @@ const ProductRequest = () => {
                                             <Form className='p-2' action='/raw_material/insert' method='post' id='rawForm'>
                                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                                     <Form.Label className="text-start">품목코드</Form.Label>
-                                                    <Form.Control type="text" className="cursor-pointer disable-input" onClick={() => {toggleModal('ProductList')}} readOnly placeholder="품목코드" name="code" value={code} />
+                                                    <Form.Control type="text" className="cursor-pointer disable-input" onClick={() => {toggle('ProductList')}} readOnly placeholder="품목코드" />
                                                 </Form.Group>
-                                                <GeneralForm inputType={'input'} label={'품명'} disabled={'disabled'} readOnly={'readOnly'} name={'name'} value={name} onChange={onChange} />
-                                                <GeneralForm inputType={'input'} label={'수량'} name={'count'} value={count} onChange={onChange} />
-                                                <GeneralForm inputType={'input'} label={'단기'} disabled={'disabled'} readOnly={'readOnly'} name={'price'} value={price} onChange={onChange} />
-                                                <GeneralForm inputType={'input'} label={'공급가액'} disabled={'disabled'} readOnly={'readOnly'} name={'supply'} value={supply} onChange={onChange} />
-                                                <GeneralForm inputType={'input'} label={'부가세'} disabled={'disabled'} readOnly={'readOnly'} name={'vat'} value={vat} onChange={onChange} />
-                                                <GeneralForm inputType={'input'} label={'합계금액'} disabled={'disabled'} readOnly={'readOnly'} name={'total'} value={total} onChange={onChange} />
+                                                <GeneralForm inputType={'input'} label={'품명'} disabled={'disabled'} readOnly={'readOnly'} name={'name'}/>
+                                                <GeneralForm inputType={'input'} label={'수량'} name={'count'} />
+                                                <GeneralForm inputType={'input'} label={'단가'} disabled={'disabled'} readOnly={'readOnly'}/>
+                                                <GeneralForm inputType={'input'} label={'공급가액'} disabled={'disabled'} readOnly={'readOnly'} name={'supply'}/>
+                                                <GeneralForm inputType={'input'} label={'부가세'} disabled={'disabled'} readOnly={'readOnly'} name={'vat'}/>
+                                                <GeneralForm inputType={'input'} label={'합계금액'} disabled={'disabled'} readOnly={'readOnly'} name={'total'}/>
                                                 <div className="d-flex justify-content-end">
-                                                    <button className="btn btn-outline-secondary me-3" onClick={onReset}>모두 지우기</button>
-                                                    <button className="btn btn-outline-success" onClick={clickAddBtn}>추가</button>
+                                                    <button type="button" className="btn btn-outline-secondary me-3" onClick={()=> {document.querySelector('#rawForm').reset();}}>모두 지우기</button>
+                                                    <button type="button" className="btn btn-outline-success" onClick={() => {addProcess(); console.log(document.querySelector('#rawForm'))}}>추가</button>
                                                 </div>
                                             </Form>
                                         </div>
@@ -126,7 +84,7 @@ const ProductRequest = () => {
                                                         </tr>
                                                         <tr>
                                                             <td className="table-active">창고</td>
-                                                            <td className="cursor-pointer bg-secondary bg-opacity-10" onClick={() => {toggleModal('StorageList')}}></td>
+                                                            <td className="cursor-pointer bg-secondary bg-opacity-10" onClick={() => {toggle('StorageList')}}></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="table-active">사원</td>
@@ -142,7 +100,7 @@ const ProductRequest = () => {
                                             <div className="pt-5">
                                                 <h4 className="card-title" id="raw-title">품목 내역</h4>
                                                 <div className="border border-secondary rounded p-3 table-responsive mb-4" id="bomForm">
-                                                    <Table tableCol={tableCol} colNum={tableCol.length} inputList={inputList}/>
+                                                    <Table tableCol={tableCol} colNum={tableCol.length} />
                                                 </div>
                                             </div>
                                             <div className="d-flex justify-content-end">
