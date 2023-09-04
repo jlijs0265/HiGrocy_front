@@ -52,3 +52,14 @@ TODO List
 ---
 
 useHistory를 사용하지 않고 window.locate.href 의 속성으로 바꿈. -> redirect 가 되어 state값이 항상 초기화됨. useHistory를 사용하게 되면 useEffect로 초기화 해줘야함.
+
+---
+
+redux 사용방법
+
+개요  
+1. /app/store.js 안에 추가할 redux 객체(reducer)를 추가한다.
+2. reducer 객체는 /features/{사용할 customHook명}/{cutsomHook+Slice}를 추가한다.
+   reduxTool-kit의 createSlice 패턴으로 추가한다.
+3. Page에서 사용하기위해 /hooks/{customHook명}으로 CutsomHook를 추가한다.
+4. 사용할 컴포넌트에서 customHook에서 필요한 reducer 클래스의 메서드를 가져다가 쓴다.

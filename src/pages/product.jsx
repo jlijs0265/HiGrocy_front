@@ -10,6 +10,7 @@ import Modals from "../components/Modals";
 import GeneralCard from "../components/GeneralCard";
 import useGeneralTrigger from "../hooks/generalTrigger";
 import useProcess from "../hooks/process";
+import RawMaterailListModal from "../components/RawMaterialListModal";
 
 
 const Product = () => {
@@ -25,7 +26,7 @@ const Product = () => {
 
     return (
         <div className="container-scroller">
-            <Modals />
+            <Modals innerModal={"RawMaterailList"}/>
             <div className="container-fluid page-body-wrapper">
                 <div className="main-panel">
                     <div className="content-wrapper">

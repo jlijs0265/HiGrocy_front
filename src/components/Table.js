@@ -1,7 +1,7 @@
 import { PropTypes } from "prop-types";
 import useGeneralTrigger from "../hooks/generalTrigger";
 
-const Table = ({ rowNum, colNum, tableCol, ref }) => {
+const Table = ({ rowNum, colNum, tableCol, inputList }) => {
   const {modify} = useGeneralTrigger();
 
   return (
@@ -14,15 +14,18 @@ const Table = ({ rowNum, colNum, tableCol, ref }) => {
             })}
           </tr>
         </thead>
-        <tbody className="rawbody" ref={ref}>
-          <tr className="rawitem cursor-point" onClick={(e) =>{e.stopPropagation(); modify();}}>
-            {Array(colNum)
-              .fill(1)
-              .map((value, index) => value + index)
-              .map((colNum) => {
-                return <td key={colNum}>{colNum}</td>;
-              })}
-          </tr>
+        <tbody className="rawbody">
+          {inputList &&
+            inputList.map((row, rowIndex) => (
+              <tr key={rowIndex} className="rawitem cursor-point" onClick={(e) => { e.stopPropagation(); modify(); }}>
+                {
+                  Object.keys(row).map((key, index) => (
+                    <td key={index}>{row[key]}</td>
+                  ))
+                }
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </div>
@@ -32,6 +35,7 @@ const Table = ({ rowNum, colNum, tableCol, ref }) => {
 Table.defaultProps = {
   rowNum: 5,
   colNum: 5,
+  inputList: [],
 };
 
 export default Table;
