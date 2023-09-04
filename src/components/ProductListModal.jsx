@@ -6,8 +6,10 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
 import Pagination from './Pagination';
+import useGeneralTrigger from '../hooks/generalTrigger';
 
-const ProductListModal = ({ toggleModal }) => {
+const ProductListModal = () => {
+    const { toggle} = useGeneralTrigger();
 
     const tableCol = ['코드', '품명'];
 
@@ -33,7 +35,7 @@ const ProductListModal = ({ toggleModal }) => {
                 <Pagination />
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={toggleModal}>
+                <Button variant="secondary" onClick={toggle}>
                     닫기
                 </Button>
             </Modal.Footer>

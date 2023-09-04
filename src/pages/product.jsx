@@ -3,14 +3,12 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { useState } from "react";
 import GeneralForm from "../components/GeneralForm";
 import Pagination from "../components/Pagination";
 import Modals from "../components/Modals";
 import GeneralCard from "../components/GeneralCard";
 import useGeneralTrigger from "../hooks/generalTrigger";
 import useProcess from "../hooks/process";
-import RawMaterailListModal from "../components/RawMaterialListModal";
 
 
 const Product = () => {
