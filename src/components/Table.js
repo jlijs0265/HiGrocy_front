@@ -1,8 +1,8 @@
 import { PropTypes } from "prop-types";
-import useGeneralForm from "../hooks/generalFrom";
+import useGeneralTrigger from "../hooks/generalTrigger";
 
 const Table = ({ rowNum, colNum, tableCol, ref }) => {
-  const {modify} = useGeneralForm();
+  const {modify} = useGeneralTrigger();
 
   return (
     <div className="table-responsive container">

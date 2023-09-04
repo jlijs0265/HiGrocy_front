@@ -1,12 +1,13 @@
-import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import RawMaterailListModal from './RawMaterialListModal';
+import useGeneralTrigger from '../hooks/generalTrigger';
 
 const Modals =({ showModal, toggleModal }) => {
+    const {useStateModal, toggle} = useGeneralTrigger();
     return (
         <>
-            <Modal show={showModal} onHide={toggleModal}>
-                <RawMaterailListModal toggleModal={toggleModal} />
+            <Modal show={useStateModal()} onHide={toggle}>
+                <RawMaterailListModal toggleModal={toggle} />
             </Modal>
         </>
     );

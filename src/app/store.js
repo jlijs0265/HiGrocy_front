@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import processReducer from '../features/process/processSlice'
-import generalFormReducer from '../features/generalForm/generalFormSlice'
+import processReducer from './processSlice'
+import generalTriggerReducer from './generalTriggerSlice'
 
 export const store = configureStore({
   reducer: {
     process: processReducer,
-    generalFrom: generalFormReducer,
+    generalTrigger: generalTriggerReducer,
   
   }
 })

@@ -1,9 +1,9 @@
-import useGeneralForm from "../hooks/generalFrom";
 import { PropTypes } from "prop-types";
+import useGeneralTrigger from "../hooks/generalTrigger";
 
 
 const GeneralCard = ({size, children, useResiger}) => {
-    const {register} = useGeneralForm();
+    const {register} = useGeneralTrigger();
 
     return (
     <div className={`col-md-${size} stretch-card`}>

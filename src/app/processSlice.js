@@ -1,16 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
-
+let id = 0;
 const processSlice = createSlice({
   name: 'process',
   initialState: {process:[]},
   reducers: {
     processAdded(state, action) {
-      state.process.push({
-        id : state.process.length,
-        mech_code: '',
-        order: '',
-        use_time: ''
-      })
+      const process = {id: id++}
+      state.process.push(process)
     },
 
     processSet(state, action){

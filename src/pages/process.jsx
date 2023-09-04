@@ -5,33 +5,19 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import GeneralCard from "../components/GeneralCard";
-import useGeneralForm from "../hooks/generalFrom";
+import useGeneralTrigger from "../hooks/generalTrigger";
 import Pagination from "../components/Pagination";
 import useProcess from "../hooks/process";
 
 const Process = () => {
   const tableCol = ["코드", "생산품명", "프로세스 보기"];
-  const {useStateSelector} = useGeneralForm();
+  const { useStateRegister } = useGeneralTrigger();
   const {
     addProcess,
-    setProcess,
     removeProcess,
     useProcessSelector
-} = useProcess();
+  } = useProcess();
 
-  //redux로 관리 할것
-  const [bomTags, setBomTags] = useState([]);
-
-
-  const removeBomTag = (e) => {
-    const key = e.target.dataset.key;
-    console.log(key);
-    console.log(bomTags[key]);
-  };
-  //axois
-
-  //
-  console.log(useProcessSelector());
 
   return (
     <div>
@@ -56,14 +42,14 @@ const Process = () => {
                     <Form.Control aria-label="Text input with dropdown button" />
                   </InputGroup>
                   <Table tableCol={tableCol} colNum={tableCol.length} />
-                  <Pagination/>
+                  <Pagination />
                 </GeneralCard>
                 <GeneralCard size={6} useResiger={false}>
                   <h4 className="card-title text-start mb-4" id="raw-title">
                     생산품 프로세스
                   </h4>
                   <Form className="p-2" id="processForm">
-                    <Form.Group className="mb-3" controlId="process.key">
+                    <Form.Group className="mb-3">
                       <Form.Label className="text-start">
                         생산품코드
                       </Form.Label>
@@ -108,8 +94,7 @@ const Process = () => {
                             <button
                               type="button"
                               className="btn btn-sm btn-outline-danger"
-                              data-key={index}
-                              onClick={() => removeProcess(index)}
+                              onClick={() => removeProcess(value)}
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -139,11 +124,12 @@ const Process = () => {
                           <Form.Control type="text" placeholder="시간" />
                         </Form.Group>
                       </div>
-                    ))}
+                    ))
+                    }
                   </Form>
-                  <button className='btn btn-primary me-2' hidden={useStateSelector() ? '' : 'hidden'} id='registerBtn'>등록</button>
-                  <button className='btn btn-success me-2' hidden={useStateSelector() ? 'hidden' : ''} id='updateBtn'>수정</button>
-                  <button className='btn btn-danger me-2' hidden={useStateSelector() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
+                  <button className='btn btn-primary me-2' hidden={useStateRegister() ? '' : 'hidden'} id='registerBtn'>등록</button>
+                  <button className='btn btn-success me-2' hidden={useStateRegister() ? 'hidden' : ''} id='updateBtn'>수정</button>
+                  <button className='btn btn-danger me-2' hidden={useStateRegister() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
                 </GeneralCard>
               </div>
             </div>

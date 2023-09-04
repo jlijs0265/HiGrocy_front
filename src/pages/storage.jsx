@@ -2,12 +2,12 @@ import { DropdownButton, Form, InputGroup } from "react-bootstrap";
 import SearchBar from "../components/SearchBar";
 import Table from "../components/Table";
 import { useEffect, useRef, useState } from "react";
-import useGeneralForm from "../hooks/generalFrom";
 import GeneralCard from "../components/GeneralCard";
+import useGeneralTrigger from "../hooks/generalTrigger";
 
 const Storage = () => {
   const tableCol = ["창고코드", "창고명", "창고 위치", "담당자"];
-  const { useStateSelector } = useGeneralForm();
+  const { useStateRegister } = useGeneralTrigger();
 
 
   // const trClick = (e) => {
@@ -70,9 +70,9 @@ const Storage = () => {
                           <Form.Control type="text" placeholder="담당자명" />
                         </Form.Group>
                       </Form>
-                      <button className='btn btn-primary me-2' hidden={useStateSelector() ? '' : 'hidden'} id='registerBtn'>등록</button>
-                      <button className='btn btn-success me-2' hidden={useStateSelector() ? 'hidden' : ''} id='updateBtn'>수정</button>
-                      <button className='btn btn-danger me-2' hidden={useStateSelector() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
+                      <button className='btn btn-primary me-2' hidden={useStateRegister() ? '' : 'hidden'} id='registerBtn'>등록</button>
+                      <button className='btn btn-success me-2' hidden={useStateRegister() ? 'hidden' : ''} id='updateBtn'>수정</button>
+                      <button className='btn btn-danger me-2' hidden={useStateRegister() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
                     </div>
                   </div>
                 </div>
