@@ -1,10 +1,10 @@
 import { PropTypes } from "prop-types";
 import useGeneralTrigger from "../hooks/generalTrigger";
-import useProcess from "../hooks/process";
+import useModal from "../hooks/modal";
 
-const Table = ({ tableCol, inputList, isListTable, useForm }) => {
+const ModalTable = ({ tableCol, inputList, isListTable, useForm }) => {
   const { modify } = useGeneralTrigger();
-  const { useProcessSelector, removeProcess, updateProcess } = useProcess();
+  const { useModalSelector, removeModal, updateModal } = useModal();
 
   return (
     <div className="table-responsive container">
@@ -17,8 +17,8 @@ const Table = ({ tableCol, inputList, isListTable, useForm }) => {
           </tr>
         </thead>
         <tbody className="rawbody">
-          {useProcessSelector().map((row, rowIndex) => {(
-            <tr key={rowIndex} className="rawitem cursor-point" onClick={(e) => { e.stopPropagation(); modify(); (isListTable) ? removeProcess(row.id) : updateProcess(row, useForm) }}>
+          {useModalSelector().map((row, rowIndex) => {(
+            <tr key={rowIndex} className="rawitem cursor-point" onClick={(e) => { e.stopPropagation(); modify(); (isListTable) ? removeModal(row.id) : updateModal(row, useForm) }}>
               {
                 inputList.map((key, index) => (
                   <td key={index}>{row[key]}</td>
@@ -33,7 +33,7 @@ const Table = ({ tableCol, inputList, isListTable, useForm }) => {
   );
 };
 
-Table.defaultProps = {
+ModalTable.defaultProps = {
   rowNum: 5,
   colNum: 5,
   inputList: [],
@@ -41,4 +41,4 @@ Table.defaultProps = {
   useForm: 'rawForm',
 };
 
-export default Table;
+export default ModalTable;
