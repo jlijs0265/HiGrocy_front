@@ -16,8 +16,8 @@ const processSlice = createSlice({
 
     processRemoved(state, action) {
       console.log(action.payload);
-      const filteredProcess = state.process.filter(processe => {
-        return processe.id !== action.payload;
+      const filteredProcess = state.process.filter(process => {
+        return process.id != action.payload;
     });
     state.process = filteredProcess;    }
   }

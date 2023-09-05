@@ -16,8 +16,8 @@ const RawMaterial = () => {
 
     const tableCol = ['코드', '자재분류', '자재명', '재생가능여부', '단위', '기준수량', '원산지'];
     const selectOptions = [
-        { value: '원', label: '원자재' },
-        { value: '부', label: '부자재' },
+        { value: '원자재', label: '원자재' },
+        { value: '부자재', label: '부자재' },
     ]
 
     const selectOptions2 = [
@@ -33,7 +33,7 @@ const RawMaterial = () => {
         useProcessSelector,
     } = useProcess();
 
-    const { useStateRegister } = useGeneralTrigger();
+    const { useStateRegister, register } = useGeneralTrigger();
 
 
     return (
@@ -55,7 +55,7 @@ const RawMaterial = () => {
                                         </DropdownButton>
                                         <Form.Control aria-label="Text input with dropdown button" />
                                     </InputGroup>
-                                    <Table tableCol={tableCol} colNum={tableCol.length}/>
+                                    <Table tableCol={tableCol} colNum={tableCol.length} inputList={inputNmaeList}/>
                                     <Pagination />
                                 </GeneralCard>
                                 <div className='col-md-6 stretch-card'>
@@ -64,6 +64,7 @@ const RawMaterial = () => {
                                             <h4 className='card-title text-start mb-4' id='raw-title'>등록 페이지</h4>
 
                                             <Form className='p-2' action='/raw_material/insert' method='post' id='rawForm'>
+                                                <input type="hidden" id="id"></input>
                                                 <GeneralForm inputType={'input'} label={'원부자재코드'} disabled={'disabled'} readOnly={'readOnly'} name={'raw_materials_code'}/>
                                                 <GeneralForm inputType={'select'} label={'자재분류'} options={selectOptions} name={'type'}/>
                                                 <GeneralForm inputType={'input'} label={'자재명'} name={'name'}/>
@@ -74,7 +75,13 @@ const RawMaterial = () => {
                                             </Form>
                                             <button className='btn btn-primary me-2' hidden={useStateRegister() ? '' : 'hidden'} id='registerBtn' onClick={() => addProcess(document.querySelector('#rawForm'),'raw_material')}>등록</button>
                                             <button className='btn btn-success me-2' hidden={useStateRegister() ? 'hidden' : ''} id='updateBtn'>수정</button>
-                                            <button className='btn btn-danger me-2' hidden={useStateRegister() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
+                                            <button className='btn btn-danger me-2' hidden={useStateRegister() ? 'hidden' : ''} id='deleteBtn' 
+                                            onClick={() => {
+                                                removeProcess(document.querySelector('#rawForm').querySelector('#id').value);
+                                                document.querySelector('#rawForm').reset();
+                                                register();
+
+                                            }}>삭제</button>
                                         </div>
                                     </div>
                                 </div>

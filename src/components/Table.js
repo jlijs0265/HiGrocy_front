@@ -2,9 +2,9 @@ import { PropTypes } from "prop-types";
 import useGeneralTrigger from "../hooks/generalTrigger";
 import useProcess from "../hooks/process";
 
-const Table = ({ rowNum, colNum, tableCol, inputList }) => {
+const Table = ({ rowNum, colNum, tableCol, inputList, isListTable, useForm }) => {
   const {modify} = useGeneralTrigger();
-  const {useProcessSelector,removeProcess} = useProcess();
+  const {useProcessSelector,removeProcess, updateProcess} = useProcess();
 
   return (
     <div className="table-responsive container">
@@ -18,7 +18,7 @@ const Table = ({ rowNum, colNum, tableCol, inputList }) => {
         </thead>
         <tbody className="rawbody">
           {useProcessSelector().map((row, rowIndex) => (
-              <tr key={rowIndex} className="rawitem cursor-point" onClick={(e) => { e.stopPropagation(); modify(); removeProcess(row)}}>
+              <tr key={rowIndex} className="rawitem cursor-point" onClick={(e) => { e.stopPropagation(); modify(); (isListTable)?removeProcess(row.id):updateProcess(row,useForm)}}>
                 {
                   inputList.map((key, index) => (
                     <td key={index}>{row[key]}</td>
@@ -37,6 +37,8 @@ Table.defaultProps = {
   rowNum: 5,
   colNum: 5,
   inputList: [],
+  isListTable:false,
+  useForm : 'rawForm'
 };
 
 export default Table;
