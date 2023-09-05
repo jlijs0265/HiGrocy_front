@@ -11,10 +11,10 @@ const useProcess = () => {
         Form.querySelectorAll('input').forEach(input => form[input.name] = input.value);
         Form.querySelectorAll('select').forEach(input => form[input.name] = input.value);
         Form.reset();
-        axios.post(`http://localhost:8081/${url}`, form).then((res) =>
-            console.log(res)
-            //TODO res에서 code가져와서 form에 넣어줘야함
-        );
+        // axios.post(`http://localhost:8081/${url}`, form).then((res) =>
+        //     console.log(res)
+        //     //TODO res에서 code가져와서 form에 넣어줘야함
+        // );
         dispatch(processAdded(form));
     }
 
