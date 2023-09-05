@@ -1,17 +1,46 @@
 import { useState } from "react";
 import Table from "../components/Table";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import { ToggleButton } from "react-bootstrap";
+import GeneralCard from "../components/GeneralCard";
+import GeneralMainPanel from "../components/GeneralMainPanel";
+import GeneralDropDownSearchBar from "../components/GeneralDropDownSearchBar";
+import GeneralDateInput from "../components/GeneralDateInput";
+
+/*
+  /orderlist Page
+   - TODO : 가져올 객체 key 값 domain확인하여 적기
+*/
+
 
 const OrderList = () => {
-  const tableCol = ["코드", "기계명", "공장명", "위치"];
-
-  //redux로 관리 할것
+  
   const [tigger, setTigger] = useState(2);
+  let uppertableCol = [];
+  let lowTableCol = [];
+  let dropdownOption = [];
+  //TODO 가져올 객체 key 값 domain확인하여 적기
+  let upperName = [];
+  let lowName = [];
+
+  switch(tigger){
+    case 1:
+      uppertableCol = ["발주번호", '발주일자','거래처','담당사원','공급가 합계','총 합계'];
+      lowTableCol = ['품목 코드', '자재분류', '품목명', '재생가능여부', '단위', '기준수량', '원산지'];
+      break;
+    case 2:
+      uppertableCol = ['품목 코드', '자재분류', '품목명', '재생가능여부', '단위', '기준수량', '원산지']; 
+      lowTableCol = ['발주 번호',' 발주일자','거래처', '담당사원',' 배송예정일', '공급가 합계', '총 합계'];
+      dropdownOption = ['품목명', '품목코드'];
+
+      break;
+    case 3:
+      uppertableCol = ['발주 번호',' 발주일자','거래처', '담당사원',' 배송예정일', '공급가 합계', '총 합계']; 
+      lowTableCol = ['품목 코드', '자재분류', '품목명', '재생가능여부', '단위', '기준수량', '원산지'];
+      dropdownOption = ['거래처명', '담당사원'];
+
+      break;
+  }
 
   return (
     <div>
@@ -37,49 +66,25 @@ const OrderList = () => {
       </div>
 
       <div className="container-scroller">
-        <div className="container-fluid page-body-wrapper">
-          <div className="main-panel">
-            <div className="content-wrapper">
-              <div className="row-md-12 stretch-card mb-3">
-                <div className="card">
-                  <div className="card-body list-body">
-                    <h4 className="card-title text-start mb-4">
-                      {tigger === 2
-                        ? "품목검색"
-                        : tigger === 1
-                        ? "발주날짜별 검색"
-                        : "거래처별 검색"}
-                    </h4>
-                    <InputGroup className="mb-3 p-2">
-                      <DropdownButton
-                        variant="outline-secondary"
-                        title="검색"
-                        id="input-group-dropdown-1"
-                      >
-                        <Dropdown.Item href="#">기계명</Dropdown.Item>
-                        <Dropdown.Item href="#">공장명</Dropdown.Item>
-                        <Dropdown.Item href="#">위치</Dropdown.Item>
-                        <Dropdown.Item href="#">코드</Dropdown.Item>
-                      </DropdownButton>
-                      <Form.Control aria-label="Text input with dropdown button" />
-                    </InputGroup>
-                    <Table tableCol={tableCol} colNum={tableCol.length} />
-                  </div>
-                </div>
-              </div>
-              <div className="row-md-12 stretch-card">
-                <div className="card">
-                  <div className="card-body">
-                    <h4 className="card-title text-start mb-4" id="raw-title">
-                      발주 현황
-                    </h4>
-                    <Table tableCol={tableCol} colNum={tableCol.length} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <GeneralMainPanel>
+          <GeneralCard size={12} useResiger={false}>
+            <h4 className="card-title text-start mb-4">
+              {tigger === 2
+                ? "품목검색"
+                : tigger === 1
+                  ? "발주날짜별 검색"
+                  : "거래처별 검색"}
+            </h4>
+            {tigger == 1?<GeneralDateInput/>:<GeneralDropDownSearchBar options ={dropdownOption}/>}
+            <Table tableCol={uppertableCol} colNum={uppertableCol.length} />
+          </GeneralCard>
+          <GeneralCard size={12} useResiger={false}>
+            <h4 className="card-title text-start mb-4" id="raw-title">
+              발주 현황
+            </h4>
+            <Table tableCol={lowTableCol} colNum={lowTableCol.length} />
+          </GeneralCard>
+        </GeneralMainPanel>
       </div>
     </div>
   );
