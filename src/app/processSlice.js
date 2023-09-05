@@ -10,14 +10,20 @@ const processSlice = createSlice({
       state.process.push(process)
     },
 
+    processChanged(state, action){
+      let num = state.process.findIndex(process => {
+        return process.id == action.payload.id;
+      });
+      state.process[num] = action.payload;
+    },
+
     processSet(state, action){
       state.process = action.payload;
     },
 
     processRemoved(state, action) {
-      console.log(action.payload);
-      const filteredProcess = state.process.filter(processe => {
-        return processe.id !== action.payload;
+      const filteredProcess = state.process.filter(process => {
+        return process.id != action.payload;
     });
     state.process = filteredProcess;    }
   }
