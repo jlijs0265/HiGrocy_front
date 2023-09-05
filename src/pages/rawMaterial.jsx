@@ -16,8 +16,8 @@ const RawMaterial = () => {
 
     const tableCol = ['코드', '자재분류', '자재명', '재생가능여부', '단위', '기준수량', '원산지'];
     const selectOptions = [
-        { value: '원', label: '원자재' },
-        { value: '부', label: '부자재' },
+        { value: '원자재', label: '원자재' },
+        { value: '부자재', label: '부자재' },
     ]
 
     const selectOptions2 = [
@@ -25,7 +25,7 @@ const RawMaterial = () => {
         { value: '부', label: '부' },
     ]
 
-    const inputNmaeList = ['raw_materials_code', 'type', 'renewability', 'unit', 'standard_quantity', 'origin'];
+    const inputNmaeList = ['raw_materials_code', 'raw_type', 'renewability', 'unit', 'standard_quantity', 'origin'];
 
     const {
         addProcess,
@@ -65,11 +65,12 @@ const RawMaterial = () => {
 
                                             <Form className='p-2' action='/raw_material/insert' method='post' id='rawForm'>
                                                 <GeneralForm inputType={'input'} label={'원부자재코드'} disabled={'disabled'} readOnly={'readOnly'} name={'raw_materials_code'}/>
-                                                <GeneralForm inputType={'select'} label={'자재분류'} options={selectOptions} name={'type'}/>
+                                                <GeneralForm inputType={'select'} label={'자재분류'} options={selectOptions} name={'raw_type'}/>
                                                 <GeneralForm inputType={'input'} label={'자재명'} name={'name'}/>
                                                 <GeneralForm inputType={'select'} label={'재생가능여부'} options={selectOptions2} name={'renewability'}/>
                                                 <GeneralForm inputType={'input'} label={'단위'} name={'unit'}/>
-                                                <GeneralForm inputType={'input'} label={'기준수량'} name={'standard_quantity'} />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+                                                <GeneralForm inputType={'input'} label={'기준수량'} name={'standard_quantity'} />
+                                                <GeneralForm inputType={'input'} label={'부피'} name={'volume'} />
                                                 <GeneralForm inputType={'input'} label={'원산지'} name={'origin'} />
                                             </Form>
                                             <button className='btn btn-primary me-2' hidden={useStateRegister() ? '' : 'hidden'} id='registerBtn' onClick={() => addProcess(document.querySelector('#rawForm'),'raw_material')}>등록</button>
