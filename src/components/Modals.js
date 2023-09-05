@@ -3,7 +3,8 @@ import RawMaterailListModal from './RawMaterialListModal';
 import ProductListModal from './ProductListModal';
 import StorageListModal from './StorageListModal';
 import OrderListModal from './OrderListModal';
-import useGeneralTrigger from '../hooks/generalTrigger';
+import AccountListModal    from './AccountListModal';
+import useGeneralTrigger from '../hooks/generalTrigger'; 
 
 
 
@@ -24,6 +25,9 @@ const Modals = () => {
             break;
         case 'OrderList':
             componentToRender = <OrderListModal />;
+            break;
+        case 'AccountList':
+            componentToRender = <AccountListModal />;
             break;
     }
 

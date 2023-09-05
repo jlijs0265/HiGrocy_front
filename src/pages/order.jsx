@@ -70,7 +70,7 @@ const Order = () => {
 
                                                         <tr>
                                                             <td className="table-active">거래처</td>
-                                                            <td id="account"></td>
+                                                            <td className="cursor-pointer bg-secondary bg-opacity-10" onClick={() => {toggle('AccountList')}}></td>
                                                         </tr>                      
                                                     </tbody>
                                                 </table>
