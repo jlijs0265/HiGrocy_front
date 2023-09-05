@@ -6,10 +6,13 @@ import axios from "axios";
 const useProcess = () => {
     const dispatch = useDispatch();
     
-    const addProcess = (Form) =>{
+    const addProcess = (Form, url) =>{
         const form = {};
         Form.querySelectorAll('input').forEach(input => form[input.name]=input.value);
         Form.querySelectorAll('select').forEach(input => form[input.name]=input.value);
+        axios.post(`http://localhost:8081/${url}`, form).then((res)=>
+            console.log(res)
+        );
         dispatch(processAdded(form));
     }
 
@@ -25,22 +28,12 @@ const useProcess = () => {
         return useSelector(state => state.process.process);
     }
 
-    const useRegisterProcess = async (url) => {
-        const data = useSelector(state => state.process.process[0]);
-        try {
-            const res = await axios.post(`http://localhost:8081/${url}`, data);
-            console.log(res);
-        } catch (error) {
-            console.error(error);
-        }
-    }
 
     return {
         addProcess,
         setProcess,
         removeProcess,
         useProcessSelector,
-        useRegisterProcess
     };
 }
 

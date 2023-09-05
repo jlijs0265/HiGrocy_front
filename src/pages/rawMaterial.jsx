@@ -31,16 +31,9 @@ const RawMaterial = () => {
         addProcess,
         removeProcess,
         useProcessSelector,
-        useRegisterProcess
     } = useProcess();
 
     const { useStateRegister } = useGeneralTrigger();
-    
-    const clickRegister = async() => {
-    //     addProcess(document.querySelector('#rawForm'));
-    //     await useRegisterProcess('raw_material');
-    }
-
 
 
     return (
@@ -79,7 +72,7 @@ const RawMaterial = () => {
                                                 <GeneralForm inputType={'input'} label={'기준수량'} name={'standard_quantity'} />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
                                                 <GeneralForm inputType={'input'} label={'원산지'} name={'origin'} />
                                             </Form>
-                                            <button className='btn btn-primary me-2' hidden={useStateRegister() ? '' : 'hidden'} id='registerBtn' onClick={clickRegister}>등록</button>
+                                            <button className='btn btn-primary me-2' hidden={useStateRegister() ? '' : 'hidden'} id='registerBtn' onClick={() => addProcess(document.querySelector('#rawForm'),'raw_material')}>등록</button>
                                             <button className='btn btn-success me-2' hidden={useStateRegister() ? 'hidden' : ''} id='updateBtn'>수정</button>
                                             <button className='btn btn-danger me-2' hidden={useStateRegister() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
                                         </div>
