@@ -3,8 +3,11 @@ import useGeneralTrigger from "../hooks/generalTrigger";
 import useProcess from "../hooks/process";
 
 const Table = ({ tableCol, inputList, isListTable, useForm }) => {
+
   const { modify } = useGeneralTrigger();
   const { useProcessSelector, removeProcess, updateProcess } = useProcess();
+
+  console.log(useProcessSelector());
 
   return (
     <div className="table-responsive container">
@@ -17,7 +20,7 @@ const Table = ({ tableCol, inputList, isListTable, useForm }) => {
           </tr>
         </thead>
         <tbody className="rawbody">
-          {useProcessSelector().map((row, rowIndex) => {(
+          {useProcessSelector().map((row, rowIndex) => { return (
             <tr key={rowIndex} className="rawitem cursor-point" onClick={(e) => { e.stopPropagation(); modify(); (isListTable) ? removeProcess(row.id) : updateProcess(row, useForm) }}>
               {
                 inputList.map((key, index) => (
