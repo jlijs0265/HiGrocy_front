@@ -2,30 +2,32 @@ import { createSlice } from '@reduxjs/toolkit'
 let id = 0;
 const processSlice = createSlice({
   name: 'process',
-  initialState: {process:[]},
+  initialState: {
+    table_data:[]
+  },
   reducers: {
     processAdded(state, action) {
       const process = {id: id++,
       ...action.payload}
-      state.process.push(process)
+      state.table_data.push(process)
     },
 
     processChanged(state, action){
-      let num = state.process.findIndex(process => {
+      let num = state.table_data.findIndex(process => {
         return process.id == action.payload.id;
       });
-      state.process[num] = action.payload;
+      state.table_data[num] = action.payload;
     },
 
     processSet(state, action){
-      state.process = action.payload;
+      state.table_data = action.payload;
     },
 
     processRemoved(state, action) {
-      const filteredProcess = state.process.filter(process => {
+      const filteredProcess = state.table_data.filter(process => {
         return process.id != action.payload;
     });
-    state.process = filteredProcess;    }
+    state.table_data = filteredProcess;    }
   }
 })
 

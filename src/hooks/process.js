@@ -62,7 +62,7 @@ const useProcess = () => {
     }
 
     const useProcessSelector = () => {
-        return useSelector(state => state.process.process);
+        return useSelector(state => state.process.table_data);
     }
 
 
