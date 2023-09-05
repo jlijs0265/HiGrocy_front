@@ -28,7 +28,7 @@ const ProductRequest = () => {
     // });
     // const [inputList, setInputList] = useState([]);
 
-    const inputNameList = ['code', 'name', 'count', 'price', 'supply', 'vat', 'total']; // 비구조화 할당을 통해 값 추출...?
+    const inputNameList = ['code', 'name', 'count', 'price', 'supply', 'vat', 'total']; 
 
     const tableCol = ['품목코드', '품명', '수량', '단가', '공급가액', '부가세', '합계금액'];
     return (

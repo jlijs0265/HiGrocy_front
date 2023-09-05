@@ -52,6 +52,10 @@ const Product = () => {
                                 <Form className='p-2'>
                                     <GeneralForm inputType={'input'} label={'생산품코드'} disabled={'disabled'} readOnly={'readOnly'} />
                                     <GeneralForm inputType={'input'} label={'생산품명'} />
+                                    <Form.Group controlId="formFileMultiple" className="mb-3">
+                                        <Form.Label>이미지 파일첨부</Form.Label>
+                                        <Form.Control type="file" multiple />
+                                    </Form.Group>
                                     <Form.Group className="d-flex justify-content-between mb-2">
                                         <Form.Label className="text-start">BOM 등록</Form.Label>
                                         <button type="button" className="btn btn-sm btn-outline-success" onClick={addProcess}>추가</button>
@@ -65,7 +69,7 @@ const Product = () => {
                                                         <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
                                                     </svg></button>
                                                 </div>
-                                                <Form.Control type="text" className="cursor-pointer disable-input" onClick={() => {toggle("RawMaterailList")}} readOnly placeholder="원부자재코드" />
+                                                <Form.Control type="text" className="cursor-pointer disable-input" onClick={() => { toggle("RawMaterailList") }} readOnly placeholder="원부자재코드" />
                                                 <Form.Label className="text-start">수량</Form.Label>
                                                 <Form.Control type="text" placeholder="수량" />
                                             </Form.Group>

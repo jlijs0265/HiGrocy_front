@@ -10,7 +10,7 @@ const GeneralForm = ({ inputType, label, options, disabled, readOnly, name, valu
   } else if (inputType === 'select') {                              
     return <Form.Group className="mb-3">
       <Form.Label className="text-start">{label}</Form.Label>
-      <Form.Select aria-label="Default select example">
+      <Form.Select aria-label="Default select example" name={name}>
         {options.map((option, index) => (
           <option key={index} value={option.value}>{option.label}</option>
         ))}

@@ -2,7 +2,9 @@ import Modal from 'react-bootstrap/Modal';
 import RawMaterailListModal from './RawMaterialListModal';
 import ProductListModal from './ProductListModal';
 import StorageListModal from './StorageListModal';
-import useGeneralTrigger from '../hooks/generalTrigger';
+import OrderListModal from './OrderListModal';
+import AccountListModal    from './AccountListModal';
+import useGeneralTrigger from '../hooks/generalTrigger'; 
 
 
 
@@ -20,6 +22,12 @@ const Modals = () => {
             break;
         case 'StorageList':
             componentToRender = <StorageListModal />;
+            break;
+        case 'OrderList':
+            componentToRender = <OrderListModal />;
+            break;
+        case 'AccountList':
+            componentToRender = <AccountListModal />;
             break;
     }
 

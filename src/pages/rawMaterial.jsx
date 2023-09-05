@@ -7,23 +7,41 @@ import GeneralForm from "../components/GeneralForm";
 import { useState, useEffect } from "react";
 import Pagination from "../components/Pagination";
 import GeneralCard from "../components/GeneralCard";
+import useProcess from "../hooks/process";
 import useGeneralTrigger from "../hooks/generalTrigger";
+import axios from "axios";
 
 
 const RawMaterial = () => {
 
     const tableCol = ['코드', '자재분류', '자재명', '재생가능여부', '단위', '기준수량', '원산지'];
     const selectOptions = [
-        { value: 'option1', label: '품명' },
-        { value: 'option2', label: '코드' },
+        { value: '원', label: '원자재' },
+        { value: '부', label: '부자재' },
     ]
 
     const selectOptions2 = [
-        { value: 'option1', label: '여' },
-        { value: 'option2', label: '부' },
+        { value: '여', label: '여' },
+        { value: '부', label: '부' },
     ]
 
+    const inputNmaeList = ['raw_materials_code', 'type', 'renewability', 'unit', 'standard_quantity', 'origin'];
+
+    const {
+        addProcess,
+        removeProcess,
+        useProcessSelector,
+        useRegisterProcess
+    } = useProcess();
+
     const { useStateRegister } = useGeneralTrigger();
+    
+    const clickRegister = async() => {
+    //     addProcess(document.querySelector('#rawForm'));
+    //     await useRegisterProcess('raw_material');
+    }
+
+
 
     return (
         <div>
@@ -53,15 +71,15 @@ const RawMaterial = () => {
                                             <h4 className='card-title text-start mb-4' id='raw-title'>등록 페이지</h4>
 
                                             <Form className='p-2' action='/raw_material/insert' method='post' id='rawForm'>
-                                                <GeneralForm inputType={'input'} label={'원부자재코드'} disabled={'disabled'} readOnly={'readOnly'} />
-                                                <GeneralForm inputType={'select'} label={'자재분류'} options={selectOptions} />
-                                                <GeneralForm inputType={'input'} label={'자재명'} />
-                                                <GeneralForm inputType={'select'} label={'재생가능여부'} options={selectOptions2} />
-                                                <GeneralForm inputType={'input'} label={'단위'} />
-                                                <GeneralForm inputType={'input'} label={'기준수량'} />
-                                                <GeneralForm inputType={'input'} label={'원산지'} />
+                                                <GeneralForm inputType={'input'} label={'원부자재코드'} disabled={'disabled'} readOnly={'readOnly'} name={'raw_materials_code'}/>
+                                                <GeneralForm inputType={'select'} label={'자재분류'} options={selectOptions} name={'type'}/>
+                                                <GeneralForm inputType={'input'} label={'자재명'} name={'name'}/>
+                                                <GeneralForm inputType={'select'} label={'재생가능여부'} options={selectOptions2} name={'renewability'}/>
+                                                <GeneralForm inputType={'input'} label={'단위'} name={'unit'}/>
+                                                <GeneralForm inputType={'input'} label={'기준수량'} name={'standard_quantity'} />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+                                                <GeneralForm inputType={'input'} label={'원산지'} name={'origin'} />
                                             </Form>
-                                            <button className='btn btn-primary me-2' hidden={useStateRegister() ? '' : 'hidden'} id='registerBtn'>등록</button>
+                                            <button className='btn btn-primary me-2' hidden={useStateRegister() ? '' : 'hidden'} id='registerBtn' onClick={clickRegister}>등록</button>
                                             <button className='btn btn-success me-2' hidden={useStateRegister() ? 'hidden' : ''} id='updateBtn'>수정</button>
                                             <button className='btn btn-danger me-2' hidden={useStateRegister() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
                                         </div>
