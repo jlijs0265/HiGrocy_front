@@ -1,4 +1,4 @@
-const Process = () => {
+const productionRequestList = () => {
     return (
         <div>
             공정관리 페이지
@@ -6,4 +6,4 @@ const Process = () => {
     );
 }
 
-export default Process;
+export default productionRequestList;

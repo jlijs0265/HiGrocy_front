@@ -12,6 +12,7 @@ import WareHousing from "./pages/wareHousing";
 import TestPage from "./pages/testpage";
 import Mainpage from "./pages/mainpage";
 import JoinPage from "./pages/joinPage";
+import ProductionRequestList from "./pages/productionRequestList";
 
 export default function Higorcy_Router() {
   return (
@@ -34,7 +35,7 @@ export default function Higorcy_Router() {
             <Product />
           </Route>
           <Route path="/prlist">
-            <ProductRequest />
+            <ProductionRequestList />
           </Route>
           <Route path="/process">
             <Process />
