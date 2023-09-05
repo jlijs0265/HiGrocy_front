@@ -11,7 +11,7 @@ const ChartCardList = () => {
   const chartType = "BarChart"; // 차트 타입을 문자열로 지정
   const chartType1 = () => {
     <BarChart />;
-  };
+  };<div className="0"></div>
 
   const Bar = () => {
     return <BarChart />;

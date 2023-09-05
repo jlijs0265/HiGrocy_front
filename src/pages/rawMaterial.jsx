@@ -1,19 +1,15 @@
 import Table from "../components/Table";
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 import GeneralForm from "../components/GeneralForm";
-import { useState, useEffect } from "react";
 import Pagination from "../components/Pagination";
 import GeneralCard from "../components/GeneralCard";
-import useProcess from "../hooks/process";
-import useGeneralTrigger from "../hooks/generalTrigger";
-import axios from "axios";
 
+import ReduxForm from "../components/ReduxForm";
 
 const RawMaterial = () => {
-
     const tableCol = ['코드', '자재분류', '자재명', '재생가능여부', '단위', '기준수량', '원산지'];
     const selectOptions = [
         { value: '원자재', label: '원자재' },
@@ -25,16 +21,8 @@ const RawMaterial = () => {
         { value: '부', label: '부' },
     ]
 
+    //GeneralForm 으로 지정한 name, Table에 데이터 순서와도 연관이 있음.
     const inputNmaeList = ['raw_materials_code', 'raw_type', 'renewability', 'unit', 'standard_quantity', 'origin'];
-
-    const {
-        addProcess,
-        removeProcess,
-        useProcessSelector,
-    } = useProcess();
-
-    const { useStateRegister } = useGeneralTrigger();
-
 
     return (
         <div>
@@ -55,37 +43,32 @@ const RawMaterial = () => {
                                         </DropdownButton>
                                         <Form.Control aria-label="Text input with dropdown button" />
                                     </InputGroup>
-                                    <Table tableCol={tableCol} colNum={tableCol.length}/>
+                                    <Table tableCol={tableCol} colNum={tableCol.length} inputList={inputNmaeList} />
                                     <Pagination />
                                 </GeneralCard>
                                 <div className='col-md-6 stretch-card'>
                                     <div className='card'>
                                         <div className='card-body'>
                                             <h4 className='card-title text-start mb-4' id='raw-title'>등록 페이지</h4>
-
-                                            <Form className='p-2' action='/raw_material/insert' method='post' id='rawForm'>
-                                                <GeneralForm inputType={'input'} label={'원부자재코드'} disabled={'disabled'} readOnly={'readOnly'} name={'raw_materials_code'}/>
-                                                <GeneralForm inputType={'select'} label={'자재분류'} options={selectOptions} name={'raw_type'}/>
-                                                <GeneralForm inputType={'input'} label={'자재명'} name={'name'}/>
-                                                <GeneralForm inputType={'select'} label={'재생가능여부'} options={selectOptions2} name={'renewability'}/>
-                                                <GeneralForm inputType={'input'} label={'단위'} name={'unit'}/>
+                                            <ReduxForm formId={'rawForm'} url={'raw_material'}>
+                                                <GeneralForm inputType={'input'} label={'원부자재코드'} disabled={'disabled'} readOnly={'readOnly'} name={'raw_materials_code'} />
+                                                <GeneralForm inputType={'select'} label={'자재분류'} options={selectOptions} name={'type'} />
+                                                <GeneralForm inputType={'input'} label={'자재명'} name={'name'} />
+                                                <GeneralForm inputType={'select'} label={'재생가능여부'} options={selectOptions2} name={'renewability'} />
+                                                <GeneralForm inputType={'input'} label={'단위'} name={'unit'} />
                                                 <GeneralForm inputType={'input'} label={'기준수량'} name={'standard_quantity'} />
-                                                <GeneralForm inputType={'input'} label={'부피'} name={'volume'} />
                                                 <GeneralForm inputType={'input'} label={'원산지'} name={'origin'} />
-                                            </Form>
-                                            <button className='btn btn-primary me-2' hidden={useStateRegister() ? '' : 'hidden'} id='registerBtn' onClick={() => addProcess(document.querySelector('#rawForm'),'raw_material')}>등록</button>
-                                            <button className='btn btn-success me-2' hidden={useStateRegister() ? 'hidden' : ''} id='updateBtn'>수정</button>
-                                            <button className='btn btn-danger me-2' hidden={useStateRegister() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
+                                            </ReduxForm>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </div>
-    );
-}
+              </div>
+  );
+};
 
 export default RawMaterial;
