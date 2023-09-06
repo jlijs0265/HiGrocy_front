@@ -6,8 +6,9 @@ import InputGroup from "react-bootstrap/InputGroup";
 import GeneralForm from "../components/GeneralForm";
 import Pagination from "../components/Pagination";
 import GeneralCard from "../components/GeneralCard";
-
 import ReduxForm from "../components/ReduxForm";
+import useProcess from "../hooks/process";
+import { useState, useEffect } from "react";
 
 const RawMaterial = () => {
     const tableCol = ['코드', '자재분류', '자재명', '재생가능여부', '단위', '기준수량', '원산지'];
@@ -20,9 +21,25 @@ const RawMaterial = () => {
         { value: '여', label: '여' },
         { value: '부', label: '부' },
     ]
+    const {
+        setProcess
+    } = useProcess();
+
+    useEffect(() => {
+        setProcess('raw_material')
+        .then(function (data) {
+            // data 변수에는 서버에서 받은 데이터가 들어 있음
+            
+        })
+        .catch(function (error) {
+            // 에러 처리
+            console.error("데이터를 가져오는 중 에러 발생:", error);
+        });
+    }, []);
+
 
     //GeneralForm 으로 지정한 name, Table에 데이터 순서와도 연관이 있음.
-    const inputNmaeList = ['raw_materials_code', 'raw_type', 'renewability', 'unit', 'standard_quantity', 'origin'];
+    const inputNmaeList = ['raw_materials_code', 'raw_type', 'name', 'renewability', 'unit', 'standard_quantity', 'origin'];
 
     return (
         <div>
@@ -52,7 +69,7 @@ const RawMaterial = () => {
                                             <h4 className='card-title text-start mb-4' id='raw-title'>등록 페이지</h4>
                                             <ReduxForm formId={'rawForm'} url={'raw_material'}>
                                                 <GeneralForm inputType={'input'} label={'원부자재코드'} disabled={'disabled'} readOnly={'readOnly'} name={'raw_materials_code'} />
-                                                <GeneralForm inputType={'select'} label={'자재분류'} options={selectOptions} name={'type'} />
+                                                <GeneralForm inputType={'select'} label={'자재분류'} options={selectOptions} name={'raw_type'} />
                                                 <GeneralForm inputType={'input'} label={'자재명'} name={'name'} />
                                                 <GeneralForm inputType={'select'} label={'재생가능여부'} options={selectOptions2} name={'renewability'} />
                                                 <GeneralForm inputType={'input'} label={'단위'} name={'unit'} />
@@ -65,10 +82,10 @@ const RawMaterial = () => {
                             </div>
                         </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-  );
+            </div>
+        </div>
+    );
 };
 
 export default RawMaterial;

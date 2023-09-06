@@ -15,7 +15,7 @@ import GeneralDropDownSearchBar from "../components/GeneralDropDownSearchBar";
 
 const Product = () => {
 
-    const tableCol = ['생산품코드', '생산품명'];
+    const tableCol = ['생산품코드', '생산품명', '이미지 파일'];
     const dropdownOption = ['품명', '코드'];
 
     const { useStateRegister, toggle } = useGeneralTrigger();
