@@ -13,20 +13,20 @@ const useProcess = () => {
         Form.reset();
         console.log(form);
         axios.post(`http://localhost:8081/${url}`, form).then((res) => {
-          const key = Object.keys(res.data);
-          form[key[0]] = res.data[key[0]];
-          //TODO res에서 code가져와서 form에 넣어줘야함
-          dispatch(processAdded(form));
+            const key = Object.keys(res.data);
+            form[key[0]] = res.data[key[0]];
+            //TODO res에서 code가져와서 form에 넣어줘야함
+            dispatch(processAdded(form));
         }
-        // );
-        
+        );
+
     }
     const addEmptyList = () => {
         const form = {};
         dispatch(ListAdded(form));
     }
 
-    const addList= (Form) => {
+    const addList = (Form) => {
         const form = {};
         Form.querySelectorAll('input').forEach(input => form[input.name] = input.value);
         Form.querySelectorAll('select').forEach(input => form[input.name] = input.value);
@@ -56,10 +56,10 @@ const useProcess = () => {
             result = res.data['list'];
             console.log(result);
             pagination = res.data['pageDto'];
-          }
+        }
         );
         dispatch(processSet(result));
-        dispatch(paginationSet(pagination)); 
+        dispatch(paginationSet(pagination));
     }
 
     const changeProcess = (Form, url) => {
@@ -76,16 +76,16 @@ const useProcess = () => {
     }
 
     const removeProcess = (process_id, url) => {
-         //TODO 컨트롤러 만들어서 delete 해야함.
+        //TODO 컨트롤러 만들어서 delete 해야함.
         // axios.delete(`http://localhost:8081/${url}`, form).then((res) =>
         //     console.log(res)
         // );
         dispatch(processRemoved(process_id));
     }
     const removeList = (process_id, url) => {
-  
-       dispatch(ListRemoved(process_id));
-   }
+
+        dispatch(ListRemoved(process_id));
+    }
 
     const useProcessSelector = () => {
         return useSelector(state => state.process.table_data);
