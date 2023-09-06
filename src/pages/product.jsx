@@ -11,6 +11,7 @@ import useGeneralTrigger from "../hooks/generalTrigger";
 import useProcess from "../hooks/process";
 import GeneralMainPanel from "../components/GeneralMainPanel";
 import GeneralDropDownSearchBar from "../components/GeneralDropDownSearchBar";
+import ReduxForm from "../components/ReduxForm";
 
 
 const Product = () => {
@@ -18,11 +19,11 @@ const Product = () => {
     const tableCol = ['생산품코드', '생산품명', '이미지 파일'];
     const dropdownOption = ['품명', '코드'];
 
-    const { useStateRegister, toggle } = useGeneralTrigger();
+    const { toggle } = useGeneralTrigger();
     const {
         addList,
         removeList,
-        useProcessSelector
+        useListSelector
     } = useProcess();
 
 
@@ -33,15 +34,15 @@ const Product = () => {
                 <div className="row h-100">
                     <GeneralCard size={4}>
                         <h4 className="card-title">생산품 목록</h4>
-                        <GeneralDropDownSearchBar options={dropdownOption}/>
+                        <GeneralDropDownSearchBar options={dropdownOption} />
                         <div className="table-responsive h-100 tableWarp">
                             <Table tableCol={tableCol} colNum={tableCol.length} />
                             <Pagination />
                         </div>
                     </GeneralCard>
                     <GeneralCard size={8} useResiger={false}>
-                        <h4 className="card-title" id="raw-title">생산품 등록</h4>
-                        <Form className='p-2'>
+                        <h4 className="card-title" >생산품 등록</h4>
+                        <ReduxForm>
                             <GeneralForm inputType={'input'} label={'생산품코드'} disabled={'disabled'} readOnly={'readOnly'} />
                             <GeneralForm inputType={'input'} label={'생산품명'} />
                             <Form.Group controlId="formFileMultiple" className="mb-3">
@@ -52,7 +53,7 @@ const Product = () => {
                                 <Form.Label className="text-start">BOM 등록</Form.Label>
                                 <button type="button" className="btn btn-sm btn-outline-success" onClick={addList}>추가</button>
                             </Form.Group>
-                            {useProcessSelector().map((value, index) => (
+                            {useListSelector().map((value, index) => (
                                 <div key={index} className="border p-2 mb-3 rounded">
                                     <Form.Group className="mb-3">
                                         <div className="d-flex justify-content-between mb-1">
@@ -69,10 +70,7 @@ const Product = () => {
 
                             ))
                             }
-                        </Form>
-                        <button className='btn btn-primary me-2' hidden={useStateRegister() ? '' : 'hidden'} id='registerBtn'>등록</button>
-                        <button className='btn btn-success me-2' hidden={useStateRegister() ? 'hidden' : ''} id='updateBtn'>수정</button>
-                        <button className='btn btn-danger me-2' hidden={useStateRegister() ? 'hidden' : ''} id='deleteBtn'>삭제</button>
+                        </ReduxForm>
                     </GeneralCard>
                 </div>
             </GeneralMainPanel >
