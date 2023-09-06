@@ -1,6 +1,14 @@
 import { Form } from "react-bootstrap";
 import useGeneralTrigger from "../hooks/generalTrigger";
 import useProcess from "../hooks/process";
+import { PropTypes } from "prop-types";
+/*
+    Redux로 관리하는 customHook인 useProcess를 사용하는 Form
+    prop = {
+        formId : form contorl에 사용할 id String,
+        url : backend단에서 컨트롤러에 사용할 url
+    }
+*/
 
 const ReduxForm = ({children, formId, url}) => {
 
@@ -31,7 +39,11 @@ const ReduxForm = ({children, formId, url}) => {
 ReduxForm.defaultProps = {
     formId: 'rawForm',
     url : 'raw_material'
+}
 
+ReduxForm.prototype = {
+    formId: PropTypes.string,
+    url : PropTypes.string
 }
 
 export default ReduxForm;
