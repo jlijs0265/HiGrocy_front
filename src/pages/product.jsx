@@ -13,7 +13,7 @@ import useProcess from "../hooks/process";
 
 const Product = () => {
 
-    const tableCol = ['생산품코드', '생산품명'];
+    const tableCol = ['생산품코드', '생산품명', '이미지 파일'];
     const { useStateRegister, toggle } = useGeneralTrigger();
     const {
         addList,
@@ -74,7 +74,6 @@ const Product = () => {
                                                 <Form.Control type="text" placeholder="수량" />
                                             </Form.Group>
                                         </div>
-
                                     ))
                                     }
                                 </Form>
