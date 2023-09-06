@@ -22,50 +22,50 @@ export default function Higorcy_Router() {
               renders the first one that matches the current URL. */}
         <Switch>
           {/* 발주(요청) */}
-          <Route path="/order">
+          <Route exact path="/order">
             <Order />
           </Route>
-          <Route path="/orderlist">
+          <Route exact path="/orderlist">
             <OrderList />
           </Route>
-          <Route path="/pm">
+          <Route exact path="/pm">
             <ProductMechine />
           </Route>
-          <Route path="/product">
+          <Route exact path="/product">
             <Product />
           </Route>
-          <Route path="/prlist">
+          <Route exact path="/prlist">
             <ProductionRequestList />
           </Route>
-          <Route path="/process">
+          <Route exact path="/process">
             <Process />
           </Route>
           {/* 생산(요청) */}
-          <Route path="/pr">
+          <Route exact path="/pr">
             <ProductRequest />
           </Route>
           {/* 품목(관리) */}
-          <Route path="/raw_material">
+          <Route exact path="/raw_material">
             <RawMaterial />
           </Route>
           {/* 창고(관리) */}
-          <Route path="/storage">
+          <Route exact path="/storage">
             <Storage />
           </Route>
           {/* 재고(현황) */}
-          <Route path="/wh">
+          <Route exact path="/wh">
             <WareHousing />
           </Route>
-          <Route path="/test">
+          <Route exact path="/test">
             <TestPage />
           </Route>
           {/* 로그인페이지 */}
-          <Route path="/login">
+          <Route exact path="/login">
             로그인 페이지
             <JoinPage />
           </Route>
           {/* 환경(메인페이지) */}
-          <Route path="/*">
+          <Route exact path="/*">
             <Mainpage />
           </Route>
         </Switch>

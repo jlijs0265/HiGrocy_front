@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { processAdded, processSet, processRemoved, processChanged, ListAdded, ListRemoved } from "../app/processSlice"
+import { processAdded, processSet, processRemoved, processChanged, ListAdded, ListRemoved, paginationSet } from "../app/processSlice";
 import axios from "axios";
 import { async } from "q";
 
@@ -12,6 +12,7 @@ const useProcess = () => {
         Form.querySelectorAll('input').forEach(input => form[input.name] = input.value);
         Form.querySelectorAll('select').forEach(input => form[input.name] = input.value);
         Form.reset();
+        console.log(form);
         axios.post(`http://localhost:8081/${url}`, form).then((res) => {
           const key = Object.keys(res.data);
           form[key[0]] = res.data[key[0]];
@@ -44,14 +45,15 @@ const useProcess = () => {
     const setProcess = async (url) => {
         //TODO 컨트롤러 만들어서 get 해야함. res를 Processes로 바꿔서 넣어야함
         let result = [];
+        let pagination = {};
         await axios.get(`http://localhost:8081/${url}`).then((res) => {
-            result = res.data;
+            result = res.data['list'];
             console.log(result);
+            pagination = res.data['pageDto'];
           }
         );
-        result.map((value) => {
-          dispatch(processAdded(value));
-        })
+        dispatch(processSet(result));
+        dispatch(paginationSet(pagination)); 
     }
 
     const changeProcess = (Form, url) => {
@@ -87,6 +89,10 @@ const useProcess = () => {
         return useSelector(state => state.process.bomtags);
     }
 
+    const usePaginationSelector = () => {
+        return useSelector(state => state.process.pagination);
+    }
+
 
     return {
         addProcess,
@@ -97,7 +103,8 @@ const useProcess = () => {
         updateProcess,
         changeProcess,
         useProcessSelector,
-        useListSelector
+        useListSelector,
+        usePaginationSelector
     };
 }
 
