@@ -10,6 +10,7 @@ import Table from "../components/Table";
 import { useEffect, useRef, useState } from "react";
 import Modals from "../components/Modals";
 import Pagination from "../components/Pagination";
+import NavTemp from "../components/NavTemp";
 
 const WareHousing = () => {
   const tableCol = [
@@ -42,6 +43,8 @@ const WareHousing = () => {
   const [tigger, setTigger] = useState(2);
   return (
     <div>
+      <NavTemp pageType={'storage'} />
+
       <div className="container mb-3">
         <ToggleButtonGroup
           type="radio"
@@ -77,15 +80,15 @@ const WareHousing = () => {
                         {tigger === 2
                           ? "전체 수불부 조회"
                           : tigger === 1
-                          ? "입/출고별 조회"
-                          : "생산별 조회"}
+                            ? "입/출고별 조회"
+                            : "생산별 조회"}
                       </h4>
                       <Table
                         tableCol={tableCol}
                         colNum={tableCol.length}
                         trClick={trClick}
                       />
-                        <Pagination />
+                      <Pagination />
                     </div>
                     <div className="card-body list-body mt-4">
                       <h4 className="card-title text-start mb-4">재고 조회</h4>

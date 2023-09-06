@@ -6,6 +6,7 @@ import GeneralCard from "../components/GeneralCard";
 import GeneralMainPanel from "../components/GeneralMainPanel";
 import GeneralDropDownSearchBar from "../components/GeneralDropDownSearchBar";
 import GeneralDateInput from "../components/GeneralDateInput";
+import NavTemp from "../components/NavTemp";
 
 /*
   /orderlist Page
@@ -14,7 +15,7 @@ import GeneralDateInput from "../components/GeneralDateInput";
 
 
 const OrderList = () => {
-  
+
   const [tigger, setTigger] = useState(2);
   let uppertableCol = [];
   let lowTableCol = [];
@@ -23,19 +24,19 @@ const OrderList = () => {
   let upperName = [];
   let lowName = [];
 
-  switch(tigger){
+  switch (tigger) {
     case 1:
-      uppertableCol = ["발주번호", '발주일자','거래처','담당사원','공급가 합계','총 합계'];
+      uppertableCol = ["발주번호", '발주일자', '거래처', '담당사원', '공급가 합계', '총 합계'];
       lowTableCol = ['품목 코드', '자재분류', '품목명', '재생가능여부', '단위', '기준수량', '원산지'];
       break;
     case 2:
-      uppertableCol = ['품목 코드', '자재분류', '품목명', '재생가능여부', '단위', '기준수량', '원산지']; 
-      lowTableCol = ['발주 번호',' 발주일자','거래처', '담당사원',' 배송예정일', '공급가 합계', '총 합계'];
+      uppertableCol = ['품목 코드', '자재분류', '품목명', '재생가능여부', '단위', '기준수량', '원산지'];
+      lowTableCol = ['발주 번호', ' 발주일자', '거래처', '담당사원', ' 배송예정일', '공급가 합계', '총 합계'];
       dropdownOption = ['품목명', '품목코드'];
 
       break;
     case 3:
-      uppertableCol = ['발주 번호',' 발주일자','거래처', '담당사원',' 배송예정일', '공급가 합계', '총 합계']; 
+      uppertableCol = ['발주 번호', ' 발주일자', '거래처', '담당사원', ' 배송예정일', '공급가 합계', '총 합계'];
       lowTableCol = ['품목 코드', '자재분류', '품목명', '재생가능여부', '단위', '기준수량', '원산지'];
       dropdownOption = ['거래처명', '담당사원'];
 
@@ -44,6 +45,8 @@ const OrderList = () => {
 
   return (
     <div>
+      <NavTemp pageType={'order'} />
+
       <div className="container mb-3">
         <ToggleButtonGroup
           type="radio"
@@ -75,7 +78,7 @@ const OrderList = () => {
                   ? "발주날짜별 검색"
                   : "거래처별 검색"}
             </h4>
-            {tigger == 1?<GeneralDateInput/>:<GeneralDropDownSearchBar options ={dropdownOption}/>}
+            {tigger == 1 ? <GeneralDateInput /> : <GeneralDropDownSearchBar options={dropdownOption} />}
             <Table tableCol={uppertableCol} colNum={uppertableCol.length} />
           </GeneralCard>
           <GeneralCard size={12} useResiger={false}>

@@ -12,6 +12,7 @@ import useProcess from "../hooks/process";
 import GeneralMainPanel from "../components/GeneralMainPanel";
 import GeneralDropDownSearchBar from "../components/GeneralDropDownSearchBar";
 import ReduxForm from "../components/ReduxForm";
+import NavTemp from "../components/NavTemp";
 
 
 const Product = () => {
@@ -30,6 +31,8 @@ const Product = () => {
     return (
         <div className="container-scroller">
             <Modals />
+            <NavTemp pageType={'item'} />
+
             <GeneralMainPanel>
                 <div className="row h-100">
                     <GeneralCard size={4}>

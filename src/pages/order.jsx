@@ -5,6 +5,7 @@ import GeneralForm from "../components/GeneralForm";
 import moment from "moment/moment";
 import useProcess from "../hooks/process";
 import useGeneralTrigger from "../hooks/generalTrigger";
+import NavTemp from "../components/NavTemp";
 
 const Order = () => {
 
@@ -22,6 +23,7 @@ const Order = () => {
     return (
         <div>
             <Modals />
+            <NavTemp pageType={'order'} />
             <div className="container-scroller">
                 <div className="container-fluid page-body-wrapper">
                     <div className="main-panel">
