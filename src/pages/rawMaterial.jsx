@@ -8,7 +8,7 @@ import Pagination from "../components/Pagination";
 import GeneralCard from "../components/GeneralCard";
 import ReduxForm from "../components/ReduxForm";
 import useProcess from "../hooks/process";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const RawMaterial = () => {
     const tableCol = ['코드', '자재분류', '자재명', '재생가능여부', '단위', '기준수량', '원산지'];
@@ -25,7 +25,8 @@ const RawMaterial = () => {
         setProcess
     } = useProcess();
 
-    setProcess('raw_material')
+    useEffect(() => {
+        setProcess('raw_material')
         .then(function (data) {
             // data 변수에는 서버에서 받은 데이터가 들어 있음
             
@@ -34,6 +35,7 @@ const RawMaterial = () => {
             // 에러 처리
             console.error("데이터를 가져오는 중 에러 발생:", error);
         });
+    }, []);
 
 
     //GeneralForm 으로 지정한 name, Table에 데이터 순서와도 연관이 있음.
