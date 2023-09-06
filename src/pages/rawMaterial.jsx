@@ -26,22 +26,7 @@ const RawMaterial = () => {
         setProcess
     } = useProcess();
 
-<<<<<<< HEAD
     setProcess('raw_material');
-=======
-    useEffect(() => {
-        setProcess('raw_material')
-            .then(function (data) {
-                // data 변수에는 서버에서 받은 데이터가 들어 있음
-
-            })
-            .catch(function (error) {
-                // 에러 처리
-                console.error("데이터를 가져오는 중 에러 발생:", error);
-            });
-    }, []);
-
->>>>>>> acfb3509ddc4b54772c02dade262ec8f6d0aad45
 
     //GeneralForm 으로 지정한 name, Table에 데이터 순서와도 연관이 있음.
     const inputNmaeList = ['raw_materials_code', 'raw_type', 'name', 'renewability', 'unit', 'standard_quantity', 'origin'];
