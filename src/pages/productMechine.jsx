@@ -46,7 +46,7 @@ const ProductMechine = () => {
                         </GeneralCard>
                         <GeneralCard size={6} useResiger={false}>
                             <h4 className='card-title text-start mb-4' id='raw-title'>생산 기계등록 페이지</h4>
-                            <ReduxForm formId={'ProductMechineForm'} url={'pm'}>
+                            <ReduxForm formId={'ProductMechineDetailForm'} url={'pmDetail'}>
                                 <GeneralForm inputType={'input'} label={'생산기계내역코드'} disabled={'disabled'} readOnly={'readOnly'} name={'pm_detail_code'}/>
                                 <GeneralForm inputType={'input'} label={'공장명'}  name={'factory_name'}/>
                                 <GeneralForm inputType={'input'} label={'위치'} name={'location'}/>

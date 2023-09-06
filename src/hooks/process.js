@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { processAdded, processSet, processRemoved, processChanged, ListAdded, ListRemoved } from "../app/processSlice"
 import axios from "axios";
@@ -12,18 +11,25 @@ const useProcess = () => {
         Form.querySelectorAll('input').forEach(input => form[input.name] = input.value);
         Form.querySelectorAll('select').forEach(input => form[input.name] = input.value);
         Form.reset();
-        axios.post(`http://localhost:8081/${url}`, form).then((res) => {
-          const key = Object.keys(res.data);
-          form[key[0]] = res.data[key[0]];
+        // axios.post(`http://localhost:8081/${url}`, form).then((res) => {
+        //   const key = Object.keys(res.data);
+        //   form[key[0]] = res.data[key[0]];
           //TODO res에서 code가져와서 form에 넣어줘야함
           dispatch(processAdded(form));
-        }
-        );
+        // }
+        // );
         
     }
-
-    const addList = () => {
+    const addEmptyList = () => {
         const form = {};
+        dispatch(ListAdded(form));
+    }
+
+    const addList= (Form) => {
+        const form = {};
+        Form.querySelectorAll('input').forEach(input => form[input.name] = input.value);
+        Form.querySelectorAll('select').forEach(input => form[input.name] = input.value);
+        Form.reset();
         dispatch(ListAdded(form));
     }
 
@@ -91,6 +97,7 @@ const useProcess = () => {
     return {
         addProcess,
         addList,
+        addEmptyList,
         removeList,
         setProcess,
         removeProcess,
