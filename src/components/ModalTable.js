@@ -2,9 +2,9 @@ import { PropTypes } from "prop-types";
 import useGeneralTrigger from "../hooks/generalTrigger";
 import useModal from "../hooks/modal";
 
-const ModalTable = ({ tableCol, inputList, isListTable, useForm }) => {
+const ModalTable = ({ tableCol, inputList, useForm }) => {
   const { modify } = useGeneralTrigger();
-  const { useModalSelector, removeModal, updateModal } = useModal();
+  const { useModalSelector, updateModal } = useModal();
 
   return (
     <div className="table-responsive container">
@@ -18,7 +18,7 @@ const ModalTable = ({ tableCol, inputList, isListTable, useForm }) => {
         </thead>
         <tbody className="rawbody">
           {useModalSelector().map((row, rowIndex) => {(
-            <tr key={rowIndex} className="rawitem cursor-point" onClick={(e) => { e.stopPropagation(); modify(); (isListTable) ? removeModal(row.id) : updateModal(row, useForm) }}>
+            <tr key={rowIndex} className="rawitem cursor-point" onClick={(e) => { e.stopPropagation(); modify(); updateModal(row, useForm) }}>
               {
                 inputList.map((key, index) => (
                   <td key={index}>{row[key]}</td>

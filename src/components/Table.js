@@ -7,8 +7,6 @@ const Table = ({ tableCol, inputList, isListTable, useForm }) => {
   const { modify } = useGeneralTrigger();
   const { useProcessSelector, removeProcess, updateProcess } = useProcess();
 
-  console.log(useProcessSelector());
-
   return (
     <div className="table-responsive container">
       <table className="table table-bordered border-secondary rawTable">

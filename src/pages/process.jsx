@@ -81,7 +81,7 @@ const Process = () => {
                         추가
                       </button>
                     </Form.Group>
-                    {useProcessSelector().map((value, index) => (
+                    {/* {useListSelector().map((value, index) => (
                       <div key={index} className="border p-2 mb-3 rounded">
                         <Form.Group
                           className="mb-3"
@@ -94,7 +94,7 @@ const Process = () => {
                             <button
                               type="button"
                               className="btn btn-sm btn-outline-danger"
-                              onClick={() => removeProcess(value)}
+                              onClick={() => removeList(value)}
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +125,7 @@ const Process = () => {
                         </Form.Group>
                       </div>
                     ))
-                    }
+                    } */}
                   </Form>
                   <button className='btn btn-primary me-2' hidden={useStateRegister() ? '' : 'hidden'} id='registerBtn'>등록</button>
                   <button className='btn btn-success me-2' hidden={useStateRegister() ? 'hidden' : ''} id='updateBtn'>수정</button>
