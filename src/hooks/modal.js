@@ -32,12 +32,17 @@ const useModal = () => {
         document.querySelector("#" + formId).querySelector('#id').value = Modales.id;
     }
 
-    const setModal = (Modales) => {
-          //TODO 컨트롤러 만들어서 get 해야함. res를 Modales로 바꿔서 넣어야함
-        // axios.get(`http://localhost:8081/${url}`, form).then((res) =>
-        //     console.log(res)
-        // );
-        dispatch(Set(Modales));
+    const setModal = async (url) => {
+        //TODO 컨트롤러 만들어서 get 해야함. res를 Processes로 바꿔서 넣어야함
+        let result = [];
+        await axios.get(`http://localhost:8081/${url}`).then((res) => {
+            result = res.data;
+            console.log(result);
+          }
+        );
+        result.map((value) => {
+          dispatch(setModal(value));
+        })
     }
 
     const changeModal = (Form, url) => {

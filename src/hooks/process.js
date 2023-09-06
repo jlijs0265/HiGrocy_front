@@ -52,7 +52,6 @@ const useProcess = () => {
         result.map((value) => {
           dispatch(processAdded(value));
         })
-        return result
     }
 
     const changeProcess = (Form, url) => {
