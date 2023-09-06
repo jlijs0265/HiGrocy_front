@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { processAdded, processSet, processRemoved, processChanged } from "../app/processSlice"
+import { processAdded, processSet, processRemoved, processChanged, ListAdded, ListRemoved } from "../app/processSlice"
 import axios from "axios";
 
 const useProcess = () => {
@@ -20,7 +20,7 @@ const useProcess = () => {
 
     const addList = () => {
         const form = {};
-        dispatch(processAdded(form));
+        dispatch(ListAdded(form));
     }
 
     const updateProcess = (Processes, formId) => {
@@ -65,6 +65,13 @@ const useProcess = () => {
         // );
         dispatch(processRemoved(process_id));
     }
+    const removeList = (process_id, url) => {
+        //TODO 컨트롤러 만들어서 delete 해야함.
+       // axios.delete(`http://localhost:8081/${url}`, form).then((res) =>
+       //     console.log(res)
+       // );
+       dispatch(ListRemoved(process_id));
+   }
 
     const useProcessSelector = () => {
         return useSelector(state => state.process.table_data);
@@ -74,6 +81,7 @@ const useProcess = () => {
     return {
         addProcess,
         addList,
+        removeList,
         setProcess,
         removeProcess,
         updateProcess,
