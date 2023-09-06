@@ -22,6 +22,11 @@ const useProcess = () => {
         
     }
 
+    const addList = () => {
+        const form = {};
+        dispatch(processAdded(form));
+    }
+
     const updateProcess = (Processes, formId) => {
         for (let key in Processes) {
             if (key != '') {
@@ -78,6 +83,7 @@ const useProcess = () => {
 
     return {
         addProcess,
+        addList,
         setProcess,
         removeProcess,
         updateProcess,

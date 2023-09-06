@@ -16,7 +16,7 @@ const Product = () => {
     const tableCol = ['생산품코드', '생산품명'];
     const { useStateRegister, toggle } = useGeneralTrigger();
     const {
-        addProcess,
+        addList,
         removeProcess,
         useProcessSelector
     } = useProcess();
@@ -58,7 +58,7 @@ const Product = () => {
                                     </Form.Group>
                                     <Form.Group className="d-flex justify-content-between mb-2">
                                         <Form.Label className="text-start">BOM 등록</Form.Label>
-                                        <button type="button" className="btn btn-sm btn-outline-success" onClick={addProcess}>추가</button>
+                                        <button type="button" className="btn btn-sm btn-outline-success" onClick={addList}>추가</button>
                                     </Form.Group>
                                     {useProcessSelector().map((value, index) => (
                                         <div key={index} className="border p-2 mb-3 rounded">
