@@ -11,6 +11,7 @@ import GeneralMainPanel from "../components/GeneralMainPanel";
 import ReduxForm from "../components/ReduxForm";
 import GeneralForm from "../components/GeneralForm";
 import Modals from "../components/Modals";
+import NavTemp from "../components/NavTemp";
 
 
 const ProductMechine = () => {
@@ -21,6 +22,8 @@ const ProductMechine = () => {
     return (
         <div>
             <Modals />
+            <NavTemp pageType={'productRequest'} />
+
             <div className='container-scroller'>
                 <GeneralMainPanel>
                     <div className='row'>

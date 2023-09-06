@@ -5,6 +5,7 @@ import GeneralForm from "../components/GeneralForm";
 import moment from "moment/moment";
 import useProcess from "../hooks/process";
 import useGeneralTrigger from "../hooks/generalTrigger";
+import NavTemp from "../components/NavTemp";
 
 const ProductRequest = () => {
 
@@ -16,24 +17,13 @@ const ProductRequest = () => {
     } = useProcess();
     const { toggle } = useGeneralTrigger();
 
-    // const [showModal, setShowModal] = useState(false);
-    // const [inputs, setInputs] = useState({
-    //     code: '',
-    //     name: '',
-    //     count: '',
-    //     price: '',
-    //     supply: '',
-    //     vat: '',
-    //     total: '',
-    // });
-    // const [inputList, setInputList] = useState([]);
-
-    const inputNameList = ['code', 'name', 'count', 'price', 'supply', 'vat', 'total']; 
+    const inputNameList = ['code', 'name', 'count', 'price', 'supply', 'vat', 'total'];
 
     const tableCol = ['품목코드', '품명', '수량', '단가', '공급가액', '부가세', '합계금액'];
     return (
         <div>
             <Modals />
+            <NavTemp pageType={'productRequest'}/>
             <div className="container-scroller">
                 <div className="container-fluid page-body-wrapper">
                     <div className="main-panel">
@@ -49,17 +39,17 @@ const ProductRequest = () => {
                                             <Form className='p-2' action='/raw_material/insert' method='post' id='rawForm'>
                                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                                     <Form.Label className="text-start">품목코드</Form.Label>
-                                                    <Form.Control type="text" className="cursor-pointer disable-input" name="code" onClick={() => {toggle('ProductList')}} readOnly placeholder="품목코드" />
+                                                    <Form.Control type="text" className="cursor-pointer disable-input" name="code" onClick={() => { toggle('ProductList') }} readOnly placeholder="품목코드" />
                                                 </Form.Group>
-                                                <GeneralForm inputType={'input'} label={'품명'} disabled={'disabled'} readOnly={'readOnly'} name={'name'}/>
+                                                <GeneralForm inputType={'input'} label={'품명'} disabled={'disabled'} readOnly={'readOnly'} name={'name'} />
                                                 <GeneralForm inputType={'input'} label={'수량'} name={'count'} />
-                                                <GeneralForm inputType={'input'} label={'단가'} disabled={'disabled'} readOnly={'readOnly'}/>
-                                                <GeneralForm inputType={'input'} label={'공급가액'} disabled={'disabled'} readOnly={'readOnly'} name={'supply'}/>
-                                                <GeneralForm inputType={'input'} label={'부가세'} disabled={'disabled'} readOnly={'readOnly'} name={'vat'}/>
-                                                <GeneralForm inputType={'input'} label={'합계금액'} disabled={'disabled'} readOnly={'readOnly'} name={'total'}/>
+                                                <GeneralForm inputType={'input'} label={'단가'} disabled={'disabled'} readOnly={'readOnly'} />
+                                                <GeneralForm inputType={'input'} label={'공급가액'} disabled={'disabled'} readOnly={'readOnly'} name={'supply'} />
+                                                <GeneralForm inputType={'input'} label={'부가세'} disabled={'disabled'} readOnly={'readOnly'} name={'vat'} />
+                                                <GeneralForm inputType={'input'} label={'합계금액'} disabled={'disabled'} readOnly={'readOnly'} name={'total'} />
                                                 <div className="d-flex justify-content-end">
-                                                    <button type="button" className="btn btn-outline-secondary me-3" onClick={()=> {document.querySelector('#rawForm').reset();}}>모두 지우기</button>
-                                                    <button type="button" className="btn btn-outline-success" onClick={() => {addProcess(document.querySelector('#rawForm'));}}>추가</button>
+                                                    <button type="button" className="btn btn-outline-secondary me-3" onClick={() => { document.querySelector('#rawForm').reset(); }}>모두 지우기</button>
+                                                    <button type="button" className="btn btn-outline-success" onClick={() => { addProcess(document.querySelector('#rawForm')); }}>추가</button>
                                                 </div>
                                             </Form>
                                         </div>
@@ -84,7 +74,7 @@ const ProductRequest = () => {
                                                         </tr>
                                                         <tr>
                                                             <td className="table-active">창고</td>
-                                                            <td className="cursor-pointer bg-secondary bg-opacity-10" onClick={() => {toggle('StorageList')}}></td>
+                                                            <td className="cursor-pointer bg-secondary bg-opacity-10" onClick={() => { toggle('StorageList') }}></td>
                                                         </tr>
                                                         <tr>
                                                             <td className="table-active">사원</td>
@@ -100,7 +90,7 @@ const ProductRequest = () => {
                                             <div className="pt-5">
                                                 <h4 className="card-title" id="raw-title">품목 내역</h4>
                                                 <div className="border border-secondary rounded p-3 table-responsive mb-4" id="bomForm">
-                                                    <Table tableCol={tableCol} colNum={tableCol.length} inputList={inputNameList}/>
+                                                    <Table tableCol={tableCol} colNum={tableCol.length} inputList={inputNameList} />
                                                 </div>
                                             </div>
                                             <div className="d-flex justify-content-end">

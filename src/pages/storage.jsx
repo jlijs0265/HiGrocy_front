@@ -6,6 +6,7 @@ import useGeneralTrigger from "../hooks/generalTrigger";
 import useProcess from "../hooks/process";
 import { useDispatch } from "react-redux";
 import GeneralForm from "../components/GeneralForm";
+import NavTemp from "../components/NavTemp";
 
 const Storage = () => {
   const tableCol = ["창고코드", "창고명", "창고 위치", "담당자", "적재량"];
@@ -23,6 +24,8 @@ const Storage = () => {
   return (
     <div>
       <div className="container-scroller">
+      <NavTemp pageType={'stroage'} />
+
         <div className="container-fluid page-body-wrapper">
           <div className="main-panel">
             <div className="content-wrapper">
