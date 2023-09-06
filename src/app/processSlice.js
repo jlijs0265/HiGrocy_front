@@ -38,7 +38,7 @@ const processSlice = createSlice({
 
     ListRemoved(state, action) {
       const filteredProcess = state.bomtags.filter(process => {
-        return process.id != action.payload;
+        return process.id != action.payload.id;
     });
     state.bomtags = filteredProcess;    }
   }

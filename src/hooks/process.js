@@ -76,15 +76,16 @@ const useProcess = () => {
         dispatch(processRemoved(process_id));
     }
     const removeList = (process_id, url) => {
-        //TODO 컨트롤러 만들어서 delete 해야함.
-       // axios.delete(`http://localhost:8081/${url}`, form).then((res) =>
-       //     console.log(res)
-       // );
+  
        dispatch(ListRemoved(process_id));
    }
 
     const useProcessSelector = () => {
         return useSelector(state => state.process.table_data);
+    }
+
+    const useListSelector = () => {
+        return useSelector(state => state.process.bomtags);
     }
 
 
@@ -97,6 +98,7 @@ const useProcess = () => {
         updateProcess,
         changeProcess,
         useProcessSelector,
+        useListSelector
     };
 }
 
