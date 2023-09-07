@@ -15,8 +15,7 @@ const processSlice = createSlice({
     },
 
     ListAdded(state, action) {
-      const process = {id: id++,
-      ...action.payload}
+      const process = action.payload
       state.bomtags.push(process)
     },
 
@@ -44,9 +43,14 @@ const processSlice = createSlice({
     state.bomtags = filteredProcess;    },
     paginationSet(state, action) {
       state.pagination = action.payload;
+    },
+
+    bomRemoved(state, action) {
+      const filteredProcess = [...state.bomtags.slice(0, action.payload), ...state.bomtags.slice(action.payload + 1)];
+      state.bomtags = filteredProcess;
     }
   }
 })
 
-export const { processAdded, processChanged, processSet, processRemoved, ListAdded, ListRemoved, paginationSet} = processSlice.actions
+export const { processAdded, processChanged, processSet, processRemoved, ListAdded, ListRemoved, paginationSet, bomRemoved} = processSlice.actions
 export default processSlice.reducer
