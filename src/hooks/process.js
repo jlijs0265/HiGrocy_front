@@ -7,10 +7,11 @@ import {
   ListAdded,
   ListRemoved,
   paginationSet,
+  bomRemoved,
 } from "../app/processSlice";
 import axios from "axios";
 import { async } from "q";
-import { Form } from "react-bootstrap";
+import qs from "qs";
 
 const useProcess = () => {
   const dispatch = useDispatch();
@@ -25,15 +26,15 @@ const useProcess = () => {
     );
     Form.reset();
     console.log(form);
-    axios.post(`http://localhost:8081/${url}`, form).then((res) => {
-      const key = Object.keys(res.data);
-      form[key[0]] = res.data[key[0]];
-      //TODO res에서 code가져와서 form에 넣어줘야함
-      dispatch(processAdded(form));
-    });
+    // axios.post(`http://localhost:8081/${url}`, form).then((res) => {
+    //     const key = Object.keys(res.data);
+    //     form[key[0]] = res.data[key[0]];
+    //TODO res에서 code가져와서 form에 넣어줘야함
+    dispatch(processAdded(form));
+    // }
+    // );
   };
-  const addEmptyList = () => {
-    const form = {};
+  const addEmptyList = (form) => {
     dispatch(ListAdded(form));
   };
 
@@ -76,11 +77,15 @@ const useProcess = () => {
       Processes.id;
   };
 
-  const setProcess = async (url) => {
+  const setProcess = async (url, params) => {
     //TODO 컨트롤러 만들어서 get 해야함. res를 Processes로 바꿔서 넣어야함
+    axios.defaults.paramsSerializer = (params) => {
+      return qs.stringify(params);
+    };
+    console.log(params);
     let result = [];
     let pagination = {};
-    await axios.get(`http://localhost:8081/${url}`).then((res) => {
+    await axios.get(`http://localhost:8081/${url}`, { params }).then((res) => {
       result = res.data["list"];
       console.log(result);
       pagination = res.data["pageDto"];
@@ -97,7 +102,6 @@ const useProcess = () => {
     Form.querySelectorAll("select").forEach(
       (input) => (form[input.name] = input.value)
     );
-    //TODO 컨트롤러 만들어서 put 해야함.
     axios
       .put(`http://localhost:8081/${url}`, form)
       .then((res) => console.log(res));
@@ -110,13 +114,17 @@ const useProcess = () => {
     const deleteTargetNum = Form.querySelector("#pk").value;
     const process_id = Form.querySelector("#id").value;
     //TODO 컨트롤러 만들어서 delete 해야함.
-    axios
-      .delete(`http://localhost:8081/${url}/${deleteTargetNum}`)
-      .then((res) => console.log(res));
+    // axios.delete(`http://localhost:8081/${url}`, form).then((res) =>
+    //     console.log(res)
+    // );
     dispatch(processRemoved(process_id));
   };
   const removeList = (process_id, url) => {
     dispatch(ListRemoved(process_id));
+  };
+
+  const removeBomList = (key) => {
+    dispatch(bomRemoved(key));
   };
 
   const useProcessSelector = () => {
@@ -143,6 +151,7 @@ const useProcess = () => {
     useProcessSelector,
     useListSelector,
     usePaginationSelector,
+    removeBomList,
   };
 };
 

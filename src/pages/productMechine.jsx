@@ -12,12 +12,15 @@ import ReduxForm from "../components/ReduxForm";
 import GeneralForm from "../components/GeneralForm";
 import Modals from "../components/Modals";
 import NavTemp from "../components/NavTemp";
+import useModal from "../hooks/modal";
 
 
 const ProductMechine = () => {
     const tableCol = ['이력코드', '기계명', '공장명', '위치'];
     const PMDetailCol = ['pm_detail_code', 'machine_code', 'factory_name', 'location'];
     const { toggle } = useGeneralTrigger();
+    const {setModal} = useModal();
+    useEffect(() => {setModal('pm')},[]);
 
     return (
         <div>
@@ -41,7 +44,7 @@ const ProductMechine = () => {
                                 </DropdownButton>
                                 <Form.Control aria-label="Text input with dropdown button" />
                             </InputGroup>
-                            <Table tableCol={tableCol} colNum={tableCol.length} inputList={PMDetailCol}/>
+                            <Table tableCol={tableCol} colNum={tableCol.length} inputList={PMDetailCol} useForm={'ProductMechineDetailForm'}/>
                             <Pagination></Pagination>
                         </GeneralCard>
                         <GeneralCard size={6} useResiger={false}>
