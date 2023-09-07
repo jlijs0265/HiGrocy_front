@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { processAdded, processSet, processRemoved, processChanged, ListAdded, ListRemoved, paginationSet } from "../app/processSlice";
 import axios from "axios";
 import { async } from "q";
+import qs from "qs";
 
 const useProcess = () => {
     const dispatch = useDispatch();
@@ -48,11 +49,15 @@ const useProcess = () => {
         document.querySelector("#" + formId).querySelector('#id').value = Processes.id;
     }
 
-    const setProcess = async (url) => {
+    const setProcess = async (url, params) => {
         //TODO 컨트롤러 만들어서 get 해야함. res를 Processes로 바꿔서 넣어야함
+        axios.defaults.paramsSerializer = params => {
+            return qs.stringify(params);
+          }
+        console.log(params);
         let result = [];
         let pagination = {};
-        await axios.get(`http://localhost:8081/${url}`).then((res) => {
+        await axios.get(`http://localhost:8081/${url}`, {params}).then((res) => {
             result = res.data['list'];
             console.log(result);
             pagination = res.data['pageDto'];

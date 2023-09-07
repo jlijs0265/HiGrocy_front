@@ -9,7 +9,6 @@ import GeneralCard from "../components/GeneralCard";
 import ReduxForm from "../components/ReduxForm";
 import useProcess from "../hooks/process";
 import { useState, useEffect } from "react";
-import NavTemp from "../components/NavTemp";
 
 const RawMaterial = () => {
     const tableCol = ['코드', '자재분류', '자재명', '재생가능여부', '단위', '기준수량', '원산지'];
@@ -26,16 +25,32 @@ const RawMaterial = () => {
         setProcess
     } = useProcess();
 
-    setProcess('raw_material');
+    let searchInfo = {};
 
+    useEffect(() => {setProcess('raw_material', searchInfo)}, []);
+    
+    
+    const [selectedKey, setSelectedKey] = useState('name');
+    const handleSelect = (eventKey) => {
+        setSelectedKey(eventKey);
+    };
+
+    const handleKeyDown = (e) => {
+        if(e.key === 'Enter') {
+            e.preventDefault();
+            searchInfo = {"searchType" : selectedKey, "searchContent" : document.querySelector('#searchInput').value}
+            setProcess('raw_material', searchInfo);
+            // document.querySelector('#searchInput').value = '';
+            // console.log(document.querySelector('#searchInput').value);
+        }
+    }
     //GeneralForm 으로 지정한 name, Table에 데이터 순서와도 연관이 있음.
     const inputNmaeList = ['raw_materials_code', 'raw_type', 'name', 'renewability', 'unit', 'standard_quantity', 'origin'];
+
 
     return (
         <div>
             <div className='container-scroller'>
-                <NavTemp pageType={'item'} />
-
                 <div className='container-fluid page-body-wrapper'>
                     <div className='main-panel'>
                         <div className='content-wrapper'>
@@ -45,12 +60,13 @@ const RawMaterial = () => {
                                     <InputGroup className="mb-3 p-2">
                                         <DropdownButton
                                             variant="outline-secondary"
-                                            title="검색"
-                                            id="input-group-dropdown-1">
-                                            <Dropdown.Item href="#">품명</Dropdown.Item>
-                                            <Dropdown.Item href="#">코드</Dropdown.Item>
+                                            title={selectedKey === 'name' ? '품명' : '코드'}
+                                            id="input-group-dropdown-1"
+                                            onSelect={handleSelect}>
+                                            <Dropdown.Item eventKey="name" >품명</Dropdown.Item>
+                                            <Dropdown.Item eventKey="raw_materials_code">코드</Dropdown.Item>
                                         </DropdownButton>
-                                        <Form.Control aria-label="Text input with dropdown button" />
+                                        <Form.Control aria-label="Text input with dropdown button" id="searchInput" onKeyDown={handleKeyDown} />
                                     </InputGroup>
                                     <Table tableCol={tableCol} colNum={tableCol.length} inputList={inputNmaeList} />
                                     <Pagination />
