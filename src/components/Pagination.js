@@ -3,7 +3,7 @@ import './Pagination.css';
 import useProcess from '../hooks/process';
 
 const Pagination = () => {
-    const { usePaginationSelector } = useProcess();
+    const { usePaginationSelector, setPagination} = useProcess();
 
     let pagination = usePaginationSelector();
     const totalPage = pagination.endPage;
@@ -22,7 +22,7 @@ const Pagination = () => {
                 <ul className="pagination">
                     {
                         pagination.prev && <li className="page-item">
-                            <a className="page-link" href={`/raw_material/${startPage - 1}`}>
+                            <a className="page-link" href="#">
                                 <span>&laquo;</span>
                             </a>
                         </li>
@@ -30,7 +30,7 @@ const Pagination = () => {
                     {
                         Array(numberOfPageForSet).fill(startPage).map((value, index) => value + index).map((pageNum) => {
                             return <li key={pageNum} className={`page-item ${currentPage === pageNum ? 'active' : ''}`}>
-                                <a className="page-link cursor-pointer" href={`/raw_material?page=${pageNum}`}>{pageNum}</a>
+                                <a className="page-link cursor-pointer" onClick={()=> {setPagination(pageNum)}}>{pageNum}</a>
                             </li>
                         })
                     }

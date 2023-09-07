@@ -38,8 +38,13 @@ const processSlice = createSlice({
         return process.id != action.payload.id;
     });
     state.bomtags = filteredProcess;    },
+
     paginationSet(state, action) {
       state.pagination = action.payload;
+    },
+
+    paginationPageSet(state, action) {
+      state.pagination.criteria.pageNum = action.payload;
     },
 
     bomRemoved(state, action) {
@@ -49,5 +54,5 @@ const processSlice = createSlice({
   }
 })
 
-export const { processAdded, processChanged, processSet, processRemoved, ListAdded, ListRemoved, paginationSet, bomRemoved} = processSlice.actions
+export const { processAdded, processChanged, processSet, processRemoved, ListAdded, ListRemoved, paginationSet, bomRemoved, paginationPageSet} = processSlice.actions
 export default processSlice.reducer
