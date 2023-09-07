@@ -102,7 +102,6 @@ const useProcess = () => {
     Form.querySelectorAll("select").forEach(
       (input) => (form[input.name] = input.value)
     );
-    //TODO 컨트롤러 만들어서 put 해야함.
     axios
       .put(`http://localhost:8081/${url}`, form)
       .then((res) => console.log(res));
@@ -113,7 +112,7 @@ const useProcess = () => {
 
   const removeProcess = (process_id, url) => {
     //TODO 컨트롤러 만들어서 delete 해야함.
-    // axios.delete(`http://localhost:8081/${url}`, form).then((res) =>
+    // axios.delete(`http://localhost:8081/${url}/${process_id}`, form).then((res) =>
     //     console.log(res)
     // );
     dispatch(processRemoved(process_id));

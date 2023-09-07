@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-let modal_id = 0;
 const modalSlice = createSlice({
   name: 'modal',
   initialState: {
@@ -7,9 +6,8 @@ const modalSlice = createSlice({
   },
   reducers: {
     Added(state, action) {
-      const modal_data = {id: modal_id++,
-      ...action.payload}
-      state.modal_data.push(modal_data)
+   
+      state.modal_data.push(action.payload)
     },
 
     Changed(state, action){

@@ -28,7 +28,7 @@ const ReduxModalForm = ({children, formId, url}) => {
         <button className='btn btn-success me-2' hidden={useStateRegister() ? 'hidden' : ''} id='updateBtn' onClick={() => changeModal(document.querySelector('#'+formId), url)}>수정</button>
         <button className='btn btn-danger me-2' hidden={useStateRegister() ? 'hidden' : ''} id='deleteBtn'
             onClick={() => {
-                removeModal(document.querySelector('#'+formId).querySelector('#id').value);
+                removeModal(document.querySelector('#'+formId),url);
                 document.querySelector('#'+formId).reset();
                 register();
             }}>삭제</button>

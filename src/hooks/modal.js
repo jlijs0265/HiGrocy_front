@@ -2,6 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Added, Set, Removed, Changed } from "../app/modalSlice"
 import axios from "axios";
+let id = 0;
+
 
 const useModal = () => {
     const dispatch = useDispatch();
@@ -15,6 +17,7 @@ const useModal = () => {
           const key = Object.keys(res.data);
           console.log(res.data);
           form[key[0]] = res.data[key[0]];
+          form['id'] = id++;
           dispatch(Added(form));
         });
     }
@@ -37,7 +40,7 @@ const useModal = () => {
         let result = [];
         await axios.get(`http://localhost:8081/${url}`).then((res) => {
             result = res.data.list;
-
+            result.forEach((i)=> i['id']=id++);
           }
         );
         dispatch(Set(result));
@@ -50,20 +53,18 @@ const useModal = () => {
         const form = {};
         Form.querySelectorAll('input').forEach(input => form[input.name] = input.value);
         Form.querySelectorAll('select').forEach(input => form[input.name] = input.value);
-        axios.put(`http://localhost:8081/${url}`, form).then((res) =>
-            console.log(res)
-        );
+        axios.put(`http://localhost:8081/${url}`, form);
         form['id'] = Form.querySelector('#id').value;
         Form.reset();
         dispatch(Changed(form));
     }
 
-    const removeModal = (Modal_id, url) => {
-         //TODO 컨트롤러 만들어서 delete 해야함.
-        // axios.delete(`http://localhost:8081/${url}`, form).then((res) =>
-        //     console.log(res)
-        // );
-        dispatch(Removed(Modal_id));
+    const removeModal = (Form, url) => {
+        const code = Form.querySelector('input[readonly]').value;
+        const id = Form.querySelector('#id').value;
+        axios.delete(`http://localhost:8081/${url}/${code}`);
+        console.log(id);
+        dispatch(Removed(id));
     }
 
     const useModalSelector = () => {

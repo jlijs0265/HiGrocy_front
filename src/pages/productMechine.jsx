@@ -44,7 +44,7 @@ const ProductMechine = () => {
                                 </DropdownButton>
                                 <Form.Control aria-label="Text input with dropdown button" />
                             </InputGroup>
-                            <Table tableCol={tableCol} colNum={tableCol.length} inputList={PMDetailCol}/>
+                            <Table tableCol={tableCol} colNum={tableCol.length} inputList={PMDetailCol} useForm={'ProductMechineDetailForm'}/>
                             <Pagination></Pagination>
                         </GeneralCard>
                         <GeneralCard size={6} useResiger={false}>
