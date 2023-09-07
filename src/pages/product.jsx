@@ -13,6 +13,7 @@ import GeneralMainPanel from "../components/GeneralMainPanel";
 import GeneralDropDownSearchBar from "../components/GeneralDropDownSearchBar";
 import ReduxForm from "../components/ReduxForm";
 import NavTemp from "../components/NavTemp";
+import { useState } from "react";
 
 
 const Product = () => {
@@ -21,12 +22,22 @@ const Product = () => {
     const dropdownOption = ['품명', '코드'];
 
     const { toggle } = useGeneralTrigger();
+
+
+    const [imageList, setImageList] = useState([]);
+    const [bomList, setBomList] = useState([]);
+
     const {
         addList,
         removeList,
         useListSelector
     } = useProcess();
 
+    const onClickSubmit = async() => {
+        const formData = new FormData();
+
+    
+    };
 
     return (
         <div className="container-scroller">

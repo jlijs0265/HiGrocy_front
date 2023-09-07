@@ -1,5 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Table from './Table';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -8,7 +9,6 @@ import Pagination from './Pagination';
 import useGeneralTrigger from '../hooks/generalTrigger';
 import useProcess from "../hooks/process";
 import { useEffect } from 'react';
-import ModalTable from './ModalTable';
 
 const RawMaterailListModal = () => {
     const { toggle} = useGeneralTrigger();
@@ -27,7 +27,6 @@ const RawMaterailListModal = () => {
     } , []);
 
     const tableCol = ['코드', '자재분류', '자재명', '단위', '원산지'];
-    const tableName = ['raw_materials_code', 'raw_type', 'name', 'unit', 'origin'];
 
     return (
         <>
@@ -46,7 +45,7 @@ const RawMaterailListModal = () => {
                     <Form.Control aria-label="Text input with dropdown button" />
                 </InputGroup>
                 <div className="table-responsive">
-                    <ModalTable tableCol={tableCol} colNum={tableCol.length} inputList={tableName} />
+                    <Table tableCol={tableCol} colNum={tableCol.length} />
                 </div>
                 <Pagination />
             </Modal.Body>
