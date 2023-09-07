@@ -12,7 +12,6 @@ import { PropTypes } from "prop-types";
 
 const ReduxForm = ({ children, formId, url }) => {
   const { addProcess, removeProcess, changeProcess } = useProcess();
-
   const { useStateRegister, register } = useGeneralTrigger();
 
   return (
