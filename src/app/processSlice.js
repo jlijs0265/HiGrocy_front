@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-let id = 0;
 const processSlice = createSlice({
   name: 'process',
   initialState: {
@@ -9,9 +8,7 @@ const processSlice = createSlice({
   },
   reducers: {
     processAdded(state, action) {
-      const process = {id: id++,
-      ...action.payload}
-      state.table_data.push(process)
+      state.table_data.push(action.payload)
     },
 
     ListAdded(state, action) {

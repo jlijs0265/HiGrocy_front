@@ -50,7 +50,7 @@ const MechineListModal = () => {
                         </ReduxModalForm>
                         <button className='btn btn-primary me-2' hidden={useStateRegister() ? 'hidden' : ''} id='deleteBtn'
                                 onClick={() => {
-                                    document.querySelector('#ProductMechineDetailForm').querySelector('input[name = code]').value = document.querySelector('#' + FormId).querySelector('input[name=machine_code]').value;
+                                    document.querySelector('#ProductMechineDetailForm').querySelector('input[name = machine_code]').value = document.querySelector('#' + FormId).querySelector('input[name=machine_code]').value;
                                     document.querySelector('#' + FormId).reset();
                                     register();
                                     toggle();
