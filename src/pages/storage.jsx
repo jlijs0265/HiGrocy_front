@@ -51,13 +51,6 @@ const Storage = () => {
                   <div className="card">
                     <div className="card-body">
                       <h4 className="card-title text-start mb-4">창고 등록</h4>
-                      {/* <Form
-                        className="p-2"
-                        id="storageForm"
-                        method="post"
-                        action="/storage"
-                      >
-                      </Form> */}
                       <ReduxForm url={"storage"}>
                         <GeneralForm
                           inputType={"input"}

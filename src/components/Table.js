@@ -2,7 +2,7 @@ import { PropTypes, object } from "prop-types";
 import useGeneralTrigger from "../hooks/generalTrigger";
 import useProcess from "../hooks/process";
 
-const Table = ({ tableCol, inputList, isListTable, useForm }) => {
+const Table = ({ tableCol, inputList, isListTable, useForm, flag }) => {
   const { modify } = useGeneralTrigger();
   const { useProcessSelector, removeProcess, updateProcess } = useProcess();
 
@@ -26,6 +26,8 @@ const Table = ({ tableCol, inputList, isListTable, useForm }) => {
                 modify();
                 isListTable
                   ? removeProcess(row.id)
+                  : flag
+                  ? console.log("이거아님")
                   : updateProcess(row, useForm);
               }}
             >
@@ -51,6 +53,7 @@ Table.defaultProps = {
   inputList: [],
   isListTable: false,
   useForm: "rawForm",
+  flag: false,
 };
 
 export default Table;
