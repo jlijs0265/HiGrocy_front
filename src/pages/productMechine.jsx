@@ -14,6 +14,7 @@ import Modals from "../components/Modals";
 import NavTemp from "../components/NavTemp";
 import useModal from "../hooks/modal";
 import useProcess from "../hooks/process";
+import GeneralDropDownSearchBar from "../components/GeneralDropDownSearchBar";
 
 
 const ProductMechine = () => {
@@ -24,6 +25,7 @@ const ProductMechine = () => {
     const {setModal} = useModal();
     let PageNum= usePaginationSelector().criteria.pageNum;
     useEffect(() => {setModal('pm'); setProcess('pmDetail',{"page":PageNum} )},[PageNum]);
+    const options = ['이력코드', '기계명', '공장명', '위치'];
 
     return (
         <div>
@@ -35,18 +37,7 @@ const ProductMechine = () => {
                     <div className='row'>
                         <GeneralCard size={6}>
                             <h4 className='card-title text-start mb-4'>생산 기계</h4>
-                            <InputGroup className="mb-3 p-2">
-                                <DropdownButton
-                                    variant="outline-secondary"
-                                    title="검색"
-                                    id="input-group-dropdown-1">
-                                    <Dropdown.Item href="#">기계명</Dropdown.Item>
-                                    <Dropdown.Item href="#">공장명</Dropdown.Item>
-                                    <Dropdown.Item href="#">위치</Dropdown.Item>
-                                    <Dropdown.Item href="#">코드</Dropdown.Item>
-                                </DropdownButton>
-                                <Form.Control aria-label="Text input with dropdown button" />
-                            </InputGroup>
+                            <GeneralDropDownSearchBar options={options} url={'pmDetail'} />
                             <Table tableCol={tableCol} colNum={tableCol.length} inputList={PMDetailCol} useForm={'ProductMechineDetailForm'}/>
                             <Pagination></Pagination>
                         </GeneralCard>
