@@ -29,15 +29,18 @@ const Product = () => {
 
     const {
         addList,
-        removeList,
-        useListSelector
+        useListSelector,
+        addEmptyList,
+        removeBomList
     } = useProcess();
 
     const onClickSubmit = async() => {
         const formData = new FormData();
-
+        
     
     };
+
+    console.log(useListSelector());
 
     return (
         <div className="container-scroller">
@@ -65,14 +68,15 @@ const Product = () => {
                             </Form.Group>
                             <Form.Group className="d-flex justify-content-between mb-2">
                                 <Form.Label className="text-start">BOM 등록</Form.Label>
-                                <button type="button" className="btn btn-sm btn-outline-success" onClick={addList}>추가</button>
+                                <button type="button" className="btn btn-sm btn-outline-success" onClick={() => {addEmptyList({"raw_materials_code" : "", "amount" : ""})}}>추가</button>
                             </Form.Group>
-                            {useListSelector().map((value, index) => (
+                            {          
+                            useListSelector().map((value, index) => (
                                 <div key={index} className="border p-2 mb-3 rounded">
                                     <Form.Group className="mb-3">
                                         <div className="d-flex justify-content-between mb-1">
                                             <Form.Label className="text-start">원부자재코드</Form.Label>
-                                            <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => removeList(value)}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-dash" viewBox="0 0 16 16">
+                                            <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => {removeBomList(index)}}><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-dash" viewBox="0 0 16 16">
                                                 <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z" />
                                             </svg></button>
                                         </div>

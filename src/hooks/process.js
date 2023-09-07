@@ -7,6 +7,7 @@ import {
   ListAdded,
   ListRemoved,
   paginationSet,
+  bomRemoved,
 } from "../app/processSlice";
 import axios from "axios";
 import { async } from "q";
@@ -32,8 +33,7 @@ const useProcess = () => {
     }
     );
   };
-  const addEmptyList = () => {
-    const form = {};
+  const addEmptyList = (form) => {
     dispatch(ListAdded(form));
   };
 
@@ -121,6 +121,10 @@ const useProcess = () => {
     dispatch(ListRemoved(process_id));
   };
 
+  const removeBomList = (key) => {
+    dispatch(bomRemoved(key));
+  }
+
   const useProcessSelector = () => {
     return useSelector((state) => state.process.table_data);
   };
@@ -145,6 +149,7 @@ const useProcess = () => {
     useProcessSelector,
     useListSelector,
     usePaginationSelector,
+    removeBomList
   };
 };
 
