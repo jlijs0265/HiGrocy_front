@@ -15,6 +15,7 @@ import useProcess from "../hooks/process";
 import useGeneralTrigger from "../hooks/generalTrigger";
 import ModalTable from "../components/ModalTable";
 import useModal from "../hooks/modal";
+import ModalPagination from "../components/ModalPagination";
 
 const WareHousing = () => {
   const tableCol = [
@@ -104,7 +105,7 @@ const WareHousing = () => {
                         inputList={inputNameList}
                         flag={true}
                       />
-                      <Pagination />
+                      <Pagination url={"wh"} />
                     </div>
                     <div className="card-body list-body mt-4">
                       <h4 className="card-title text-start mb-4">재고 조회</h4>
