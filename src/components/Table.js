@@ -2,12 +2,7 @@ import { PropTypes, object } from "prop-types";
 import useGeneralTrigger from "../hooks/generalTrigger";
 import useProcess from "../hooks/process";
 
-<<<<<<< HEAD
-const Table = ({tableCol, inputList, isListTable, useForm }) => {
-
-=======
 const Table = ({ tableCol, inputList, isListTable, useForm, flag }) => {
->>>>>>> e11a6a0021aa0fafc55f59fe27a9a074be940b96
   const { modify } = useGeneralTrigger();
   const { useProcessSelector, removeProcess, updateProcess } = useProcess();
 
