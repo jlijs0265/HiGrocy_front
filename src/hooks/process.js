@@ -14,7 +14,6 @@ import { async } from "q";
 import qs from "qs";
 let id = 0;
 
-
 const useProcess = () => {
   const dispatch = useDispatch();
 
@@ -30,7 +29,7 @@ const useProcess = () => {
     axios.post(`http://localhost:8081/${url}`, form).then((res) => {
       const key = Object.keys(res.data);
       form[key[0]] = res.data[key[0]];
-      form['id'] = id++;
+      form["id"] = id++;
 
       dispatch(processAdded(form));
     });
@@ -86,7 +85,7 @@ const useProcess = () => {
     let pagination = {};
     await axios.get(`http://localhost:8081/${url}`, { params }).then((res) => {
       result = res.data["list"];
-      result.forEach((i)=> i['id']=id++);
+      result.forEach((i) => (i["id"] = id++));
       pagination = res.data["pageDto"];
     });
     dispatch(processSet(result));

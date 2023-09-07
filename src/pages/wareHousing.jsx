@@ -13,6 +13,8 @@ import Pagination from "../components/Pagination";
 import NavTemp from "../components/NavTemp";
 import useProcess from "../hooks/process";
 import useGeneralTrigger from "../hooks/generalTrigger";
+import ModalTable from "../components/ModalTable";
+import useModal from "../hooks/modal";
 
 const WareHousing = () => {
   const tableCol = [
@@ -29,16 +31,17 @@ const WareHousing = () => {
     "품목코드",
     "품목명",
     "원부자재(원/부)",
-    "재생여부(Y/N)",
+    // "재생여부(Y/N)",
     "재고 수량",
   ];
   const [register, setRegister] = useState(true);
   const [modify, setModify] = useState(false);
   const { useStateRegister } = useGeneralTrigger();
+  const { setModal } = useModal();
   const { addProcess, removeProcess, useProcessSelector, setProcess } =
     useProcess();
   setProcess("wh/list");
-
+  setModal("wh/CurrentList");
   const inputNameList = [
     "warehousing_code",
     "item_code",
@@ -49,6 +52,8 @@ const WareHousing = () => {
     "amount",
     "keeping_date",
   ];
+
+  const inputCurrent = ["item_code", "item.name", "item.type", "amount"];
 
   const [tigger, setTigger] = useState(2);
   return (
@@ -97,12 +102,18 @@ const WareHousing = () => {
                         tableCol={tableCol}
                         colNum={tableCol.length}
                         inputList={inputNameList}
+                        flag={true}
                       />
                       <Pagination />
                     </div>
                     <div className="card-body list-body mt-4">
                       <h4 className="card-title text-start mb-4">재고 조회</h4>
-                      <Table tableCol={bomCol} colNum={bomCol.length} />
+                      <ModalTable
+                        tableCol={bomCol}
+                        colNum={bomCol.length}
+                        inputList={inputCurrent}
+                        flag={true}
+                      />
                       <div className="d-flex justify-content-center">
                         <Pagination />
                       </div>
