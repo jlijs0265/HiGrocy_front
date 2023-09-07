@@ -80,8 +80,7 @@ const useProcess = () => {
   };
 
   const setProcess = async (url, params) => {
-    console.log(url);
-    console.log(params)
+
     axios.defaults.paramsSerializer = (params) => {
       return qs.stringify(params);
     };
