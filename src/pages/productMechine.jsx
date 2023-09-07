@@ -20,9 +20,10 @@ const ProductMechine = () => {
     const tableCol = ['이력코드', '기계명', '공장명', '위치'];
     const PMDetailCol = ['pm_detail_code', 'name', 'factory_name', 'location'];
     const { toggle } = useGeneralTrigger();
-    const {setProcess} = useProcess();
+    const {setProcess, usePaginationSelector} = useProcess();
     const {setModal} = useModal();
-    useEffect(() => {setModal('pm'); setProcess('pmDetail')},[]);
+    let PageNum= usePaginationSelector().criteria.pageNum;
+    useEffect(() => {setModal('pm'); setProcess('pmDetail',{"page":PageNum} )},[PageNum]);
 
     return (
         <div>

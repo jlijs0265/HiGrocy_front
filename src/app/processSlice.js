@@ -44,6 +44,10 @@ const processSlice = createSlice({
       state.pagination = action.payload;
     },
 
+    paginationPageSet(state, action) {
+      state.pagination.criteria.pageNum = action.payload;
+    },
+
     bomRemoved(state, action) {
       const filteredProcess = [
         ...state.bomtags.slice(0, action.payload),
@@ -63,5 +67,6 @@ export const {
   ListRemoved,
   paginationSet,
   bomRemoved,
+  paginationPageSet,
 } = processSlice.actions;
 export default processSlice.reducer;

@@ -7,6 +7,7 @@ import {
   ListAdded,
   ListRemoved,
   paginationSet,
+  paginationPageSet,
   bomRemoved,
 } from "../app/processSlice";
 import axios from "axios";
@@ -136,6 +137,10 @@ const useProcess = () => {
     return useSelector((state) => state.process.pagination);
   };
 
+  const setPagination = (pageNum) => {
+    dispatch(paginationPageSet(pageNum));
+  };
+
   return {
     addProcess,
     addList,
@@ -145,6 +150,7 @@ const useProcess = () => {
     removeProcess,
     updateProcess,
     changeProcess,
+    setPagination,
     useProcessSelector,
     useListSelector,
     usePaginationSelector,
