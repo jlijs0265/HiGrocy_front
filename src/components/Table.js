@@ -1,9 +1,8 @@
-import { PropTypes } from "prop-types";
+import { PropTypes, object } from "prop-types";
 import useGeneralTrigger from "../hooks/generalTrigger";
 import useProcess from "../hooks/process";
 
 const Table = ({ tableCol, inputList, isListTable, useForm }) => {
-
   const { modify } = useGeneralTrigger();
   const { useProcessSelector, removeProcess, updateProcess } = useProcess();
 
@@ -18,19 +17,28 @@ const Table = ({ tableCol, inputList, isListTable, useForm }) => {
           </tr>
         </thead>
         <tbody className="rawbody">
-          {useProcessSelector().map((row, rowIndex) => 
-            (
-              <tr key={rowIndex} className="rawitem cursor-point" onClick={(e) => { e.stopPropagation(); modify(); (isListTable) ? removeProcess(row.id) : updateProcess(row, useForm) }}>
-                {
-                  inputList.map((key, index) => (
-                    <td key={index}>{row[key]}</td>
-                  )
-                  )
+          {useProcessSelector().map((row, rowIndex) => (
+            <tr
+              key={rowIndex}
+              className="rawitem cursor-point"
+              onClick={(e) => {
+                e.stopPropagation();
+                modify();
+                isListTable
+                  ? removeProcess(row.id)
+                  : updateProcess(row, useForm);
+              }}
+            >
+              {inputList.map((key, index) => {
+                if (key.includes(".")) {
+                  let okey = key.split(".");
+                  return <td key={index}>{row[okey[0]][okey[1]]}</td>;
+                } else {
+                  return <td key={index}>{row[key]}</td>;
                 }
-              </tr>
-            )
-            )
-          }
+              })}
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
@@ -42,7 +50,7 @@ Table.defaultProps = {
   colNum: 5,
   inputList: [],
   isListTable: false,
-  useForm: 'rawForm',
+  useForm: "rawForm",
 };
 
 export default Table;
