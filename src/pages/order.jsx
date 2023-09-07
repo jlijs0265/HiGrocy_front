@@ -16,10 +16,9 @@ const Order = () => {
         useProcessSelector
     } = useProcess();
     const { toggle } = useGeneralTrigger();
-
     const inputNameList = ['code', 'name', 'count', 'price', 'supply', 'vat', 'total'];
-
     const tableCol = ['품목코드', '품명', '수량', '단가', '공급가액', '부가세', '합계금액'];
+    
     return (
         <div>
             <Modals />

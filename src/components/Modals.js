@@ -38,7 +38,7 @@ const Modals = () => {
 
     return (
         <>
-            <Modal show={useStateModal()} onHide={toggle} size={(useModalType()=='MechineList')?'xl':''}>
+            <Modal show={useStateModal()} onHide={toggle} size={(useModalType()=='MechineList'|| 'accountList')?'xl':''}>
                 {componentToRender}
             </Modal>
         </>

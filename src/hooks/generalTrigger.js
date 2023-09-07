@@ -4,8 +4,11 @@ import {
   registerForm,
   toggleModal,
 } from "../app/generalTriggerSlice";
+import axios from "axios";
+import { useState } from "react";
 
 const useGeneralTrigger = () => {
+
   const dispatch = useDispatch();
   const register = () => {
     dispatch(registerForm());
