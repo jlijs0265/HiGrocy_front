@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import GeneralForm from "../components/GeneralForm";
 import NavTemp from "../components/NavTemp";
 import ReduxForm from "../components/ReduxForm";
+import Pagination from "../components/Pagination";
 
 const Storage = () => {
   const tableCol = ["창고코드", "창고명", "창고 위치", "담당자", "적재량"];
@@ -44,18 +45,12 @@ const Storage = () => {
                     colNum={tableCol.length}
                     inputList={inputNameList}
                   />
+                  <Pagination url={"storage"} />
                 </GeneralCard>
                 <div className="col-md-6 stretch-card">
                   <div className="card">
                     <div className="card-body">
                       <h4 className="card-title text-start mb-4">창고 등록</h4>
-                      {/* <Form
-                        className="p-2"
-                        id="storageForm"
-                        method="post"
-                        action="/storage"
-                      >
-                      </Form> */}
                       <ReduxForm url={"storage"}>
                         <GeneralForm
                           inputType={"input"}

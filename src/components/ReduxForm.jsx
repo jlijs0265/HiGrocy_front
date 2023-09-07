@@ -12,7 +12,6 @@ import { PropTypes } from "prop-types";
 
 const ReduxForm = ({ children, formId, url }) => {
   const { addProcess, removeProcess, changeProcess } = useProcess();
-
   const { useStateRegister, register } = useGeneralTrigger();
 
   return (
@@ -33,7 +32,7 @@ const ReduxForm = ({ children, formId, url }) => {
         className="btn btn-success me-2"
         hidden={useStateRegister() ? "hidden" : ""}
         id="updateBtn"
-        onClick={() => changeProcess(document.querySelector("#" + formId), url)}
+        onClick={() => {changeProcess(document.querySelector("#" + formId), url); register();}}
       >
         수정
       </button>

@@ -7,11 +7,13 @@ import {
   ListAdded,
   ListRemoved,
   paginationSet,
+  paginationPageSet,
   bomRemoved,
 } from "../app/processSlice";
 import axios from "axios";
 import { async } from "q";
 import qs from "qs";
+let id = 0;
 
 const useProcess = () => {
   const dispatch = useDispatch();
@@ -25,10 +27,10 @@ const useProcess = () => {
       (input) => (form[input.name] = input.value)
     );
     Form.reset();
-    console.log(form);
     axios.post(`http://localhost:8081/${url}`, form).then((res) => {
       const key = Object.keys(res.data);
       form[key[0]] = res.data[key[0]];
+      form["id"] = id++;
 
       dispatch(processAdded(form));
     });
@@ -77,16 +79,14 @@ const useProcess = () => {
   };
 
   const setProcess = async (url, params) => {
-    //TODO 컨트롤러 만들어서 get 해야함. res를 Processes로 바꿔서 넣어야함
     axios.defaults.paramsSerializer = (params) => {
       return qs.stringify(params);
     };
-    console.log(params);
     let result = [];
     let pagination = {};
     await axios.get(`http://localhost:8081/${url}`, { params }).then((res) => {
       result = res.data["list"];
-      console.log(result);
+      result.forEach((i) => (i["id"] = id++));
       pagination = res.data["pageDto"];
     });
     dispatch(processSet(result));
@@ -137,6 +137,10 @@ const useProcess = () => {
     return useSelector((state) => state.process.pagination);
   };
 
+  const setPagination = (pageNum) => {
+    dispatch(paginationPageSet(pageNum));
+  };
+
   return {
     addProcess,
     addList,
@@ -146,6 +150,7 @@ const useProcess = () => {
     removeProcess,
     updateProcess,
     changeProcess,
+    setPagination,
     useProcessSelector,
     useListSelector,
     usePaginationSelector,

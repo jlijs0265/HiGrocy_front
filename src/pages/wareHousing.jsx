@@ -11,39 +11,54 @@ import { useEffect, useRef, useState } from "react";
 import Modals from "../components/Modals";
 import Pagination from "../components/Pagination";
 import NavTemp from "../components/NavTemp";
+import useProcess from "../hooks/process";
+import useGeneralTrigger from "../hooks/generalTrigger";
+import ModalTable from "../components/ModalTable";
+import useModal from "../hooks/modal";
 
 const WareHousing = () => {
   const tableCol = [
     "입출고 내역 코드",
     "품목코드",
+    "품목명",
     "창고코드",
     "입출고 현황",
     "입출고 날짜",
     "입출고 수량",
-    "입출고 유형별 코드",
     "유통기한",
   ];
   const bomCol = [
     "품목코드",
     "품목명",
     "원부자재(원/부)",
-    "재생여부(Y/N)",
+    // "재생여부(Y/N)",
     "재고 수량",
   ];
   const [register, setRegister] = useState(true);
   const [modify, setModify] = useState(false);
+  const { useStateRegister } = useGeneralTrigger();
+  const { setModal } = useModal();
+  const { addProcess, removeProcess, useProcessSelector, setProcess } =
+    useProcess();
+  setProcess("wh/list");
+  setModal("wh/CurrentList");
+  const inputNameList = [
+    "warehousing_code",
+    "item_code",
+    "item.name",
+    "storage_code",
+    "warehousing_type",
+    "wr_date",
+    "amount",
+    "keeping_date",
+  ];
 
-  const trClick = (e) => {
-    e.stopPropagation();
-    console.log(e.target.closest("tr"));
-    console.log(e.target.innerText);
-    setRegister(false);
-    setModify(true);
-  };
+  const inputCurrent = ["item_code", "item.name", "item.type", "amount"];
+
   const [tigger, setTigger] = useState(2);
   return (
     <div>
-      <NavTemp pageType={'storage'} />
+      <NavTemp pageType={"storage"} />
 
       <div className="container mb-3">
         <ToggleButtonGroup
@@ -80,22 +95,24 @@ const WareHousing = () => {
                         {tigger === 2
                           ? "전체 수불부 조회"
                           : tigger === 1
-                            ? "입/출고별 조회"
-                            : "생산별 조회"}
+                          ? "입/출고별 조회"
+                          : "생산별 조회"}
                       </h4>
                       <Table
                         tableCol={tableCol}
                         colNum={tableCol.length}
-                        trClick={trClick}
+                        inputList={inputNameList}
+                        flag={true}
                       />
                       <Pagination />
                     </div>
                     <div className="card-body list-body mt-4">
                       <h4 className="card-title text-start mb-4">재고 조회</h4>
-                      <Table
+                      <ModalTable
                         tableCol={bomCol}
                         colNum={bomCol.length}
-                        trClick={trClick}
+                        inputList={inputCurrent}
+                        flag={true}
                       />
                       <div className="d-flex justify-content-center">
                         <Pagination />
