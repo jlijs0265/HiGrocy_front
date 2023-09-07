@@ -15,11 +15,10 @@ const ReduxModalForm = ({children, formId, url}) => {
     const {
         addModal,
         removeModal,
-        changeModal
+        changeModal,
     } = useModal();
 
     const { useStateRegister, register } = useGeneralTrigger();
-
     return (<>
         <Form className='p-2' id={formId}>
             <input type="hidden" id="id"></input>

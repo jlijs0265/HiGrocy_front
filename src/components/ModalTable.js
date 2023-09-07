@@ -4,7 +4,8 @@ import useModal from "../hooks/modal";
 
 const ModalTable = ({ tableCol, inputList, useForm }) => {
   const { modify } = useGeneralTrigger();
-  const { useModalSelector, updateModal } = useModal();
+  const { useModalSelector, updateModal} = useModal();
+
  
   return (
     <div className="table-responsive container">
@@ -32,12 +33,5 @@ const ModalTable = ({ tableCol, inputList, useForm }) => {
   );
 };
 
-ModalTable.defaultProps = {
-  rowNum: 5,
-  colNum: 5,
-  inputList: [],
-  isListTable: false,
-  useForm: 'rawForm',
-};
 
 export default ModalTable;

@@ -26,13 +26,12 @@ const useProcess = () => {
     );
     Form.reset();
     console.log(form);
-    // axios.post(`http://localhost:8081/${url}`, form).then((res) => {
-    //     const key = Object.keys(res.data);
-    //     form[key[0]] = res.data[key[0]];
-    //TODO res에서 code가져와서 form에 넣어줘야함
+    axios.post(`http://localhost:8081/${url}`, form).then((res) => {
+        const key = Object.keys(res.data);
+        form[key[0]] = res.data[key[0]];
     dispatch(processAdded(form));
-    // }
-    // );
+    }
+    );
   };
   const addEmptyList = (form) => {
     dispatch(ListAdded(form));

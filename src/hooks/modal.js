@@ -11,11 +11,12 @@ const useModal = () => {
         Form.querySelectorAll('input').forEach(input => form[input.name] = input.value);
         Form.querySelectorAll('select').forEach(input => form[input.name] = input.value);
         Form.reset();
-        // axios.post(`http://localhost:8081/${url}`, form).then((res) =>
-        //     console.log(res)
-        //     //TODO res에서 code가져와서 form에 넣어줘야함
-        // );
-        dispatch(Added(form));
+        axios.post(`http://localhost:8081/${url}`, form).then((res) => {
+          const key = Object.keys(res.data);
+          console.log(res.data);
+          form[key[0]] = res.data[key[0]];
+          dispatch(Added(form));
+        });
     }
 
     const updateModal = (Modales, formId) => {
@@ -33,26 +34,25 @@ const useModal = () => {
     }
 
     const setModal = async (url) => {
-        //TODO 컨트롤러 만들어서 get 해야함. res를 Processes로 바꿔서 넣어야함
         let result = [];
         await axios.get(`http://localhost:8081/${url}`).then((res) => {
-            result = res.data;
-            console.log(result);
+            result = res.data.list;
+
           }
         );
-        result.map((value) => {
-          dispatch(setModal(value));
-        })
+        dispatch(Set(result));
+       
+        
+        
     }
 
     const changeModal = (Form, url) => {
         const form = {};
         Form.querySelectorAll('input').forEach(input => form[input.name] = input.value);
         Form.querySelectorAll('select').forEach(input => form[input.name] = input.value);
-        //TODO 컨트롤러 만들어서 put 해야함.
-        // axios.put(`http://localhost:8081/${url}`, form).then((res) =>
-        //     console.log(res)
-        // );
+        axios.put(`http://localhost:8081/${url}`, form).then((res) =>
+            console.log(res)
+        );
         form['id'] = Form.querySelector('#id').value;
         Form.reset();
         dispatch(Changed(form));
