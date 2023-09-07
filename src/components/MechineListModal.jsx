@@ -4,7 +4,6 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Form from 'react-bootstrap/Form';
-import Pagination from './Pagination';
 import useGeneralTrigger from '../hooks/generalTrigger';
 import ModalTable from './ModalTable';
 import GeneralCard from './GeneralCard';
@@ -13,8 +12,9 @@ import ReduxModalForm from './ReduxModalForm';
 
 const MechineListModal = () => {
     const tableCol = ['기계코드', '기계종류명', '온실가스사용량', '에너지사용량'];
-    const { toggle } = useGeneralTrigger();
+    const { toggle, useStateRegister, register } = useGeneralTrigger();
     const modalTableCol = ['machine_code', 'type', 'gas_emissions', 'energy_usage'];
+    const FormId = 'ProductMechineForm';
 
 
     return (
@@ -36,18 +36,25 @@ const MechineListModal = () => {
                             <Form.Control aria-label="Text inputwith dropdown button" />
                         </InputGroup>
                         <div className="table-responsive">
-                            <ModalTable tableName={'modal'} tableCol={tableCol} colNum={tableCol.length} inputList={modalTableCol} />
+                            <ModalTable tableCol={tableCol} inputList={modalTableCol} useForm={FormId} />
                         </div>
-                        <Pagination />
                     </GeneralCard>
                     <GeneralCard size={6} useResiger={false}>
                         <h4 className='card-title text-start mb-4' id='raw-title'>생산 기계등록 페이지</h4>
-                            <ReduxModalForm formId={'ProductMechineForm'} url={'pm'}>
-                                <GeneralForm inputType={'input'} label={'기계코드'} name={'machine_code'} disabled={'disabled'} readOnly={'readOnly'} />
-                                <GeneralForm inputType={'input'} label={'기계종류명'}  name={'type'}/>
-                                <GeneralForm inputType={'input'} label={'온실가스사용량'} name={'gas_emissions'}/>
-                                <GeneralForm inputType={'input'} label={'에너지사용량'} name={'energy_usage'} />
+                        <ReduxModalForm formId={FormId} url={'pm'}>
+                            <GeneralForm inputType={'input'} label={'기계코드'} name={'machine_code'} disabled={'disabled'} readOnly={'readOnly'} />
+                            <GeneralForm inputType={'input'} label={'기계종류명'} name={'type'} />
+                            <GeneralForm inputType={'input'} label={'온실가스사용량'} name={'gas_emissions'} />
+                            <GeneralForm inputType={'input'} label={'에너지사용량'} name={'energy_usage'} />
+                            
                         </ReduxModalForm>
+                        <button className='btn btn-primary me-2' hidden={useStateRegister() ? 'hidden' : ''} id='deleteBtn'
+                                onClick={() => {
+                                    document.querySelector('#ProductMechineDetailForm').querySelector('input[name = code]').value = document.querySelector('#' + FormId).querySelector('input[name=machine_code]').value;
+                                    document.querySelector('#' + FormId).reset();
+                                    register();
+                                    toggle();
+                                }}>선택</button>
 
                     </GeneralCard>
                 </div>
