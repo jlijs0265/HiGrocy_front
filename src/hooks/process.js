@@ -10,6 +10,7 @@ import {
 } from "../app/processSlice";
 import axios from "axios";
 import { async } from "q";
+import { Form } from "react-bootstrap";
 
 const useProcess = () => {
   const dispatch = useDispatch();
@@ -24,13 +25,12 @@ const useProcess = () => {
     );
     Form.reset();
     console.log(form);
-    // axios.post(`http://localhost:8081/${url}`, form).then((res) => {
-    //     const key = Object.keys(res.data);
-    //     form[key[0]] = res.data[key[0]];
-    //TODO res에서 code가져와서 form에 넣어줘야함
-    dispatch(processAdded(form));
-    // }
-    // );
+    axios.post(`http://localhost:8081/${url}`, form).then((res) => {
+      const key = Object.keys(res.data);
+      form[key[0]] = res.data[key[0]];
+      //TODO res에서 code가져와서 form에 넣어줘야함
+      dispatch(processAdded(form));
+    });
   };
   const addEmptyList = () => {
     const form = {};
@@ -55,7 +55,7 @@ const useProcess = () => {
         if (
           document
             .querySelector("#" + formId)
-            .querySelector("input[name=" + key + "]") != null
+            .querySelector(`input[name=${key}]`) != null
         ) {
           document
             .querySelector("#" + formId)
@@ -106,11 +106,13 @@ const useProcess = () => {
     dispatch(processChanged(form));
   };
 
-  const removeProcess = (process_id, url) => {
+  const removeProcess = (Form, url) => {
+    const deleteTargetNum = Form.querySelector("#pk").value;
+    const process_id = Form.querySelector("#id").value;
     //TODO 컨트롤러 만들어서 delete 해야함.
-    // axios.delete(`http://localhost:8081/${url}`, form).then((res) =>
-    //     console.log(res)
-    // );
+    axios
+      .delete(`http://localhost:8081/${url}/${deleteTargetNum}`)
+      .then((res) => console.log(res));
     dispatch(processRemoved(process_id));
   };
   const removeList = (process_id, url) => {

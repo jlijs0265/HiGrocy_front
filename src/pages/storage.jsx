@@ -56,12 +56,13 @@ const Storage = () => {
                         action="/storage"
                       >
                       </Form> */}
-                      <ReduxForm>
+                      <ReduxForm url={"storage"}>
                         <GeneralForm
                           inputType={"input"}
+                          pk={"pk"}
                           label={"창고 코드"}
                           disabled={"disabled"}
-                          // readOnly={"readOnly"}
+                          readOnly={"readOnly"}
                           name={"storage_code"}
                         />
                         <GeneralForm

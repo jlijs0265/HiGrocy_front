@@ -10,40 +10,57 @@ import { PropTypes } from "prop-types";
     }
 */
 
-const ReduxForm = ({children, formId, url}) => {
+const ReduxForm = ({ children, formId, url }) => {
+  const { addProcess, removeProcess, changeProcess } = useProcess();
 
-    const {
-        addProcess,
-        removeProcess,
-        changeProcess
-    } = useProcess();
+  const { useStateRegister, register } = useGeneralTrigger();
 
-    const { useStateRegister, register } = useGeneralTrigger();
-
-    return (<>
-        <Form className='p-2' id={formId}>
-            <input type="hidden" id="id"></input>
-            {children}
-        </Form>
-        <button className='btn btn-primary me-2' hidden={useStateRegister() ? '' : 'hidden'} id='registerBtn' onClick={() => addProcess(document.querySelector('#'+formId), url)}>등록</button>
-        <button className='btn btn-success me-2' hidden={useStateRegister() ? 'hidden' : ''} id='updateBtn' onClick={() => changeProcess(document.querySelector('#'+formId), url)}>수정</button>
-        <button className='btn btn-danger me-2' hidden={useStateRegister() ? 'hidden' : ''} id='deleteBtn'
-            onClick={() => {
-                removeProcess(document.querySelector('#'+formId).querySelector('#id').value);
-                document.querySelector('#'+formId).reset();
-                register();
-            }}>삭제</button>
-    </>)
-}
+  return (
+    <>
+      <Form className="p-2" id={formId}>
+        <input type="hidden" id="id"></input>
+        {children}
+      </Form>
+      <button
+        className="btn btn-primary me-2"
+        hidden={useStateRegister() ? "" : "hidden"}
+        id="registerBtn"
+        onClick={() => addProcess(document.querySelector("#" + formId), url)}
+      >
+        등록
+      </button>
+      <button
+        className="btn btn-success me-2"
+        hidden={useStateRegister() ? "hidden" : ""}
+        id="updateBtn"
+        onClick={() => changeProcess(document.querySelector("#" + formId), url)}
+      >
+        수정
+      </button>
+      <button
+        className="btn btn-danger me-2"
+        hidden={useStateRegister() ? "hidden" : ""}
+        id="deleteBtn"
+        onClick={() => {
+          removeProcess(document.querySelector("#" + formId), url);
+          document.querySelector("#" + formId).reset();
+          register();
+        }}
+      >
+        삭제
+      </button>
+    </>
+  );
+};
 
 ReduxForm.defaultProps = {
-    formId: 'rawForm',
-    url : 'raw_material'
-}
+  formId: "rawForm",
+  url: "raw_material",
+};
 
 ReduxForm.prototype = {
-    formId: PropTypes.string,
-    url : PropTypes.string
-}
+  formId: PropTypes.string,
+  url: PropTypes.string,
+};
 
 export default ReduxForm;
