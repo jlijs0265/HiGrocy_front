@@ -39,9 +39,14 @@ const WareHousing = () => {
   const [modify, setModify] = useState(false);
   const { useStateRegister } = useGeneralTrigger();
   const { setModal } = useModal();
-  const { addProcess, removeProcess, useProcessSelector, setProcess } =
-    useProcess();
-  setProcess("wh/list");
+  const {
+    addProcess,
+    removeProcess,
+    useProcessSelector,
+    setProcess,
+    usePaginationSelector,
+  } = useProcess();
+
   setModal("wh/CurrentList");
   const inputNameList = [
     "warehousing_code",
@@ -53,7 +58,10 @@ const WareHousing = () => {
     "amount",
     "keeping_date",
   ];
-
+  let PageNum = usePaginationSelector().criteria.pageNum;
+  useEffect(() => {
+    setProcess("wh/list", { page: PageNum });
+  }, [PageNum]);
   const inputCurrent = ["item_code", "item.name", "item.type", "amount"];
 
   const [tigger, setTigger] = useState(2);
@@ -61,26 +69,7 @@ const WareHousing = () => {
     <div>
       <NavTemp pageType={"storage"} />
 
-      <div className="container mb-3">
-        <ToggleButtonGroup
-          type="radio"
-          name="options"
-          defaultValue={2}
-          onChange={(e) => {
-            setTigger(e);
-          }}
-        >
-          <ToggleButton id="tbg-radio-1" value={1} variant="outline-secondary">
-            입/출고별 조회
-          </ToggleButton>
-          <ToggleButton id="tbg-radio-2" value={2} variant="outline-secondary">
-            전체 조회{" "}
-          </ToggleButton>
-          <ToggleButton id="tbg-radio-3" value={3} variant="outline-secondary">
-            생산별 조회
-          </ToggleButton>
-        </ToggleButtonGroup>
-      </div>
+      <div className="container mb-3"></div>
       <div className="container-scroller">
         <div className="container-fluid page-body-wrapper">
           <div className="main-panel">
@@ -92,13 +81,45 @@ const WareHousing = () => {
                       <div className="col-md-6 mb-4">
                         <SearchBar />
                       </div>
-                      <h4 className="card-title text-start mb-4">
+                      <h4 className="card-title text-start mb-2">
                         {tigger === 2
                           ? "전체 수불부 조회"
                           : tigger === 1
                           ? "입/출고별 조회"
                           : "생산별 조회"}
                       </h4>
+                      <div className="m-3">
+                        <ToggleButtonGroup
+                          type="radio"
+                          name="options"
+                          defaultValue={2}
+                          onChange={(e) => {
+                            setTigger(e);
+                          }}
+                        >
+                          <ToggleButton
+                            id="tbg-radio-1"
+                            value={1}
+                            variant="outline-secondary"
+                          >
+                            입/출고별 조회
+                          </ToggleButton>
+                          <ToggleButton
+                            id="tbg-radio-2"
+                            value={2}
+                            variant="outline-secondary"
+                          >
+                            전체 조회{" "}
+                          </ToggleButton>
+                          <ToggleButton
+                            id="tbg-radio-3"
+                            value={3}
+                            variant="outline-secondary"
+                          >
+                            생산별 조회
+                          </ToggleButton>
+                        </ToggleButtonGroup>
+                      </div>
                       <Table
                         tableCol={tableCol}
                         colNum={tableCol.length}
@@ -115,9 +136,7 @@ const WareHousing = () => {
                         inputList={inputCurrent}
                         flag={true}
                       />
-                      <div className="d-flex justify-content-center">
-                        <Pagination />
-                      </div>
+                      <div className="d-flex justify-content-center"></div>
                     </div>
                   </div>
                 </div>
