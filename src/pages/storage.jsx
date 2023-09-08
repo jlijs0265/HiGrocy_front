@@ -9,15 +9,24 @@ import GeneralForm from "../components/GeneralForm";
 import NavTemp from "../components/NavTemp";
 import ReduxForm from "../components/ReduxForm";
 import Pagination from "../components/Pagination";
+import { useEffect } from "react";
 
 const Storage = () => {
   const tableCol = ["창고코드", "창고명", "창고 위치", "담당자", "적재량"];
   const { useStateRegister } = useGeneralTrigger();
-  const { addProcess, removeProcess, useProcessSelector, setProcess } =
-    useProcess();
+  const {
+    addProcess,
+    removeProcess,
+    useProcessSelector,
+    setProcess,
+    usePaginationSelector,
+  } = useProcess();
 
-  setProcess("storage/list");
-
+  // setProcess("storage/list");
+  let PageNum = usePaginationSelector().criteria.pageNum;
+  useEffect(() => {
+    setProcess("storage/list", { page: PageNum });
+  }, [PageNum]);
   const inputNameList = [
     "storage_code",
     "name",

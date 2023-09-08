@@ -2,10 +2,8 @@ import React from "react";
 import "./ProfileCard.css";
 import { useState } from "react";
 
-function ProfileCard(props) {
+function ProfileCard({ isLogin }) {
   const [alarmStat, setAlarmStat] = useState(false);
-
-  props = true;
 
   //추후 메시지 받으면 이 메서드 사용할 예정
   // const alarmHandler = (e) => {
@@ -24,7 +22,7 @@ function ProfileCard(props) {
   return (
     <div className="profile_banner d-flex content-justify-center p-2 m-3 col-4">
       <div className="profile_list">
-        {props ? (
+        {isLogin ? (
           <img
             className="profile_banner_user"
             src="assets/images/avatar.svg"
@@ -40,17 +38,16 @@ function ProfileCard(props) {
         )}
 
         <div>
-          <div className="profile_bold">Jenny Wilson</div>
-
-          {/*
-          //로그아웃 상태 시 활성화
-          <div className="profile_bold">Jhon Doe</div>
-        */}
-          <div className="profile_text">UI/UX Designer</div>
-          {/* 
-          //로그아웃 상태 시 활성화
-          <div className="profile_text">Unknown User</div>
-           */}
+          {isLogin ? (
+            <div className="profile_bold">Jenny Wilson</div>
+          ) : (
+            <div className="profile_bold">Anonymous</div>
+          )}
+          {isLogin ? (
+            <div className="profile_text">UI/UX Designer</div>
+          ) : (
+            <div className="profile_text">Unknown User</div>
+          )}
         </div>
       </div>
       <div className="content-justify-center">
@@ -64,7 +61,7 @@ function ProfileCard(props) {
           onClick={vibration}
           alt="profile_Card_Alarm_image"
           //로그아웃 상태 시 활성화
-          style={{ visibility: props ? "visible" : "hidden" }}
+          style={{ visibility: isLogin ? "visible" : "hidden" }}
           // style=
         />
         <img
@@ -78,3 +75,7 @@ function ProfileCard(props) {
 }
 
 export default ProfileCard;
+
+ProfileCard.defaultProps = {
+  isLogin: true,
+};

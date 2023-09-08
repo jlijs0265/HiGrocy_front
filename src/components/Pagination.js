@@ -1,54 +1,72 @@
 import propTypes from "prop-types";
 import "./Pagination.css";
 import useProcess from "../hooks/process";
+import useModal from "../hooks/modal";
 
-const Pagination = () => {
-    const { usePaginationSelector, setPagination } = useProcess();
+const Pagination = (isModal) => {
+  const { usePaginationSelector, setPagination } = useProcess();
+  let pagination = usePaginationSelector();
 
-    let pagination = usePaginationSelector();
-    const totalPage = pagination.endPage;
-    const currentPage = pagination.criteria.pageNum;
-    const limit = pagination.pageCount;
+  console.log("pagenation : " + pagination);
+  const totalPage = pagination.endPage;
+  const currentPage = pagination.criteria.pageNum;
+  const limit = pagination.pageCount;
+  const currentSet = Math.ceil(currentPage / limit);
+  const startPage = limit * (currentSet - 1) + 1;
+  const lastSet = Math.ceil(totalPage / limit);
+  const numberOfPageForSet =
+    currentSet === lastSet && totalPage % limit !== 0
+      ? totalPage % limit
+      : limit;
 
-    const currentSet = Math.ceil(currentPage / limit);
-    const startPage = limit * (currentSet - 1) + 1;
-    const lastSet = Math.ceil(totalPage / limit);
-    const numberOfPageForSet =
-        currentSet === lastSet && totalPage % limit !== 0
-            ? totalPage % limit
-            : limit;
-
-    return (
-        <div className="d-flex justify-content-center">
-            <nav aria-label="Page navigation example">
-                <ul className="pagination">
-                    {
-                        pagination.prev && <li className="page-item">
-                            <a className="page-link" href="#">
-                                <span>&laquo;</span>
-                            </a>
-                        </li>
-                    }
-                    {
-                        Array(numberOfPageForSet).fill(startPage).map((value, index) => value + index).map((pageNum) => {
-                            return <li key={pageNum} className={`page-item ${currentPage === pageNum ? 'active' : ''}`}>
-                                <a className="page-link cursor-pointer" onClick={() => { setPagination(pageNum) }}>{pageNum}</a>
-                            </li>
-                        })
-                    }
-                    {
-                        pagination.next && <li className="page-item">
-                            <a className="page-link" href={`/raw_material/${lastSet + 1}`}>
-                                <span>&raquo;</span>
-                            </a>
-                        </li>
-                    }
-                </ul>
-            </nav>
-        </div>
-    );
-}
-
-
+  return (
+    <div className="d-flex justify-content-center">
+      <nav aria-label="Page navigation example">
+        <ul className="pagination">
+          {pagination.prev && (
+            <li className="page-item">
+              <a className="page-link" href="#">
+                <span>&laquo;</span>
+              </a>
+            </li>
+          )}
+          {Array(numberOfPageForSet)
+            .fill(startPage)
+            .map((value, index) => value + index)
+            .map((pageNum) => {
+              return (
+                <li
+                  key={pageNum}
+                  className={`page-item ${
+                    currentPage === pageNum ? "active" : ""
+                  }`}
+                >
+                  <a
+                    className="page-link cursor-pointer"
+                    onClick={() => {
+                      setPagination(pageNum);
+                    }}
+                  >
+                    {pageNum}
+                  </a>
+                </li>
+              );
+            })}
+          {pagination.next && (
+            <li className="page-item">
+              <a className="page-link" href={`/raw_material/${lastSet + 1}`}>
+                <span>&raquo;</span>
+              </a>
+            </li>
+          )}
+        </ul>
+      </nav>
+    </div>
+  );
+};
 
 export default Pagination;
+
+Pagination.defaultProps = {
+  isModal: false,
+};

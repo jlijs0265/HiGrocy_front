@@ -84,7 +84,7 @@ const useProcess = () => {
     };
     let result = [];
     let pagination = {};
-    await axios.get(`http://localhost:8081/${url}`, { params }).then((res) => {
+    await axios.get(`http://localhost:8081/${url}`, { params }).then((res) => {  
       result = res.data["list"];
       result.forEach((i) => (i["id"] = id++));
       pagination = res.data["pageDto"];
