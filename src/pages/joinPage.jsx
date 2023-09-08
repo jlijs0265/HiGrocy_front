@@ -1,4 +1,4 @@
-import "../components/joinForm.css";
+// import "../components/joinForm.css";
 
 const joinPage = () => {
     return (
